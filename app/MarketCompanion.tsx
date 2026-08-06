@@ -1208,7 +1208,10 @@ export function MarketCompanion() {
           </div>
 
           <div className="industry-picker">
-            <label htmlFor="industry-select">选择行业</label>
+            <label htmlFor="industry-select">
+              <strong>选择行业</strong>
+              <span>点击切换</span>
+            </label>
             <select id="industry-select" value={industryId} onChange={(event) => setIndustryId(event.target.value)}>
               {industries.map((industry) => (
                 <option key={industry.id} value={industry.id}>{industry.name}</option>

@@ -543,6 +543,42 @@ a:focus-visible {
   font-weight: 750;
 }
 
+.industry-picker {
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--brand) 22%, var(--line));
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--brand) 6%, var(--card));
+}
+
+.industry-picker label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 2px 10px;
+  color: var(--brand);
+}
+
+.industry-picker label strong {
+  font-size: 0.86rem;
+}
+
+.industry-picker label span {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: white;
+  font-size: 0.67rem;
+  letter-spacing: 0.03em;
+}
+
+.industry-picker select {
+  min-height: 62px;
+  border: 2px solid var(--brand);
+  background: var(--card);
+  box-shadow: 0 7px 20px color-mix(in srgb, var(--brand) 12%, transparent);
+  font-size: 1.08rem;
+}
+
 .selected-title {
   margin: 0 2px 10px;
 }
@@ -809,10 +845,19 @@ a:focus-visible {
     margin-bottom: 16px;
   }
 
+  .industry-picker {
+    padding: 12px;
+  }
+
   .company-directory select,
   .industry-picker select {
     min-height: 50px;
     font-size: 0.8rem;
+  }
+
+  .industry-picker select {
+    min-height: 58px;
+    font-size: 1rem;
   }
 
   .quick-picks button,
