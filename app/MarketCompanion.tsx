@@ -169,7 +169,7 @@ function MarketOverview() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch(dataEndpoint("market"), { signal: controller.signal })
+    fetch(`${dataEndpoint("market")}?refresh=${Date.now()}`, { signal: controller.signal, cache: "no-store" })
       .then((response) => {
         if (!response.ok) throw new Error("market unavailable");
         return response.json();
@@ -782,7 +782,7 @@ function IndustryPulse({ industryId }: { industryId: string }) {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch(dataEndpoint("industry-pulse"), { signal: controller.signal })
+    fetch(`${dataEndpoint("industry-pulse")}?refresh=${Date.now()}`, { signal: controller.signal, cache: "no-store" })
       .then((response) => {
         if (!response.ok) throw new Error("industry pulse unavailable");
         return response.json();
