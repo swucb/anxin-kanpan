@@ -166,7 +166,17 @@ async function loadHistories() {
         const rows = payload.data?.[historyKey]?.qfqday ?? payload.data?.[historyKey]?.day ?? [];
         const points = rows.map((row) => ({ date: row[0], close: Number(row[2]) })).filter((point) => point.date && Number.isFinite(point.close));
         if (points.length < 2) throw new Error("not enough history");
-        await writeFile(`${historyDirectory}/${historyFilename(symbol)}`, `${JSON.stringify({ symbol, points, source: "腾讯行情", updatedAt: new Date().toISOString() })}\n`, "utf8");
+        let hourly = [];
+        if (exchange === "SSE" || exchange === "SZSE") {
+          const hourlyPayload = await fetchJson(`https://ifzq.gtimg.cn/appstock/app/kline/mkline?param=${quoteKey},m60,,24`);
+          const hourlyRows = hourlyPayload.data?.[quoteKey]?.m60 ?? [];
+          const latestDate = hourlyRows.at(-1)?.[0]?.slice(0, 8) ?? "";
+          hourly = hourlyRows
+            .filter((row) => row[0]?.startsWith(latestDate))
+            .map((row) => ({ date: `${row[0].slice(0, 4)}-${row[0].slice(4, 6)}-${row[0].slice(6, 8)} ${row[0].slice(8, 10)}:${row[0].slice(10, 12)}`, close: Number(row[2]) }))
+            .filter((point) => Number.isFinite(point.close));
+        }
+        await writeFile(`${historyDirectory}/${historyFilename(symbol)}`, `${JSON.stringify({ symbol, points, hourly, source: "腾讯行情", updatedAt: new Date().toISOString() })}\n`, "utf8");
         written += 1;
       } catch (error) {
         try {

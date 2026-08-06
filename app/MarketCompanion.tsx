@@ -94,6 +94,7 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
   const cleanSymbols = useMemo(() => symbols.map(([label, symbol]) => [label, symbol.split("|")[0]] as [string, string]), [symbols]);
   const [selected, setSelected] = useState(cleanSymbols[0]?.[1] ?? "");
   const [points, setPoints] = useState<TrendPoint[]>([]);
+  const [hourly, setHourly] = useState<TrendPoint[]>([]);
   const [failed, setFailed] = useState(false);
   const [range, setRange] = useState<1 | 7 | 30 | 90>(1);
   const activeSymbol = cleanSymbols.some((item) => item[1] === selected) ? selected : cleanSymbols[0]?.[1] ?? "";
@@ -103,13 +104,17 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
     if (!activeSymbol) return;
     const controller = new AbortController();
     setPoints([]);
+    setHourly([]);
     setFailed(false);
     fetch(historyEndpoint(activeSymbol), { signal: controller.signal })
       .then((response) => {
         if (!response.ok) throw new Error("history unavailable");
         return response.json();
       })
-      .then((payload) => setPoints(payload.points ?? []))
+      .then((payload) => {
+        setPoints(payload.points ?? []);
+        setHourly(payload.hourly ?? []);
+      })
       .catch((error) => {
         if (error instanceof DOMException && error.name === "AbortError") return;
         setFailed(true);
@@ -117,7 +122,8 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
     return () => controller.abort();
   }, [activeSymbol]);
 
-  const visiblePoints = points.slice(-(range === 1 ? 2 : range));
+  const hasHourly = range === 1 && hourly.length > 1;
+  const visiblePoints = range === 1 ? (hasHourly ? hourly : points.slice(-2)) : points.slice(-range);
   const values = visiblePoints.map((point) => point.close);
   const minimum = Math.min(...values);
   const maximum = Math.max(...values);
@@ -142,19 +148,19 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
         </div>
       )}
       <div className="trend-heading">
-        <div><strong>{activeLabel}</strong><span>{range === 1 ? "上一交易日表现" : `最近${range}个交易日`}</span></div>
+        <div><strong>{activeLabel}</strong><span>{range === 1 ? (hasHourly ? "上一交易日 · 分小时" : "上一交易日 · 收盘变化") : `最近${range}个交易日`}</span></div>
         {points.length > 0 && <div className={direction}><strong>{latest.toLocaleString("zh-CN", { maximumFractionDigits: 2 })}</strong><span>{changePct > 0 ? "+" : ""}{changePct.toFixed(2)}%</span></div>}
       </div>
       <div className="range-tabs" role="group" aria-label="趋势周期">
         {([1, 7, 30, 90] as const).map((days) => <button type="button" className={range === days ? "is-selected" : ""} aria-pressed={range === days} key={days} onClick={() => setRange(days)}>{days}日</button>)}
       </div>
       {failed ? <div className="trend-loading">本次趋势暂未生成，请稍后刷新。</div> : points.length ? (
-        <svg className={`trend-chart ${direction}`} viewBox="0 0 400 190" role="img" aria-label={`${activeLabel}近90个交易日趋势`}>
+        <svg className={`trend-chart ${direction}`} viewBox="0 0 400 190" role="img" aria-label={`${activeLabel}${range === 1 ? "上一交易日" : `最近${range}个交易日`}趋势`}>
           <line x1="12" x2="388" y1="174" y2="174" />
           <polyline points={coordinates} />
         </svg>
       ) : <div className="trend-loading">正在加载趋势…</div>}
-      {visiblePoints.length > 0 && <div className="trend-dates"><span>{visiblePoints[0].date.slice(5)}</span><span>{visiblePoints.at(-1)?.date.slice(5)}</span></div>}
+      {visiblePoints.length > 0 && <div className="trend-dates"><span>{hasHourly ? visiblePoints[0].date.slice(11) : visiblePoints[0].date.slice(5)}</span><span>{hasHourly ? visiblePoints.at(-1)?.date.slice(11) : visiblePoints.at(-1)?.date.slice(5)}</span></div>}
     </div>
   );
 }
