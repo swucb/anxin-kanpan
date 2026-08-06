@@ -18,7 +18,16 @@ type CompanyGroup = {
 type IndustryOption = {
   id: string;
   name: string;
-  symbols: Array<[string, string]>;
+  symbols: [
+    [string, string],
+    [string, string],
+    [string, string],
+    [string, string],
+    [string, string],
+    [string, string],
+    [string, string],
+    ...Array<[string, string]>,
+  ];
 };
 
 type GlobalSector = {
@@ -76,6 +85,9 @@ const companyGroups: CompanyGroup[] = [
       { name: "双汇发展", code: "000895", symbol: "SZSE:000895" },
       { name: "青岛啤酒", code: "600600", symbol: "SSE:600600" },
       { name: "牧原股份", code: "002714", symbol: "SZSE:002714" },
+      { name: "东鹏饮料", code: "605499", symbol: "SSE:605499" },
+      { name: "珀莱雅", code: "603605", symbol: "SSE:603605" },
+      { name: "乖宝宠物", code: "301498", symbol: "SZSE:301498" },
     ],
   },
   {
@@ -91,6 +103,12 @@ const companyGroups: CompanyGroup[] = [
       { name: "中信证券", code: "600030", symbol: "SSE:600030" },
       { name: "东方财富", code: "300059", symbol: "SZSE:300059" },
       { name: "华泰证券", code: "601688", symbol: "SSE:601688" },
+      { name: "宁波银行", code: "002142", symbol: "SZSE:002142" },
+      { name: "江苏银行", code: "600919", symbol: "SSE:600919" },
+      { name: "杭州银行", code: "600926", symbol: "SSE:600926" },
+      { name: "国泰海通", code: "601211", symbol: "SSE:601211" },
+      { name: "国联民生", code: "601456", symbol: "SSE:601456" },
+      { name: "中金公司", code: "601995", symbol: "SSE:601995" },
     ],
   },
   {
@@ -104,6 +122,11 @@ const companyGroups: CompanyGroup[] = [
       { name: "亿纬锂能", code: "300014", symbol: "SZSE:300014" },
       { name: "上汽集团", code: "600104", symbol: "SSE:600104" },
       { name: "长安汽车", code: "000625", symbol: "SZSE:000625" },
+      { name: "赛力斯", code: "601127", symbol: "SSE:601127" },
+      { name: "拓普集团", code: "601689", symbol: "SSE:601689" },
+      { name: "晶科能源", code: "688223", symbol: "SSE:688223" },
+      { name: "阿特斯", code: "688472", symbol: "SSE:688472" },
+      { name: "德业股份", code: "605117", symbol: "SSE:605117" },
     ],
   },
   {
@@ -112,10 +135,14 @@ const companyGroups: CompanyGroup[] = [
       { name: "中芯国际", code: "688981", symbol: "SSE:688981" },
       { name: "寒武纪", code: "688256", symbol: "SSE:688256" },
       { name: "北方华创", code: "002371", symbol: "SZSE:002371" },
-      { name: "韦尔股份", code: "603501", symbol: "SSE:603501" },
+      { name: "豪威集团", code: "603501", symbol: "SSE:603501" },
       { name: "海光信息", code: "688041", symbol: "SSE:688041" },
+      { name: "中微公司", code: "688012", symbol: "SSE:688012" },
+      { name: "澜起科技", code: "688008", symbol: "SSE:688008" },
       { name: "科大讯飞", code: "002230", symbol: "SZSE:002230" },
       { name: "金山办公", code: "688111", symbol: "SSE:688111" },
+      { name: "中科曙光", code: "603019", symbol: "SSE:603019" },
+      { name: "浪潮信息", code: "000977", symbol: "SZSE:000977" },
       { name: "海康威视", code: "002415", symbol: "SZSE:002415" },
       { name: "立讯精密", code: "002475", symbol: "SZSE:002475" },
       { name: "工业富联", code: "601138", symbol: "SSE:601138" },
@@ -123,6 +150,8 @@ const companyGroups: CompanyGroup[] = [
       { name: "中国联通", code: "600050", symbol: "SSE:600050" },
       { name: "中兴通讯", code: "000063", symbol: "SZSE:000063" },
       { name: "中际旭创", code: "300308", symbol: "SZSE:300308" },
+      { name: "新易盛", code: "300502", symbol: "SZSE:300502" },
+      { name: "天孚通信", code: "300394", symbol: "SZSE:300394" },
     ],
   },
   {
@@ -134,6 +163,9 @@ const companyGroups: CompanyGroup[] = [
       { name: "药明康德", code: "603259", symbol: "SSE:603259" },
       { name: "爱尔眼科", code: "300015", symbol: "SZSE:300015" },
       { name: "片仔癀", code: "600436", symbol: "SSE:600436" },
+      { name: "百济神州", code: "688235", symbol: "SSE:688235" },
+      { name: "科伦药业", code: "002422", symbol: "SZSE:002422" },
+      { name: "联影医疗", code: "688271", symbol: "SSE:688271" },
     ],
   },
   {
@@ -142,12 +174,18 @@ const companyGroups: CompanyGroup[] = [
       { name: "美的集团", code: "000333", symbol: "SZSE:000333" },
       { name: "格力电器", code: "000651", symbol: "SZSE:000651" },
       { name: "海尔智家", code: "600690", symbol: "SSE:600690" },
+      { name: "海信家电", code: "000921", symbol: "SZSE:000921" },
+      { name: "石头科技", code: "688169", symbol: "SSE:688169" },
+      { name: "科沃斯", code: "603486", symbol: "SSE:603486" },
       { name: "三一重工", code: "600031", symbol: "SSE:600031" },
       { name: "汇川技术", code: "300124", symbol: "SZSE:300124" },
       { name: "中国中车", code: "601766", symbol: "SSE:601766" },
       { name: "中国船舶", code: "600150", symbol: "SSE:600150" },
       { name: "航发动力", code: "600893", symbol: "SSE:600893" },
       { name: "中航沈飞", code: "600760", symbol: "SSE:600760" },
+      { name: "中航西飞", code: "000768", symbol: "SZSE:000768" },
+      { name: "中航成飞", code: "302132", symbol: "SZSE:302132" },
+      { name: "华秦科技", code: "688281", symbol: "SSE:688281" },
       { name: "京东方A", code: "000725", symbol: "SZSE:000725" },
     ],
   },
@@ -167,9 +205,21 @@ const companyGroups: CompanyGroup[] = [
       { name: "中国核电", code: "601985", symbol: "SSE:601985" },
       { name: "三峡能源", code: "600905", symbol: "SSE:600905" },
       { name: "华能水电", code: "600025", symbol: "SSE:600025" },
+      { name: "国电电力", code: "600795", symbol: "SSE:600795" },
+      { name: "华电新能", code: "600930", symbol: "SSE:600930" },
+      { name: "中煤能源", code: "601898", symbol: "SSE:601898" },
+      { name: "山西焦煤", code: "000983", symbol: "SZSE:000983" },
+      { name: "新集能源", code: "601918", symbol: "SSE:601918" },
+      { name: "中国铝业", code: "601600", symbol: "SSE:601600" },
+      { name: "赣锋锂业", code: "002460", symbol: "SZSE:002460" },
+      { name: "华友钴业", code: "603799", symbol: "SSE:603799" },
       { name: "万华化学", code: "600309", symbol: "SSE:600309" },
       { name: "盐湖股份", code: "000792", symbol: "SZSE:000792" },
       { name: "巨化股份", code: "600160", symbol: "SSE:600160" },
+      { name: "华鲁恒升", code: "600426", symbol: "SSE:600426" },
+      { name: "宝丰能源", code: "600989", symbol: "SSE:600989" },
+      { name: "卫星化学", code: "002648", symbol: "SZSE:002648" },
+      { name: "天赐材料", code: "002709", symbol: "SZSE:002709" },
     ],
   },
   {
@@ -200,9 +250,12 @@ const industries: IndustryOption[] = [
     name: "消费",
     symbols: [
       ["消费ETF", "SZSE:159928|12M"],
-      ["伊利股份", "SSE:600887|12M"],
       ["贵州茅台", "SSE:600519|12M"],
       ["五粮液", "SZSE:000858|12M"],
+      ["伊利股份", "SSE:600887|12M"],
+      ["东鹏饮料", "SSE:605499|12M"],
+      ["珀莱雅", "SSE:603605|12M"],
+      ["乖宝宠物", "SZSE:301498|12M"],
     ],
   },
   {
@@ -213,6 +266,9 @@ const industries: IndustryOption[] = [
       ["招商银行", "SSE:600036|12M"],
       ["工商银行", "SSE:601398|12M"],
       ["农业银行", "SSE:601288|12M"],
+      ["宁波银行", "SZSE:002142|12M"],
+      ["江苏银行", "SSE:600919|12M"],
+      ["杭州银行", "SSE:600926|12M"],
     ],
   },
   {
@@ -220,9 +276,12 @@ const industries: IndustryOption[] = [
     name: "券商",
     symbols: [
       ["券商ETF", "SSE:512880|12M"],
-      ["东方财富", "SZSE:300059|12M"],
       ["中信证券", "SSE:600030|12M"],
       ["华泰证券", "SSE:601688|12M"],
+      ["国泰海通", "SSE:601211|12M"],
+      ["国联民生", "SSE:601456|12M"],
+      ["东方财富", "SZSE:300059|12M"],
+      ["中金公司", "SSE:601995|12M"],
     ],
   },
   {
@@ -231,8 +290,11 @@ const industries: IndustryOption[] = [
     symbols: [
       ["半导体ETF", "SSE:512480|12M"],
       ["中芯国际", "SSE:688981|12M"],
-      ["韦尔股份", "SSE:603501|12M"],
       ["北方华创", "SZSE:002371|12M"],
+      ["中微公司", "SSE:688012|12M"],
+      ["海光信息", "SSE:688041|12M"],
+      ["澜起科技", "SSE:688008|12M"],
+      ["豪威集团", "SSE:603501|12M"],
     ],
   },
   {
@@ -243,6 +305,9 @@ const industries: IndustryOption[] = [
       ["科大讯飞", "SZSE:002230|12M"],
       ["寒武纪", "SSE:688256|12M"],
       ["金山办公", "SSE:688111|12M"],
+      ["中科曙光", "SSE:603019|12M"],
+      ["浪潮信息", "SZSE:000977|12M"],
+      ["中际旭创", "SZSE:300308|12M"],
     ],
   },
   {
@@ -250,9 +315,12 @@ const industries: IndustryOption[] = [
     name: "通信",
     symbols: [
       ["通信ETF", "SSE:515880|12M"],
+      ["中国移动", "SSE:600941|12M"],
+      ["中国联通", "SSE:600050|12M"],
       ["中兴通讯", "SZSE:000063|12M"],
-      ["工业富联", "SSE:601138|12M"],
       ["中际旭创", "SZSE:300308|12M"],
+      ["新易盛", "SZSE:300502|12M"],
+      ["天孚通信", "SZSE:300394|12M"],
     ],
   },
   {
@@ -262,7 +330,10 @@ const industries: IndustryOption[] = [
       ["新能源车ETF", "SSE:515030|12M"],
       ["宁德时代", "SZSE:300750|12M"],
       ["比亚迪", "SZSE:002594|12M"],
+      ["长安汽车", "SZSE:000625|12M"],
+      ["赛力斯", "SSE:601127|12M"],
       ["亿纬锂能", "SZSE:300014|12M"],
+      ["拓普集团", "SSE:601689|12M"],
     ],
   },
   {
@@ -270,9 +341,12 @@ const industries: IndustryOption[] = [
     name: "光伏",
     symbols: [
       ["光伏ETF", "SSE:515790|12M"],
-      ["特变电工", "SSE:600089|12M"],
       ["隆基绿能", "SSE:601012|12M"],
+      ["通威股份", "SSE:600438|12M"],
       ["阳光电源", "SZSE:300274|12M"],
+      ["晶科能源", "SSE:688223|12M"],
+      ["阿特斯", "SSE:688472|12M"],
+      ["德业股份", "SSE:605117|12M"],
     ],
   },
   {
@@ -283,6 +357,9 @@ const industries: IndustryOption[] = [
       ["恒瑞医药", "SSE:600276|12M"],
       ["迈瑞医疗", "SZSE:300760|12M"],
       ["药明康德", "SSE:603259|12M"],
+      ["百济神州", "SSE:688235|12M"],
+      ["科伦药业", "SZSE:002422|12M"],
+      ["联影医疗", "SSE:688271|12M"],
     ],
   },
   {
@@ -293,6 +370,9 @@ const industries: IndustryOption[] = [
       ["美的集团", "SZSE:000333|12M"],
       ["格力电器", "SZSE:000651|12M"],
       ["海尔智家", "SSE:600690|12M"],
+      ["海信家电", "SZSE:000921|12M"],
+      ["石头科技", "SSE:688169|12M"],
+      ["科沃斯", "SSE:603486|12M"],
     ],
   },
   {
@@ -301,8 +381,11 @@ const industries: IndustryOption[] = [
     symbols: [
       ["军工ETF", "SSE:512660|12M"],
       ["中国船舶", "SSE:600150|12M"],
-      ["航发动力", "SSE:600893|12M"],
       ["中航沈飞", "SSE:600760|12M"],
+      ["航发动力", "SSE:600893|12M"],
+      ["中航西飞", "SZSE:000768|12M"],
+      ["中航成飞", "SZSE:302132|12M"],
+      ["华秦科技", "SSE:688281|12M"],
     ],
   },
   {
@@ -311,8 +394,11 @@ const industries: IndustryOption[] = [
     symbols: [
       ["电力ETF", "SZSE:159611|12M"],
       ["长江电力", "SSE:600900|12M"],
+      ["华能水电", "SSE:600025|12M"],
       ["中国核电", "SSE:601985|12M"],
+      ["国电电力", "SSE:600795|12M"],
       ["三峡能源", "SSE:600905|12M"],
+      ["华电新能", "SSE:600930|12M"],
     ],
   },
   {
@@ -323,6 +409,9 @@ const industries: IndustryOption[] = [
       ["中国神华", "SSE:601088|12M"],
       ["陕西煤业", "SSE:601225|12M"],
       ["兖矿能源", "SSE:600188|12M"],
+      ["中煤能源", "SSE:601898|12M"],
+      ["山西焦煤", "SZSE:000983|12M"],
+      ["新集能源", "SSE:601918|12M"],
     ],
   },
   {
@@ -332,7 +421,10 @@ const industries: IndustryOption[] = [
       ["有色ETF", "SSE:512400|12M"],
       ["紫金矿业", "SSE:601899|12M"],
       ["洛阳钼业", "SSE:603993|12M"],
+      ["中国铝业", "SSE:601600|12M"],
       ["北方稀土", "SSE:600111|12M"],
+      ["赣锋锂业", "SZSE:002460|12M"],
+      ["华友钴业", "SSE:603799|12M"],
     ],
   },
   {
@@ -341,8 +433,11 @@ const industries: IndustryOption[] = [
     symbols: [
       ["化工ETF", "SSE:516020|12M"],
       ["万华化学", "SSE:600309|12M"],
-      ["盐湖股份", "SZSE:000792|12M"],
+      ["华鲁恒升", "SSE:600426|12M"],
+      ["宝丰能源", "SSE:600989|12M"],
+      ["卫星化学", "SZSE:002648|12M"],
       ["巨化股份", "SSE:600160|12M"],
+      ["天赐材料", "SZSE:002709|12M"],
     ],
   },
 ];
@@ -520,8 +615,6 @@ function stockFromInput(value: string): StockOption | null {
 
 export function MarketCompanion() {
   const [activeTab, setActiveTab] = useState<Tab>("today");
-  const [largeType, setLargeType] = useState(false);
-  const [typeReady, setTypeReady] = useState(false);
   const [companyInput, setCompanyInput] = useState("贵州茅台");
   const [selectedCompany, setSelectedCompany] = useState(companies[0]);
   const [companyError, setCompanyError] = useState("");
@@ -531,21 +624,6 @@ export function MarketCompanion() {
   const [companyPrefsReady, setCompanyPrefsReady] = useState(false);
   const [industryId, setIndustryId] = useState(industries[0].id);
   const [globalSectorId, setGlobalSectorId] = useState(globalSectors[0].id);
-
-  useEffect(() => {
-    const saved = window.localStorage.getItem("anxin-large-type") === "true";
-    const frame = window.requestAnimationFrame(() => {
-      setLargeType(saved);
-      setTypeReady(true);
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, []);
-
-  useEffect(() => {
-    if (!typeReady) return;
-    document.documentElement.dataset.typeSize = largeType ? "extra" : "large";
-    window.localStorage.setItem("anxin-large-type", String(largeType));
-  }, [largeType, typeReady]);
 
   useEffect(() => {
     let savedFavorites: StockOption[] = [];
@@ -645,13 +723,8 @@ export function MarketCompanion() {
     <main className="app-shell">
       <header className="site-header">
         <div className="brand-lockup">
-          <div className="brand-mark" aria-hidden="true">安</div>
           <h1>安心看盘</h1>
         </div>
-        <button type="button" className="type-toggle" aria-pressed={largeType} onClick={() => setLargeType((value) => !value)}>
-          <span aria-hidden="true">字</span>
-          {largeType ? "标准大字" : "再大一点"}
-        </button>
       </header>
 
       <nav className="top-nav" aria-label="主要功能">

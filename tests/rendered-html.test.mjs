@@ -31,7 +31,9 @@ test("server-renders the concise market companion", async () => {
   assert.match(html, />公司<\/button>/);
   assert.match(html, />行业<\/button>/);
   assert.match(html, />美股<\/button>/);
+  assert.match(html, /<h1>安心看盘<\/h1>/);
   assert.doesNotMatch(html, />今<\/span>|>查<\/span>|>业<\/span>|>外<\/span>/);
+  assert.doesNotMatch(html, /标准大字|再大一点|aria-pressed/);
   assert.doesNotMatch(html, /一句话看懂|下一步|不用天天看盘|四件事，影响多数行业|数据先核对/);
   assert.doesNotMatch(html, /演示数据|TUSHARE_TOKEN|codex-preview|Your site is taking shape/i);
 });
