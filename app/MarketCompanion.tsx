@@ -810,13 +810,11 @@ function IndustryPulse({ industryId, onSelectCompany }: { industryId: string; on
   }, []);
 
   const active = items.find((item) => item.id === industryId);
-  if (failed) return <p className="industry-pulse-status">上一交易日对比暂时未加载，趋势仍可查看。</p>;
-  if (!active) return <p className="industry-pulse-status">正在加载上一交易日对比…</p>;
+  if (failed) return <p className="industry-pulse-status">行业日报暂时未加载，趋势仍可查看。</p>;
+  if (!active) return <p className="industry-pulse-status">正在加载行业日报…</p>;
 
   return (
     <article className="industry-pulse" aria-live="polite">
-      <strong>上一交易日</strong>
-      <p>{active.summary}</p>
       {active.aiSummary && <div className="ai-analysis"><span>{active.aiGenerated ? `${active.aiProvider ?? "AI"} 全行业日报` : "全行业数据日报"}</span><p>{active.aiSummary}</p></div>}
       {active.sector && <div className="sector-snapshot">
         <strong>{active.sector.boardName}全行业</strong>
@@ -833,7 +831,7 @@ function IndustryPulse({ industryId, onSelectCompany }: { industryId: string; on
         })}</div>
       </div> : null}
       {(active.news?.length || active.financials?.length) ? <div className="analysis-evidence">
-        {active.news?.slice(0, 2).map((item) => <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>新闻｜{item.title}</a>)}
+        {active.news?.slice(0, 3).map((item) => <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>新闻｜{new Date(item.publishedAt).toLocaleDateString("zh-CN", { month: "numeric", day: "numeric" })}｜{item.title}</a>)}
         {active.financials?.slice(0, 3).map((item) => <span key={`${item.name}-${item.reportDate}`}>财报｜{item.name} {item.reportType} {item.reportDate.slice(0, 10)}</span>)}
       </div> : null}
       <footer>
