@@ -305,6 +305,7 @@ a:focus-visible {
 .trend-chart.down polyline { stroke: #17866f; }
 .trend-loading { min-height: 210px; display: grid; place-items: center; color: #7a8582; font-weight: 700; }
 .trend-dates { display: flex; justify-content: space-between; padding: 0 18px 14px; color: #8a928f; font-size: 0.7rem; }
+.trend-hours { display: flex; justify-content: space-between; gap: 4px; padding: 0 18px 14px; color: #7a8582; font-size: 0.68rem; }
 
 .ai-analysis {
   margin-top: 14px;

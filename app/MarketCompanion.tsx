@@ -106,7 +106,7 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
     setPoints([]);
     setHourly([]);
     setFailed(false);
-    fetch(historyEndpoint(activeSymbol), { signal: controller.signal })
+    fetch(`${historyEndpoint(activeSymbol)}?refresh=${Date.now()}`, { signal: controller.signal, cache: "no-store" })
       .then((response) => {
         if (!response.ok) throw new Error("history unavailable");
         return response.json();
@@ -152,7 +152,7 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
         {points.length > 0 && <div className={direction}><strong>{latest.toLocaleString("zh-CN", { maximumFractionDigits: 2 })}</strong><span>{changePct > 0 ? "+" : ""}{changePct.toFixed(2)}%</span></div>}
       </div>
       <div className="range-tabs" role="group" aria-label="趋势周期">
-        {([1, 7, 30, 90] as const).map((days) => <button type="button" className={range === days ? "is-selected" : ""} aria-pressed={range === days} key={days} onClick={() => setRange(days)}>{days}日</button>)}
+        {([1, 7, 30, 90] as const).map((days) => <button type="button" className={range === days ? "is-selected" : ""} aria-pressed={range === days} key={days} onClick={() => setRange(days)}>{days === 1 ? "1日·小时" : `${days}日`}</button>)}
       </div>
       {failed ? <div className="trend-loading">本次趋势暂未生成，请稍后刷新。</div> : points.length ? (
         <svg className={`trend-chart ${direction}`} viewBox="0 0 400 190" role="img" aria-label={`${activeLabel}${range === 1 ? "上一交易日" : `最近${range}个交易日`}趋势`}>
@@ -160,7 +160,7 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
           <polyline points={coordinates} />
         </svg>
       ) : <div className="trend-loading">正在加载趋势…</div>}
-      {visiblePoints.length > 0 && <div className="trend-dates"><span>{hasHourly ? visiblePoints[0].date.slice(11) : visiblePoints[0].date.slice(5)}</span><span>{hasHourly ? visiblePoints.at(-1)?.date.slice(11) : visiblePoints.at(-1)?.date.slice(5)}</span></div>}
+      {visiblePoints.length > 0 && (hasHourly ? <div className="trend-hours">{visiblePoints.map((point) => <span key={point.date}>{point.date.slice(11)}</span>)}</div> : <div className="trend-dates"><span>{visiblePoints[0].date.slice(5)}</span><span>{visiblePoints.at(-1)?.date.slice(5)}</span></div>)}
     </div>
   );
 }
