@@ -579,18 +579,6 @@ a:focus-visible {
   font-size: 1.08rem;
 }
 
-.section-link-button {
-  min-height: 40px;
-  padding: 7px 13px;
-  border: 1px solid color-mix(in srgb, var(--brand) 35%, var(--line));
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--brand) 7%, var(--card));
-  color: var(--brand);
-  cursor: pointer;
-  font-size: 0.74rem;
-  font-weight: 800;
-}
-
 .industry-company-links {
   margin-top: 18px;
   padding-top: 16px;

@@ -51,8 +51,9 @@ type IndustryPulseItem = {
   financials?: Array<{ name: string; reportDate: string; reportType: string }>;
   sector?: {
     boardName: string; mainNetFlow: number; mainNetFlowPct: number; advancers: number; decliners: number; up5Count: number;
-    topInflows: Array<{ name: string; mainNetFlow: number }>;
-    newWatch: Array<{ name: string; changePct: number }>;
+    topInflows: Array<{ name: string; code: string; mainNetFlow: number }>;
+    marketCapLeaders: Array<{ name: string; code: string; marketCap: number }>;
+    newWatch: Array<{ name: string; code: string; changePct: number }>;
   } | null;
   cn: { label: string; symbol: string; changePct: number; asOf: string; session: string };
   us: { label: string; symbol: string; changePct: number; asOf: string; session: string };
@@ -812,6 +813,15 @@ function IndustryPulse({ industryId, onSelectCompany }: { industryId: string; on
   const active = items.find((item) => item.id === industryId);
   if (failed) return <p className="industry-pulse-status">行业日报暂时未加载，趋势仍可查看。</p>;
   if (!active) return <p className="industry-pulse-status">正在加载行业日报…</p>;
+  const industryCompanies = [
+    ...(active.companies ?? []).map((item) => ({ name: item.name, code: item.symbol.replace(/^\D+/, "") })),
+    ...(active.sector?.marketCapLeaders ?? []),
+    ...(active.sector?.topInflows ?? []),
+    ...(active.sector?.newWatch ?? []),
+  ].filter((item) => /^\d{6}$/.test(item.code))
+    .filter((item, index, list) => list.findIndex((candidate) => candidate.code === item.code) === index)
+    .slice(0, 12)
+    .map((item) => ({ name: item.name, code: item.code, symbol: `${/^[569]/.test(item.code) ? "SSE" : "SZSE"}:${item.code}` }));
 
   return (
     <article className="industry-pulse" aria-live="polite">
@@ -823,11 +833,10 @@ function IndustryPulse({ industryId, onSelectCompany }: { industryId: string; on
         {active.sector.newWatch?.length > 0 && <p>新进入异动观察：{active.sector.newWatch.slice(0, 5).map((item) => item.name).join("、")}</p>}
         <small>主力资金为成交统计口径，不等于机构持仓。</small>
       </div>}
-      {active.companies?.length ? <div className="industry-company-links">
-        <strong>查看行业公司</strong>
-        <div>{active.companies.map((company) => {
-          const code = company.symbol.split(":")[1] ?? "";
-          return <button type="button" key={company.symbol} onClick={() => onSelectCompany({ name: company.name, code, symbol: company.symbol })}>{company.name}<span>查看公司 →</span></button>;
+      {industryCompanies.length ? <div className="industry-company-links">
+        <strong>行业公司 · {industryCompanies.length}家</strong>
+        <div>{industryCompanies.map((company) => {
+          return <button type="button" key={company.symbol} onClick={() => onSelectCompany(company)}>{company.name}<span>查看详情 →</span></button>;
         })}</div>
       </div> : null}
       {(active.news?.length || active.financials?.length) ? <div className="analysis-evidence">
@@ -1218,7 +1227,6 @@ export function MarketCompanion() {
         <section className="page-section" aria-labelledby="industry-title">
           <div className="section-heading">
             <h2 id="industry-title">行业对比</h2>
-            <button className="section-link-button" type="button" onClick={() => jumpTo("company")}>直接查公司 →</button>
           </div>
 
           <div className="industry-picker">
