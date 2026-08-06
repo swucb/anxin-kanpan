@@ -35,6 +35,13 @@
       ],
       "news": [
         {
+          "title": "安阳钢铁(600569):安阳钢铁股份有限公司2026年度向特定对象发行A股股票方案论证分析报告（修订稿） - 中财网",
+          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9hZVVtbTRUTUVpTWRCVjlmd1JkU3dyekwtMlUwTkEyZXI0NlpnVWJQbktTWVFmMG9MT21Fbi1qMlRnZ2RnbXE0QXMySlBMcTE2T0R2RzlB?oc=5",
+          "source": "中财网",
+          "publishedAt": "Thu, 06 Aug 2026 10:08:00 GMT",
+          "timeRange": "过去24小时"
+        },
+        {
           "title": "半年报窗口期：A股从题材炒作转向业绩兑现 - 新浪网",
           "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE41S2dJRUVmUmJWQWdscGVMZHFyd1NJUU1xSS1zdWk1cHVVUDBTRmJ3c2JZaWxRQ1Y2ZVlSWDlUUWRoVHliZXM4V1o4cVFaVWtSMTV6VkdHVVhheDZndnoyWG1R?oc=5",
           "source": "新浪网",
@@ -56,9 +63,9 @@
           "timeRange": "近14天补充"
         },
         {
-          "title": "八月美股前瞻：非农定调加息与SpaceX财报解析与投资机会 - ebc.com",
+          "title": "八月美股前瞻：非农定调加息与SpaceX财报解析与投资机会 - EBC Financial Group",
           "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5JUC1NeWJNWWNBTDVxSEduS0lfdGhJWk1GUDV2RFBNMWtUQVpMdTRGTzdZZVlFWmN5Z2w2cmNJRXI3bWNPNmtVTk1xWWxnWlU3NFJIRWpFNHc?oc=5",
-          "source": "ebc.com",
+          "source": "EBC Financial Group",
           "publishedAt": "Tue, 04 Aug 2026 02:56:00 GMT",
           "timeRange": "近14天补充"
         },
@@ -67,13 +74,6 @@
           "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBGMUlWYnJmYnlnLW1qY3FFLW9USGdQc1BUaS1iWS1XckNtTFpjdmU1TFFfZ0FJN3BvdGxqUGhUYzBJckFvcGltd0QxdkNfaEwxSWhrZzBlOW84ek0?oc=5",
           "source": "电玩巴士",
           "publishedAt": "Mon, 03 Aug 2026 00:43:09 GMT",
-          "timeRange": "近14天补充"
-        },
-        {
-          "title": "【国金研究·周观点】谷歌重磅发布Gemini Robotics 2模型；云厂商财报验证AI回报兑现；航空暑运量价改善，油轮运价大幅回升 - 财富号",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBncHl2ejFvRXhGM19nUGhUM1VjXzFhSWVVXzVMbjZKV0NrLVhpVU94V0lNdERnS2JhRWp2bkMyaHIzdVpoejY1TU8xc3BPOXRXVFZDd0pRVGFweVlSOUdsNURRSjlTVHRJMHlB?oc=5",
-          "source": "财富号",
-          "publishedAt": "Sun, 02 Aug 2026 23:34:00 GMT",
           "timeRange": "近14天补充"
         }
       ],
@@ -157,7 +157,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:51:59.839Z",
+        "asOf": "2026-08-06T11:59:26.809Z",
         "source": "东方财富公开行情",
         "boardCode": "BK0438",
         "boardName": "食品饮料",
@@ -506,9 +506,10 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【行业结论】消费A股参考指数在2026-08-06收盘下跌0.7%，美股参考在2026-08-05最近收盘基本持平；涨跌幅均为较各自前一交易日收盘，一边平稳、一边波动，美股相对更强。全行业快照中上涨41家、下跌53家，涨幅达到5%的有2家，行情分化或承压。\n\n【产业与新闻】新浪网（2026/08/04 21:45，近14天补充）：半年报窗口期：A股从题材炒作转向业绩兑现 - 新浪网；中财网（2026/08/04 21:25，近14天补充）：福蓉科技(603327):2026年度以简易程序向特定对象发行股票后被摊薄即期回报的填补措施及相关主体承诺（修订稿） - 中财网；中财网（2026/08/04 21:25，近14天补充）：福蓉科技(603327):2026年度以简易程序向特定对象发行股票募集资金使用的可行性分析报告（修订稿） - 中财网这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长4家、归母净利润同比增长4家。贵州茅台营收同比6.3%、净利同比1.5%；伊利股份营收同比5.5%、净利同比10.7%；东鹏饮料营收同比15.9%、净利同比20.7%；海天味业营收同比8.6%、净利同比11.0%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】食品饮料成分股主力资金合计+0.2亿元，占成交额0.1%；资金流入前列包括舍得酒业、古井贡酒、金种子酒、伊利股份、金徽酒，成交活跃前列包括贵州茅台、莲花控股、伊利股份、山西汾酒、泸州老窖。新进入异动观察名单的是ST西王、技源集团、金种子酒、ST加加、味知香。主力资金为成交统计口径，不等于机构持仓。",
-      "aiGenerated": false,
-      "aiUpdatedAt": "2026-08-06T11:52:10.085Z"
+      "aiSummary": "【资金与异动】A股食品饮料板块于2026年8月6日收盘，较前一交易日上涨0.25%，主力净流入1.96亿元，净流入占比0.09%；上涨家数41家，下跌家数53家，涨幅超过5%的个股为2家。行业资金流向呈现分化，资金流入前列为舍得酒业（净流入7.55亿元）、古井贡酒（净流入5.21亿元）及金种子酒（净流入4.94亿元）；成交额与市值前列的贵州茅台（净流出1.66亿元）与伊利股份（净流入3.56亿元）走势背离，茅台成交额达33.26亿元居首但资金净流出最大。新进入观察名单的ST西王涨幅5.88%，净流入1.07亿元，成交额1.26亿元，市值18.49亿元。美股消费板块于2026年8月5日收盘，较前一交易日下跌0.05%。",
+      "aiGenerated": true,
+      "aiUpdatedAt": "2026-08-06T12:01:47.597Z",
+      "aiProvider": "智谱 GLM-4.7-Flash"
     },
     {
       "id": "bank",
@@ -545,9 +546,9 @@
       ],
       "news": [
         {
-          "title": "八月美股前瞻：非农定调加息与SpaceX财报解析与投资机会 - ebc.com",
+          "title": "八月美股前瞻：非农定调加息与SpaceX财报解析与投资机会 - EBC Financial Group",
           "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5JUC1NeWJNWWNBTDVxSEduS0lfdGhJWk1GUDV2RFBNMWtUQVpMdTRGTzdZZVlFWmN5Z2w2cmNJRXI3bWNPNmtVTk1xWWxnWlU3NFJIRWpFNHc?oc=5",
-          "source": "ebc.com",
+          "source": "EBC Financial Group",
           "publishedAt": "Tue, 04 Aug 2026 02:56:00 GMT",
           "timeRange": "近14天补充"
         },
@@ -667,7 +668,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:00.284Z",
+        "asOf": "2026-08-06T11:59:27.256Z",
         "source": "东方财富公开行情",
         "boardCode": "BK0475",
         "boardName": "银行Ⅱ",
@@ -1016,9 +1017,9 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【行业结论】银行A股参考指数在2026-08-06收盘上涨0.5%，美股参考在2026-08-05最近收盘下跌0.4%；涨跌幅均为较各自前一交易日收盘，两边走势分化，A股相对更强。全行业快照中上涨21家、下跌18家，涨幅达到5%的有0家，行情扩散面偏强。\n\n【产业与新闻】ebc.com（2026/08/04 10:56，近14天补充）：八月美股前瞻：非农定调加息与SpaceX财报解析与投资机会 - ebc.com；新浪财经（2026/08/03 23:58，近14天补充）：中国银行业协会正式发布《中国金融租赁行业发展报告（2026）》 - 新浪财经；新浪财经（2026/08/03 15:00，近14天补充）：金鹰基金：极致分化迎收敛 行稳致远择良机 - 新浪财经这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长6家、归母净利润同比增长6家。工商银行营收同比8.3%、净利同比3.3%；招商银行营收同比3.8%、净利同比1.5%；江苏银行营收同比8.4%、净利同比8.2%；建设银行营收同比11.1%、净利同比3.5%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】银行Ⅱ成分股主力资金合计-0.8亿元，占成交额-0.3%；资金流入前列包括中国银行、招商银行、渝农商行、工商银行、上海银行，成交活跃前列包括农业银行、工商银行、招商银行、建设银行、中国银行。新进入异动观察名单的是建设银行、齐鲁银行、江苏银行、中国银行、工商银行。主力资金为成交统计口径，不等于机构持仓。",
+      "aiSummary": "【行业结论】银行A股参考指数在2026-08-06收盘上涨0.5%，美股参考在2026-08-05最近收盘下跌0.4%；涨跌幅均为较各自前一交易日收盘，两边走势分化，A股相对更强。全行业快照中上涨21家、下跌18家，涨幅达到5%的有0家，行情扩散面偏强。\n\n【产业与新闻】EBC Financial Group（2026/08/04 10:56，近14天补充）：八月美股前瞻：非农定调加息与SpaceX财报解析与投资机会 - EBC Financial Group；新浪财经（2026/08/03 23:58，近14天补充）：中国银行业协会正式发布《中国金融租赁行业发展报告（2026）》 - 新浪财经；新浪财经（2026/08/03 15:00，近14天补充）：金鹰基金：极致分化迎收敛 行稳致远择良机 - 新浪财经这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长6家、归母净利润同比增长6家。工商银行营收同比8.3%、净利同比3.3%；招商银行营收同比3.8%、净利同比1.5%；江苏银行营收同比8.4%、净利同比8.2%；建设银行营收同比11.1%、净利同比3.5%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】银行Ⅱ成分股主力资金合计-0.8亿元，占成交额-0.3%；资金流入前列包括中国银行、招商银行、渝农商行、工商银行、上海银行，成交活跃前列包括农业银行、工商银行、招商银行、建设银行、中国银行。新进入异动观察名单的是建设银行、齐鲁银行、江苏银行、中国银行、工商银行。主力资金为成交统计口径，不等于机构持仓。",
       "aiGenerated": false,
-      "aiUpdatedAt": "2026-08-06T11:52:10.085Z"
+      "aiUpdatedAt": "2026-08-06T11:59:35.125Z"
     },
     {
       "id": "brokerage",
@@ -1152,7 +1153,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:00.728Z",
+        "asOf": "2026-08-06T11:59:27.701Z",
         "source": "东方财富公开行情",
         "boardCode": "BK0473",
         "boardName": "证券Ⅱ",
@@ -1501,10 +1502,9 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【资金与异动】A股券商板块于2026年8月6日收盘，较前一交易日下跌1.24%，主力净流出34.17亿元，占比-12.92%，上涨家数1家，下跌47家，涨幅超5%数量为0。行业整体资金呈大幅净流出态势，个股分化明显。成交额与主力净流出前列均为东方财富，净流出9.30亿元，成交额54.43亿元；中信证券净流出4.61亿元，成交额29.49亿元。资金流入方面，东吴证券以2.61亿元净流入居首，中原证券流入7180万元，山西证券流入909万元。新进入观察名单的企业中，招商证券成交额1.33亿元，华安证券成交额0.96亿元，东吴证券成交额0.27亿元。美股券商板块于2026年8月5日收盘，较前一交易日上涨0.5%。",
-      "aiGenerated": true,
-      "aiUpdatedAt": "2026-08-06T11:54:30.491Z",
-      "aiProvider": "智谱 GLM-4.7-Flash"
+      "aiSummary": "【行业结论】券商A股参考指数在2026-08-06收盘下跌1.2%，美股参考在2026-08-05最近收盘上涨0.5%；涨跌幅均为较各自前一交易日收盘，两边走势分化，美股相对更强。全行业快照中上涨1家、下跌47家，涨幅达到5%的有0家，行情分化或承压。\n\n【产业与新闻】中财网（2026/08/06 19:11，过去24小时）：兴发集团(600141):湖北兴发化工集团股份有限公司2026年度向特定对象发行A股股票方案论证分析报告 - 中财网；证券之星（2026/08/06 07:57，过去24小时）：中金公司：全球聚变产业共振 产业链机遇逐步显现 - 证券之星；新浪网（2026/08/06 03:03，过去24小时）：机构论市：AI休整，哪些ETF共识高？ - 新浪网这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长6家、归母净利润同比增长5家。中信证券营收同比40.9%、净利同比54.6%；东方财富营收同比44.3%、净利同比37.7%；国泰海通营收同比58.9%、净利同比-47.8%；中信建投营收同比62.3%、净利同比99.0%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】证券Ⅱ成分股主力资金合计-34.2亿元，占成交额-12.9%；资金流入前列包括东吴证券、中原证券、山西证券、国金证券、华创云信，成交活跃前列包括东方财富、中信证券、招商证券、华泰证券、国泰海通。新进入异动观察名单的是招商证券、华安证券、东吴证券、中信建投、长江证券。主力资金为成交统计口径，不等于机构持仓。",
+      "aiGenerated": false,
+      "aiUpdatedAt": "2026-08-06T11:59:35.125Z"
     },
     {
       "id": "chips",
@@ -1569,9 +1569,9 @@
           "timeRange": "近14天补充"
         },
         {
-          "title": "八月美股前瞻：非农定调加息与SpaceX财报解析与投资机会 - ebc.com",
+          "title": "八月美股前瞻：非农定调加息与SpaceX财报解析与投资机会 - EBC Financial Group",
           "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5JUC1NeWJNWWNBTDVxSEduS0lfdGhJWk1GUDV2RFBNMWtUQVpMdTRGTzdZZVlFWmN5Z2w2cmNJRXI3bWNPNmtVTk1xWWxnWlU3NFJIRWpFNHc?oc=5",
-          "source": "ebc.com",
+          "source": "EBC Financial Group",
           "publishedAt": "Tue, 04 Aug 2026 02:56:00 GMT",
           "timeRange": "近14天补充"
         },
@@ -1663,7 +1663,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:01.173Z",
+        "asOf": "2026-08-06T11:59:28.147Z",
         "source": "东方财富公开行情",
         "boardCode": "BK1036",
         "boardName": "半导体",
@@ -2012,9 +2012,9 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【资金与异动】A股半导体板块于2026年8月6日收盘，较前一交易日上涨4.20%，主力净流入65.09亿元，净流入占比3.26%，全行业100只成分股全部上涨，涨幅超5%个股达27只。资金流入前列为长电科技（净流入22.29亿元）、有研新材（净流入5.92亿元）及江丰电子（净流入3.85亿元）；成交活跃度最高为长电科技（成交172.60亿元）及寒武纪（成交143.04亿元）；新进入观察名单中涨幅最显著的是锴威特（涨幅20.00%，净流入745.05万元）。与行业整体普涨形成差异的是，样本企业中北方华创出现主力净流出2.21亿元，且在成交额排名中位列前五，显示行业内部存在资金分化。美股半导体板块于2026年8月5日收盘，较前一交易日下跌2.12%。",
+      "aiSummary": "【资金与异动】A股半导体行业于2026年8月6日收盘，较前一交易日上涨4.20%；美股半导体行业于2026年8月5日收盘，较前一交易日下跌2.12%。A股市场当日全行业上涨家数100家，下跌家数0家，涨幅超过5%的个股27家。主力资金净流入65.09亿元，净流入占比3.26%。资金流入前列企业中，长电科技以22.29亿元净流入居首，有研新材以5.92亿元紧随其后；成交额前列企业中，长电科技以172.60亿元居首，寒武纪以143.04亿元次之，北方华创成交额7.97亿元居第三但净流出0.22亿元；新进入观察名单企业中，锴威特以7450.49万元净流入及20%涨幅最为显著。",
       "aiGenerated": true,
-      "aiUpdatedAt": "2026-08-06T11:54:30.491Z",
+      "aiUpdatedAt": "2026-08-06T12:01:47.597Z",
       "aiProvider": "智谱 GLM-4.7-Flash"
     },
     {
@@ -2060,9 +2060,16 @@
         },
         {
           "title": "部分基金逆势加仓 硬科技板块迎修复契机 - 新浪财经",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPam4xYS0zRkFQTjl2RzNndWJtUFc3RnZGWXhNalVZOVF4U2lHY0M0dFptVlJKakx2Q0RkV1psNnZENjJ5c3lkUTl3X3g1RXgweHd0SFI0LUQ2dUZsWU5GSG9NQzJiTWsxZ1pFYVRGb1cyaUNHSkg1V1dOT0RTaWFVdUpqMXFlVEduM3VUM2ppd3VBcVd2TGtYaVFCcEY1RGlIdUo4RlRyZXNMSHJFSnZVYzJNcHk?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxNdFQ1NzV6UkpBbGROWUlRcXVUZnlpcnNPb2lPUG5vd0lPcGd5N19kUVI4YmYtcDdUT2ppZWwtQVlxZEtMT044ZGtUd055T1ZCUERPLV9JWEdKZ1U3dGh0bmE3NFRSMG84NDdjck1DMEwwR24zTnk5anhKQXdiRDk3M3k2QU5EN0dLc3dwOHRsYXl1cGUyUUVBMWRRdjBweDRteGU1Y1JWSC0yUkJoam94VmJuaGJtR3VabXlRN2R2bEZtSkV4SVA3cVN0Yk1hanJETXZxT20takR3YTg5VmstMl94NVNKR21DZDNXZkNyaDFueUVTSHk3emRUV0VITUhhNHdqNG9paFViX3g5ekpFWTRwRGhYRkQxU2xfNXFkdDBQajRqZ2NJTEtkcDdEZw?oc=5",
           "source": "新浪财经",
-          "publishedAt": "Thu, 06 Aug 2026 04:39:17 GMT",
+          "publishedAt": "Thu, 06 Aug 2026 04:44:45 GMT",
+          "timeRange": "过去24小时"
+        },
+        {
+          "title": "美股超级周 - OKX",
+          "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5VQ0l0LVlESkREUElIRThhM25EWHEzd0xub2g5Vk9ZSE03MWpUMHJSNDRKZlhPV0RIUGY3R1FRQWxrNTliRXhhQnI2d090LTRHZ0g3X3hZdlNDUlFGRnlodUhaTWc?oc=5",
+          "source": "OKX",
+          "publishedAt": "Thu, 06 Aug 2026 03:52:01 GMT",
           "timeRange": "过去24小时"
         },
         {
@@ -2084,13 +2091,6 @@
           "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE8xelAtSEc0Nk5KaXhQR0tQdDZOYmJ3TUNaRkdGLXZTUFR3VllKNzRUT3Mzb3ZLNlZwOFcydnpBc0ZqRzViVmdiS0NLeHJac243RU9QUjdfSDI1SEV3a09tVjRCNEs?oc=5",
           "source": "OKX",
           "publishedAt": "Thu, 06 Aug 2026 00:54:28 GMT",
-          "timeRange": "过去24小时"
-        },
-        {
-          "title": "云鼎国际vip.888下�年Q1出货量同比增长35% 专业市场占比突破60% 以‘新质生产力’重塑行业标杆 - 电玩巴士",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBQeWI5NU1CNWxjcnFZUC1kX3pacVNOTXozLVNXcEw4dWJ6UUJDcGdhdXhsMnI1MjBpTHpVVmQwSUZWMGczNG9RSXl2NWtkeTFINHlIZndZeWV2SXFOQTExZ2stZDF4UTBoa2c?oc=5",
-          "source": "电玩巴士",
-          "publishedAt": "Wed, 05 Aug 2026 22:34:14 GMT",
           "timeRange": "过去24小时"
         }
       ],
@@ -2185,7 +2185,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:01.626Z",
+        "asOf": "2026-08-06T11:59:28.603Z",
         "source": "东方财富公开行情",
         "boardCode": "BK0800",
         "boardName": "人工智能",
@@ -2534,10 +2534,9 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【资金与异动】A股人工智能板块于2026年8月6日收盘，较前一交易日上涨5.72%，主力净流入30.07亿元，占比2.67%，全行业100只成分股全部上涨，涨幅超5%个股达40只。资金流入前列为工业富联（净流入3.67亿元）、国安股份（净流入2.73亿元）及通宇通讯（净流入2.62亿元）；成交额与市值双前列均为工业富联，成交额达167.18亿元，市值居首；新进入观察名单中，广哈通信（净流入8826万元）与任子行（净流入9264万元）表现最为显著，涨幅均超19%。美股人工智能板块于2026年8月5日收盘，较前一交易日下跌1.22%。",
-      "aiGenerated": true,
-      "aiUpdatedAt": "2026-08-06T11:54:30.491Z",
-      "aiProvider": "智谱 GLM-4.7-Flash"
+      "aiSummary": "【行业结论】人工智能A股参考指数在2026-08-06收盘下跌0.4%，美股参考在2026-08-05最近收盘下跌1.2%；涨跌幅均为较各自前一交易日收盘，两边同向回落，A股相对抗跌。全行业快照中上涨100家、下跌0家，涨幅达到5%的有40家，行情扩散面偏强。\n\n【产业与新闻】搜狐网（2026/08/06 14:38，过去24小时）：远景科技宣布建成全球最大的AI算力超级单体，科创人工智能ETF华夏（589010）微调 - 搜狐网；新浪财经（2026/08/06 12:44，过去24小时）：部分基金逆势加仓 硬科技板块迎修复契机 - 新浪财经；OKX（2026/08/06 11:52，过去24小时）：美股超级周 - OKX这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长6家、归母净利润同比增长6家。科大讯飞营收同比13.2%、净利同比12.2%；金山办公营收同比24.0%、净利同比445.0%；寒武纪营收同比159.6%、净利同比185.0%；工业富联营收同比56.5%、净利同比102.5%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】人工智能成分股主力资金合计+30.1亿元，占成交额2.7%；资金流入前列包括工业富联、国安股份、通宇通讯、汉得信息、博杰股份，成交活跃前列包括工业富联、紫光股份、寒武纪、利通电子、华天科技。新进入异动观察名单的是广哈通信、任子行、大富科技、广脉科技、澄天伟业。主力资金为成交统计口径，不等于机构持仓。",
+      "aiGenerated": false,
+      "aiUpdatedAt": "2026-08-06T11:59:35.125Z"
     },
     {
       "id": "communication",
@@ -2582,9 +2581,16 @@
         },
         {
           "title": "部分基金逆势加仓 硬科技板块迎修复契机 - 新浪财经",
-          "url": "https://news.google.com/rss/articles/CBMi3gJBVV95cUxNVXBHZjFJYUpjbzk3NVZiRXpQSzkwVUFzWjRBMzByOGFaZF9QOGgzMDZRTTNLMnIwQnJNaWFLUVNjYlZkZkdSZzI0a3BtcV83dUg5SDgxblZDMUVIQ0VWbGMwd0c3aGYtaTJLcENEWFI0N1F1VDl3MEgtTnJmOFFOTmJGNDh6X20yZEVrdFJyWjN6Q3BGZXVLV3dDMnhnblI1alBUcDZaT1JMcUxkbkhjLXhucXdHRm5WOFpoQ25KNEhoWDZQS2dIeGFhakVPX1Y4endWZmNmYnJMOG1ITGNrMmRCdnNFZVhDSXR6Q21HU09sbklZTmxvUlVXdU1fNVFUWEt2cy11T2tfWDVfb3JHWlBMUzlISE1VVUc2aVBFbXdRZV9zeUpiQTRWR2NNU3BsM0NaZ25sT2dRRFZWVUtrRENlYUt6Q0NBX2JOc29JQWVxSERYN2IwTGRkT2paQQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxNdFQ1NzV6UkpBbGROWUlRcXVUZnlpcnNPb2lPUG5vd0lPcGd5N19kUVI4YmYtcDdUT2ppZWwtQVlxZEtMT044ZGtUd055T1ZCUERPLV9JWEdKZ1U3dGh0bmE3NFRSMG84NDdjck1DMEwwR24zTnk5anhKQXdiRDk3M3k2QU5EN0dLc3dwOHRsYXl1cGUyUUVBMWRRdjBweDRteGU1Y1JWSC0yUkJoam94VmJuaGJtR3VabXlRN2R2bEZtSkV4SVA3cVN0Yk1hanJETXZxT20takR3YTg5VmstMl94NVNKR21DZDNXZkNyaDFueUVTSHk3emRUV0VITUhhNHdqNG9paFViX3g5ekpFWTRwRGhYRkQxU2xfNXFkdDBQajRqZ2NJTEtkcDdEZw?oc=5",
           "source": "新浪财经",
-          "publishedAt": "Thu, 06 Aug 2026 05:25:53 GMT",
+          "publishedAt": "Thu, 06 Aug 2026 04:44:45 GMT",
+          "timeRange": "过去24小时"
+        },
+        {
+          "title": "温州宏丰(300283):温州宏丰电工合金股份有限公司2026年度向特定对象发行A股股票之募集说明书（申报稿） - 中财网",
+          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJaE01dmk0WFEwRDFYTlZ4Ql9Zc3g4RXJTWVRjOU9XbmtNZEhOcEtFZkRRamhId2xMR1N0bU14SHRKY1dnbGZ4NFd2VE1FNzJjREViSDJn?oc=5",
+          "source": "中财网",
+          "publishedAt": "Thu, 06 Aug 2026 04:24:58 GMT",
           "timeRange": "过去24小时"
         },
         {
@@ -2606,13 +2612,6 @@
           "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE93ajAtakxKXzFxN0ZQSTlFVEMxS2pKdGVwVnFPM1RoZkh1WFAyYkJ2aDJGcjNaYWpNU0FQdHUyZEdSQVVVM0RHa0xtWlAwdkQ4ampMd1J5akJneDJfM1doYVJBODN3dw?oc=5",
           "source": "金融界",
           "publishedAt": "Wed, 05 Aug 2026 02:08:37 GMT",
-          "timeRange": "近14天补充"
-        },
-        {
-          "title": "光模块强势大反攻！通信ETF（515880）直逼涨停 - 东方财富",
-          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFB3ZXltOHM1cVJEbjhKbHA5VmN4NDNseFZ3bURfM1NyalVLaFVETVVvMUNfRHZna2Y3eUdqdHI5OGNieFlEQldIUzhXZ0RCVUtuN2xIWjRQeENOZGZQay1xeVZ1WQ?oc=5",
-          "source": "东方财富",
-          "publishedAt": "Tue, 04 Aug 2026 23:32:14 GMT",
           "timeRange": "近14天补充"
         }
       ],
@@ -2685,7 +2684,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:02.071Z",
+        "asOf": "2026-08-06T11:59:29.051Z",
         "source": "东方财富公开行情",
         "boardCode": "BK0448",
         "boardName": "通信设备",
@@ -3034,9 +3033,9 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【行业结论】通信A股参考指数在2026-08-06收盘上涨1.6%，美股参考在2026-08-05最近收盘下跌2.6%；涨跌幅均为较各自前一交易日收盘，两边走势分化，A股相对更强。全行业快照中上涨77家、下跌14家，涨幅达到5%的有15家，行情扩散面偏强。\n\n【产业与新闻】21财经（2026/08/06 15:05，过去24小时）：A股三大指数涨跌不一 煤炭与电子化学品板块大涨 - 21财经；新浪财经（2026/08/06 13:25，过去24小时）：部分基金逆势加仓 硬科技板块迎修复契机 - 新浪财经；Jiemian.com（2026/08/05 18:06，近14天补充）：光模块概念股震荡，中国厂商供应链竞争力浮现 - Jiemian.com这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长6家、归母净利润同比增长5家。中兴通讯营收同比6.1%、净利同比-46.6%；中际旭创营收同比192.1%、净利同比262.3%；新易盛营收同比105.8%、净利同比76.8%；长飞光纤营收同比27.7%、净利同比226.4%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】通信设备成分股主力资金合计+24.6亿元，占成交额1.3%；资金流入前列包括天孚通信、光库科技、仕佳光子、长芯博创、光迅科技，成交活跃前列包括中际旭创、新易盛、亨通光电、天孚通信、中天科技。新进入异动观察名单的是广哈通信、欣天科技、大富科技、澄天伟业、武汉凡谷。主力资金为成交统计口径，不等于机构持仓。",
+      "aiSummary": "【行业结论】通信A股参考指数在2026-08-06收盘上涨1.6%，美股参考在2026-08-05最近收盘下跌2.6%；涨跌幅均为较各自前一交易日收盘，两边走势分化，A股相对更强。全行业快照中上涨77家、下跌14家，涨幅达到5%的有15家，行情扩散面偏强。\n\n【产业与新闻】21财经（2026/08/06 15:05，过去24小时）：A股三大指数涨跌不一 煤炭与电子化学品板块大涨 - 21财经；新浪财经（2026/08/06 12:44，过去24小时）：部分基金逆势加仓 硬科技板块迎修复契机 - 新浪财经；中财网（2026/08/06 12:24，过去24小时）：温州宏丰(300283):温州宏丰电工合金股份有限公司2026年度向特定对象发行A股股票之募集说明书（申报稿） - 中财网这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长6家、归母净利润同比增长5家。中兴通讯营收同比6.1%、净利同比-46.6%；中际旭创营收同比192.1%、净利同比262.3%；新易盛营收同比105.8%、净利同比76.8%；长飞光纤营收同比27.7%、净利同比226.4%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】通信设备成分股主力资金合计+24.6亿元，占成交额1.3%；资金流入前列包括天孚通信、光库科技、仕佳光子、长芯博创、光迅科技，成交活跃前列包括中际旭创、新易盛、亨通光电、天孚通信、中天科技。新进入异动观察名单的是广哈通信、欣天科技、大富科技、澄天伟业、武汉凡谷。主力资金为成交统计口径，不等于机构持仓。",
       "aiGenerated": false,
-      "aiUpdatedAt": "2026-08-06T11:52:10.085Z"
+      "aiUpdatedAt": "2026-08-06T11:59:35.125Z"
     },
     {
       "id": "new-energy",
@@ -3094,9 +3093,9 @@
           "timeRange": "过去24小时"
         },
         {
-          "title": "【读财报】长安汽车拟定增募资52.67亿元 加码新能源与智能化 - 同花顺",
+          "title": "【读财报】长安汽车拟定增募资52.67亿元 加码新能源与智能化 - 同花顺财经",
           "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBjc0JWMEJMNUxBMkVXWjh4Q2RQZEJSeEFDUkl2b1ZBVS1sNmtCUFFyblFUbjc1cXE3VnpFNm9WX2pzMm5oT3U5Q2NlQ00wSXVBY25iUWNmQzBPZXN5QUVJNU5B?oc=5",
-          "source": "同花顺",
+          "source": "同花顺财经",
           "publishedAt": "Wed, 05 Aug 2026 23:39:48 GMT",
           "timeRange": "过去24小时"
         },
@@ -3210,7 +3209,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:02.515Z",
+        "asOf": "2026-08-06T11:59:29.499Z",
         "source": "东方财富公开行情",
         "boardCode": "BK1033",
         "boardName": "电池",
@@ -3559,10 +3558,9 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【资金与异动】A股电池板块于2026年8月6日收盘，较前一交易日下跌0.38%，主力净流出11.54亿元，占比-2.41%。全行业上涨34家、下跌64家，涨幅超5%的个股仅1家（ST天际）。资金流入前列为铜冠铜箔（净流入2.84亿元）、ST天际（净流入1.72亿元）及德福科技（净流入1.64亿元）；成交额前列为铜冠铜箔（成交48.90亿元）、天赐材料（成交30.50亿元）及德福科技（成交30.20亿元）；新进入观察名单中，ST天际以10.03%的涨幅及9.72亿元的成交额最为显著。个股层面，亿纬锂能、天赐材料、先导智能等市值龙头均出现主力净流出，其中亿纬锂能流出3.38亿元，先导智能流出1.15亿元。美股新能源车板块于2026年8月5日收盘，较前一交易日下跌0.25%。",
-      "aiGenerated": true,
-      "aiUpdatedAt": "2026-08-06T11:54:30.491Z",
-      "aiProvider": "智谱 GLM-4.7-Flash"
+      "aiSummary": "【行业结论】新能源车A股参考指数在2026-08-06收盘下跌1.4%，美股参考在2026-08-05最近收盘下跌0.3%；涨跌幅均为较各自前一交易日收盘，两边同向回落，美股相对抗跌。全行业快照中上涨34家、下跌64家，涨幅达到5%的有1家，行情分化或承压。\n\n【产业与新闻】新浪网（2026/08/06 13:04，过去24小时）：新能源重卡行业现状：市场高增长态势延续，电动重卡是市场的主流选择 - 新浪网；电子工程专辑（2026/08/06 08:47，过去24小时）：2026智驾场景分层兑现：Robotaxi开始赚钱，Robotruck编队杀疯，Robovan十万台起步 - 电子工程专辑；富途牛牛（2026/08/06 07:53，过去24小时）：行业供给持续偏紧 机构称稀土产业链中游瓶颈资产迎来价值重估 - 富途牛牛这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长5家、归母净利润同比增长5家。宁德时代营收同比54.8%、净利同比42.0%；比亚迪营收同比-11.8%、净利同比-55.4%；赛力斯营收同比34.5%、净利同比0.9%；亿纬锂能营收同比61.6%、净利同比31.3%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】电池成分股主力资金合计-11.5亿元，占成交额-2.4%；资金流入前列包括铜冠铜箔、ST天际、德福科技、蔚蓝锂芯、骄成超声，成交活跃前列包括铜冠铜箔、天赐材料、德福科技、亿纬锂能、天华新能。新进入异动观察名单的是ST天际、铜冠铜箔、ST帕瓦、星云股份、ST福能。主力资金为成交统计口径，不等于机构持仓。",
+      "aiGenerated": false,
+      "aiUpdatedAt": "2026-08-06T11:59:35.125Z"
     },
     {
       "id": "solar",
@@ -3599,9 +3597,9 @@
       ],
       "news": [
         {
-          "title": "长鑫科技成交额逼近300亿居A股第一，570亿光伏龙头直线涨停，核电股爆发，机构：科技调整将告一段落 - 腾讯新闻",
+          "title": "长鑫科技成交额逼近300亿居A股第一，570亿光伏龙头直线涨停，核电股爆发，机构：科技调整将告一段落 - QQ News",
           "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE4zQlRVM3JibUl6WFhfTTFrY0NuekVITmpDaF9qbVA0NEthelNVZGJrQmQ0eWVISk44U0tSajFnelpQREdHTnhiQVVUcUpEMlM3VHdDeXJn?oc=5",
-          "source": "腾讯新闻",
+          "source": "QQ News",
           "publishedAt": "Mon, 03 Aug 2026 09:07:00 GMT",
           "timeRange": "近14天补充"
         },
@@ -3714,7 +3712,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:02.962Z",
+        "asOf": "2026-08-06T11:59:29.945Z",
         "source": "东方财富公开行情",
         "boardCode": "BK1031",
         "boardName": "光伏设备",
@@ -4063,9 +4061,9 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【行业结论】光伏A股参考指数在2026-08-06收盘下跌1.2%，美股参考在2026-08-05最近收盘下跌3.9%；涨跌幅均为较各自前一交易日收盘，两边同向回落，A股相对抗跌。全行业快照中上涨15家、下跌52家，涨幅达到5%的有3家，行情分化或承压。\n\n【产业与新闻】腾讯新闻（2026/08/03 17:07，近14天补充）：长鑫科技成交额逼近300亿居A股第一，570亿光伏龙头直线涨停，核电股爆发，机构：科技调整将告一段落 - 腾讯新闻；wenxuan.news（2026/08/03 16:53，近14天补充）：多股涨停引爆行情！商业航天迎来量产拐点，板块配置价值凸显 - wenxuan.news；hstong.com（2026/08/03 16:28，近14天补充）：港股收盘 | 三大指数集体收涨 阿里巴巴单日升超7% 港美股资讯 - hstong.com这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长1家、归母净利润同比增长3家。隆基绿能营收同比-18.0%、净利同比-34.2%；阳光电源营收同比-18.3%、净利同比-40.1%；晶科能源营收同比-11.5%、净利同比2.8%；德业股份营收同比73.8%、净利同比68.4%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】光伏设备成分股主力资金合计-14.8亿元，占成交额-5.3%；资金流入前列包括聚和材料、琏升科技、德业股份、拉普拉斯、帝尔激光，成交活跃前列包括阳光电源、帝尔激光、聚和材料、隆基绿能、迈为股份。新进入异动观察名单的是聚和材料、琏升科技、*ST沐邦、帝尔激光、时创能源。主力资金为成交统计口径，不等于机构持仓。",
+      "aiSummary": "【行业结论】光伏A股参考指数在2026-08-06收盘下跌1.2%，美股参考在2026-08-05最近收盘下跌3.9%；涨跌幅均为较各自前一交易日收盘，两边同向回落，A股相对抗跌。全行业快照中上涨15家、下跌52家，涨幅达到5%的有3家，行情分化或承压。\n\n【产业与新闻】QQ News（2026/08/03 17:07，近14天补充）：长鑫科技成交额逼近300亿居A股第一，570亿光伏龙头直线涨停，核电股爆发，机构：科技调整将告一段落 - QQ News；wenxuan.news（2026/08/03 16:53，近14天补充）：多股涨停引爆行情！商业航天迎来量产拐点，板块配置价值凸显 - wenxuan.news；hstong.com（2026/08/03 16:28，近14天补充）：港股收盘 | 三大指数集体收涨 阿里巴巴单日升超7% 港美股资讯 - hstong.com这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长1家、归母净利润同比增长3家。隆基绿能营收同比-18.0%、净利同比-34.2%；阳光电源营收同比-18.3%、净利同比-40.1%；晶科能源营收同比-11.5%、净利同比2.8%；德业股份营收同比73.8%、净利同比68.4%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】光伏设备成分股主力资金合计-14.8亿元，占成交额-5.3%；资金流入前列包括聚和材料、琏升科技、德业股份、拉普拉斯、帝尔激光，成交活跃前列包括阳光电源、帝尔激光、聚和材料、隆基绿能、迈为股份。新进入异动观察名单的是聚和材料、琏升科技、*ST沐邦、帝尔激光、时创能源。主力资金为成交统计口径，不等于机构持仓。",
       "aiGenerated": false,
-      "aiUpdatedAt": "2026-08-06T11:52:10.085Z"
+      "aiUpdatedAt": "2026-08-06T11:59:35.125Z"
     },
     {
       "id": "healthcare",
@@ -4130,17 +4128,17 @@
           "timeRange": "近14天补充"
         },
         {
-          "title": "八月美股前瞻：非农定调加息与SpaceX财报解析与投资机会 - ebc.com",
+          "title": "八月美股前瞻：非农定调加息与SpaceX财报解析与投资机会 - EBC Financial Group",
           "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5JUC1NeWJNWWNBTDVxSEduS0lfdGhJWk1GUDV2RFBNMWtUQVpMdTRGTzdZZVlFWmN5Z2w2cmNJRXI3bWNPNmtVTk1xWWxnWlU3NFJIRWpFNHc?oc=5",
-          "source": "ebc.com",
+          "source": "EBC Financial Group",
           "publishedAt": "Tue, 04 Aug 2026 02:56:00 GMT",
           "timeRange": "近14天补充"
         },
         {
           "title": "金鹰基金：极致分化迎收敛 行稳致远择良机 - 新浪财经",
-          "url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxPRFJ6a1haSU51ZE9ycWRBN0ljeXg5YmFWbnpuTzk4eF9rNHM2d3BoYWFmd25kZ2IwelVuX3huVzZ2cncxX3RaY2hmRkdnNjhsMjB3UEJmVEtBVHh5b3JjdWpEM0g3MGduaE9Ka2Z4NVNaZ2o0TDdNVm41STFZMzBOSWVpTFhGWG9IaEJyZ3lDT3NSMVFRTDk3LVhhNkI4TEY0TWlKWkpCRVZjRlZxMU1QZ3NySzg1dFVVUkRpSEZ3ckdnbTU1V0VibEVrMnZUM3FyTXhqVmhUdlUxdmpVUGlHUUF3NEZpLTd5LXNTRk5HMktiOTVjaTl4a3hOSlZWU0dvTlBaVDJDSldXTDVRaktTTHBLUjhxNThfQnIyd28yVXBMTGs?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMi5gJBVV95cUxQNUYwQ3dCZmRkajBZc2hSTXVuSzcwVmhxYWU2Q2FJVXRyVjlTWUN0bEI0SHlMRkg1bmNJdHpzb1l4SkV5ZURTZjNUR2gwZlU4QmJIX0lPWlk2TE40WnlQdDU4UzhaYXBDbjJubmhzNFJwVVQ3T3Q4ZTFKaExoOEtVbzRfWllkMzdNSkt3b1pQTXJ2YVNXaV9DYjY4R0FUanBBTG1qdGV3YXI5SGRhb0lBejFsanNVU3pCRXY4bTNsV19TTmNQYUFVaTRwa0V1ZW1OWkhvTEVVazV2a3JNRmRUby1PdXVxRzhzdkliNmRmSm9QUTNOMk8tcE0wUzhGYTNKWkItX3o0b1hsUnlGU0szZEx3Q3hIekF3TjI5eTJXYWd5bk9TdjhVeGF3Y1RjTkFtLUFiU25rdWk5Z0prZzZ3bnpSSUFLNlppU19md05XNmJIbzNfTVR4SU4zeTlKSkhpWDZscHBR?oc=5",
           "source": "新浪财经",
-          "publishedAt": "Mon, 03 Aug 2026 15:55:22 GMT",
+          "publishedAt": "Mon, 03 Aug 2026 07:00:00 GMT",
           "timeRange": "近14天补充"
         }
       ],
@@ -4246,7 +4244,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:03.413Z",
+        "asOf": "2026-08-06T11:59:30.396Z",
         "source": "东方财富公开行情",
         "boardCode": "BK1216",
         "boardName": "医药生物",
@@ -4595,9 +4593,10 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【行业结论】医药A股参考指数在2026-08-06收盘下跌2.1%，美股参考在2026-08-05最近收盘上涨1.3%；涨跌幅均为较各自前一交易日收盘，两边走势分化，美股相对更强。全行业快照中上涨100家、下跌0家，涨幅达到5%的有22家，行情扩散面偏强。\n\n【产业与新闻】大纪元（2026/08/05 21:24，过去24小时）：老齡化及新藥熱潮帶動 華爾街資金重返醫療股 - 大纪元；中财网（2026/08/05 20:57，过去24小时）：皓元医药(688131):上海皓元医药股份有限公司关于向不特定对象发行可转换公司债券部分募投项目暂缓实施并变更部分募集资金用途- CFi.CN 中财网 - 中财网；中财网（2026/08/05 19:21，近14天补充）：[收购]中赋科技(300692):公司与专业投资机构合肥国投共同投资收购军科正源事项 - 中财网这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长6家、归母净利润同比增长4家。恒瑞医药营收同比13.0%、净利同比21.8%；迈瑞医疗营收同比1.4%、净利同比-11.4%；百济神州营收同比31.0%、净利同比1801.3%；百利天恒营收同比40.3%、净利同比-45.7%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】医药生物成分股主力资金合计+16.7亿元，占成交额5.3%；资金流入前列包括九安医疗、贝达药业、舒泰神、人民同泰、奕瑞科技，成交活跃前列包括九安医疗、荣昌生物、陇神戎发、百花医药、舒泰神。新进入异动观察名单的是洁特生物、药易购、合富中国、易明医药、人民同泰。主力资金为成交统计口径，不等于机构持仓。",
-      "aiGenerated": false,
-      "aiUpdatedAt": "2026-08-06T11:52:10.085Z"
+      "aiSummary": "【资金与异动】A股医药生物板块于2026年8月6日收盘，较前一交易日上涨3.57%，主力净流入16.71亿元，净流入占比5.31%，全市场100只成分股全部上涨，涨幅超5%个股达22家，呈现普涨格局。资金流入前列为九安医疗（净流入1.99亿元）、贝达药业（净流入1.02亿元）及舒泰神（净流入0.79亿元）；成交活跃个股中，九安医疗以32.71亿元成交额居首，荣昌生物（成交18.58亿元）虽成交居前但主力净流出4110.48万元，显示资金分歧；新进入观察名单的洁特生物（净流入7140.58万元，涨幅10.74%）表现最为显著。美股医药板块于2026年8月5日收盘，较前一交易日上涨1.27%。",
+      "aiGenerated": true,
+      "aiUpdatedAt": "2026-08-06T12:01:47.597Z",
+      "aiProvider": "智谱 GLM-4.7-Flash"
     },
     {
       "id": "home",
@@ -4713,7 +4712,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:03.856Z",
+        "asOf": "2026-08-06T11:59:30.843Z",
         "source": "东方财富公开行情",
         "boardCode": "BK1239",
         "boardName": "白色家电",
@@ -5064,7 +5063,7 @@
       },
       "aiSummary": "【行业结论】家电A股参考指数在2026-08-06收盘下跌0.3%，美股参考在2026-08-05最近收盘上涨0.3%；涨跌幅均为较各自前一交易日收盘，两边走势分化，美股相对更强。全行业快照中上涨3家、下跌9家，涨幅达到5%的有0家，行情分化或承压。\n\n【产业与新闻】近14天公开新闻源暂未检索到足够有效的行业信息。这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长4家、归母净利润同比增长4家。美的集团营收同比2.5%、净利同比2.0%；海尔智家营收同比-6.9%、净利同比-15.2%；石头科技营收同比23.3%、净利同比20.8%；格力电器营收同比3.5%、净利同比3.0%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】白色家电成分股主力资金合计+1.7亿元，占成交额3.7%；资金流入前列包括格力电器、海尔智家、TCL智家、海信家电、春兰股份，成交活跃前列包括美的集团、格力电器、海尔智家、TCL智家、海信家电。新进入异动观察名单的是TCL智家、春兰股份、雪祺电气、*ST康佳B、格力电器。主力资金为成交统计口径，不等于机构持仓。",
       "aiGenerated": false,
-      "aiUpdatedAt": "2026-08-06T11:52:10.085Z"
+      "aiUpdatedAt": "2026-08-06T11:59:35.125Z"
     },
     {
       "id": "defense",
@@ -5105,7 +5104,7 @@
           "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBQQmxXSFFzQXVjTXUwRjRGVHkwQzFzY0FnakVnNjNMSHlRRTN4OWxjVVNkd01OMy1Fa0NZZ1VBbno0dEpQOUVhNWJvdkc0Q3hZdm9xRXNR?oc=5",
           "source": "中财网",
           "publishedAt": "Wed, 05 Aug 2026 12:41:34 GMT",
-          "timeRange": "过去24小时"
+          "timeRange": "近14天补充"
         }
       ],
       "financials": [
@@ -5188,7 +5187,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:04.299Z",
+        "asOf": "2026-08-06T11:59:31.292Z",
         "source": "东方财富公开行情",
         "boardCode": "BK0480",
         "boardName": "航天航空",
@@ -5537,10 +5536,9 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【资金与异动】A股航天航空板块于2026年8月6日收盘，较前一交易日上涨0.37%，主力净流出约4.93亿元，占比-2.43%。全行业上涨家数28家，下跌27家，涨幅超过5%的个股仅1家。资金流入前列为博云新材（流入9368万元）、中国卫星（流入7043万元）及航发科技（流入1919万元）；流出或成交前列为光启技术（流出6782万元，成交7509万元）、西部超导（流出7936万元）及中国卫星（成交30.59亿元）。新进入观察名单中，超卓航科表现最为显著，涨幅达6.25%，但主力净流出2766万元，成交额2.70亿元，市值54.45亿元。美股军工板块于2026年8月5日收盘，较前一交易日上涨0.65%。",
-      "aiGenerated": true,
-      "aiUpdatedAt": "2026-08-06T11:54:30.491Z",
-      "aiProvider": "智谱 GLM-4.7-Flash"
+      "aiSummary": "【行业结论】军工A股参考指数在2026-08-06收盘基本持平，美股参考在2026-08-05最近收盘上涨0.7%；涨跌幅均为较各自前一交易日收盘，一边平稳、一边波动，美股相对更强。全行业快照中上涨28家、下跌27家，涨幅达到5%的有1家，行情扩散面偏强。\n\n【产业与新闻】中财网（2026/08/05 20:41，近14天补充）：展芯股份(301707):华泰联合证券有限责任公司关于公司首次公开发行股票并在创业板上市的上市保荐书 - 中财网这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长5家、归母净利润同比增长3家。中国船舶营收同比54.9%、净利同比251.6%；中航沈飞营收同比-55.2%、净利同比-61.7%；中航成飞营收同比79.7%、净利同比23.2%；航发动力营收同比14.8%、净利同比-65.9%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】航天航空成分股主力资金合计-4.9亿元，占成交额-2.4%；资金流入前列包括博云新材、中国卫星、航发科技、有研复材、航发动力，成交活跃前列包括中国卫星、航天电子、博云新材、航发动力、航天彩虹。新进入异动观察名单的是超卓航科、博云新材、中国卫星、星图测控、永新光学。主力资金为成交统计口径，不等于机构持仓。",
+      "aiGenerated": false,
+      "aiUpdatedAt": "2026-08-06T11:59:35.125Z"
     },
     {
       "id": "power",
@@ -5578,15 +5576,22 @@
       "news": [
         {
           "title": "部分基金逆势加仓 硬科技板块迎修复契机 - 新浪财经",
-          "url": "https://news.google.com/rss/articles/CBMi3gJBVV95cUxNVXBHZjFJYUpjbzk3NVZiRXpQSzkwVUFzWjRBMzByOGFaZF9QOGgzMDZRTTNLMnIwQnJNaWFLUVNjYlZkZkdSZzI0a3BtcV83dUg5SDgxblZDMUVIQ0VWbGMwd0c3aGYtaTJLcENEWFI0N1F1VDl3MEgtTnJmOFFOTmJGNDh6X20yZEVrdFJyWjN6Q3BGZXVLV3dDMnhnblI1alBUcDZaT1JMcUxkbkhjLXhucXdHRm5WOFpoQ25KNEhoWDZQS2dIeGFhakVPX1Y4endWZmNmYnJMOG1ITGNrMmRCdnNFZVhDSXR6Q21HU09sbklZTmxvUlVXdU1fNVFUWEt2cy11T2tfWDVfb3JHWlBMUzlISE1VVUc2aVBFbXdRZV9zeUpiQTRWR2NNU3BsM0NaZ25sT2dRRFZWVUtrRENlYUt6Q0NBX2JOc29JQWVxSERYN2IwTGRkT2paQQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxNdFQ1NzV6UkpBbGROWUlRcXVUZnlpcnNPb2lPUG5vd0lPcGd5N19kUVI4YmYtcDdUT2ppZWwtQVlxZEtMT044ZGtUd055T1ZCUERPLV9JWEdKZ1U3dGh0bmE3NFRSMG84NDdjck1DMEwwR24zTnk5anhKQXdiRDk3M3k2QU5EN0dLc3dwOHRsYXl1cGUyUUVBMWRRdjBweDRteGU1Y1JWSC0yUkJoam94VmJuaGJtR3VabXlRN2R2bEZtSkV4SVA3cVN0Yk1hanJETXZxT20takR3YTg5VmstMl94NVNKR21DZDNXZkNyaDFueUVTSHk3emRUV0VITUhhNHdqNG9paFViX3g5ekpFWTRwRGhYRkQxU2xfNXFkdDBQajRqZ2NJTEtkcDdEZw?oc=5",
           "source": "新浪财经",
-          "publishedAt": "Thu, 06 Aug 2026 05:25:53 GMT",
+          "publishedAt": "Thu, 06 Aug 2026 04:44:45 GMT",
           "timeRange": "过去24小时"
         },
         {
-          "title": "【读财报】长安汽车拟定增募资52.67亿元 加码新能源与智能化 - 同花顺",
+          "title": "温州宏丰(300283):温州宏丰电工合金股份有限公司2026年度向特定对象发行A股股票之募集说明书（申报稿） - 中财网",
+          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJaE01dmk0WFEwRDFYTlZ4Ql9Zc3g4RXJTWVRjOU9XbmtNZEhOcEtFZkRRamhId2xMR1N0bU14SHRKY1dnbGZ4NFd2VE1FNzJjREViSDJn?oc=5",
+          "source": "中财网",
+          "publishedAt": "Thu, 06 Aug 2026 04:24:58 GMT",
+          "timeRange": "过去24小时"
+        },
+        {
+          "title": "【读财报】长安汽车拟定增募资52.67亿元 加码新能源与智能化 - 同花顺财经",
           "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBjc0JWMEJMNUxBMkVXWjh4Q2RQZEJSeEFDUkl2b1ZBVS1sNmtCUFFyblFUbjc1cXE3VnpFNm9WX2pzMm5oT3U5Q2NlQ00wSXVBY25iUWNmQzBPZXN5QUVJNU5B?oc=5",
-          "source": "同花顺",
+          "source": "同花顺财经",
           "publishedAt": "Wed, 05 Aug 2026 23:39:48 GMT",
           "timeRange": "过去24小时"
         },
@@ -5596,27 +5601,6 @@
           "source": "新浪网",
           "publishedAt": "Wed, 05 Aug 2026 19:03:00 GMT",
           "timeRange": "过去24小时"
-        },
-        {
-          "title": "2027年德国慕尼黑国际商用车展IAA 2027 - 新浪网",
-          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1pWlMtR0FPbE1oeXkxZ3RLTGxRbXUzYTVmeXY3X1hSM09oR053RjZvNmZvaDBoU2JfX2kyLVhUdHVJYWRMQnlBQmtZQVBNaEQwZWt5MGlxYjdFSGpUcXRvaFhDWkxvMW1vNVJkLUo3dFFVQQ?oc=5",
-          "source": "新浪网",
-          "publishedAt": "Tue, 04 Aug 2026 15:48:31 GMT",
-          "timeRange": "近14天补充"
-        },
-        {
-          "title": "印尼新一轮新能源汽车激励将出台 覆盖约50万辆电动摩托车 - Shangbao Indonesia",
-          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5lakllZ3k3bTRqMUxHdWRyOFpCZ0xNMl9DS0xHeVktQUVjWmxBSnJpNFM2NEdWVk1tSUJhU29Rc2hUZzVjMm42RXRGQkdySnk1M0ZZV0dlcUd4RTFsS0Y4MDVkWWswRnlhVGpJVmpDZjVkV0FHcnNJ?oc=5",
-          "source": "Shangbao Indonesia",
-          "publishedAt": "Tue, 04 Aug 2026 11:58:00 GMT",
-          "timeRange": "近14天补充"
-        },
-        {
-          "title": "越跌越买！机构加仓科技 - 搜狐网",
-          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNQmtHNXlOU0M2akdXcVh4NkstbUlpeTZwYjYzU09hdWVrd3h4ZHVIU3RYcG1uN0hlWm01R1RnbWFzVmM3VjVKM29TTDZjeUp5S3VqR290RXM0T2lfUGVqeE5YSUFvY2xCbjFoWm5MLTJLWjZoU1VCSnFuRkFWbW9FazlBT1NsdGVhaGJjMA?oc=5",
-          "source": "搜狐网",
-          "publishedAt": "Tue, 04 Aug 2026 11:26:51 GMT",
-          "timeRange": "近14天补充"
         }
       ],
       "financials": [
@@ -5688,7 +5672,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:04.743Z",
+        "asOf": "2026-08-06T11:59:31.743Z",
         "source": "东方财富公开行情",
         "boardCode": "BK0428",
         "boardName": "电力行业",
@@ -6037,10 +6021,9 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【资金与异动】A股电力行业于2026年8月6日收盘，较前一交易日下跌0.59%，主力净流出19.25亿元，占比-5.90%。全行业上涨家数22家，下跌72家，涨幅超5%个股仅1家（惠天热电）。资金流向呈现分化，惠天热电以1.41亿元主力净流入居首，金房能源净流入2.30亿元，永泰能源净流入7.12亿元。成交活跃度方面，华电辽能成交4.23亿元居首，长江电力成交2.96亿元位列第二，但主力净流出2.68亿元。新进入观察名单的惠天热电涨幅达10.13%，资金流入最为显著。美股电力板块于2026年8月5日收盘，较前一交易日下跌1.02%。",
-      "aiGenerated": true,
-      "aiUpdatedAt": "2026-08-06T11:54:30.491Z",
-      "aiProvider": "智谱 GLM-4.7-Flash"
+      "aiSummary": "【行业结论】电力A股参考指数在2026-08-06收盘下跌0.8%，美股参考在2026-08-05最近收盘下跌1.0%；涨跌幅均为较各自前一交易日收盘，两边同向回落，幅度接近。全行业快照中上涨22家、下跌72家，涨幅达到5%的有1家，行情分化或承压。\n\n【产业与新闻】新浪财经（2026/08/06 12:44，过去24小时）：部分基金逆势加仓 硬科技板块迎修复契机 - 新浪财经；中财网（2026/08/06 12:24，过去24小时）：温州宏丰(300283):温州宏丰电工合金股份有限公司2026年度向特定对象发行A股股票之募集说明书（申报稿） - 中财网；同花顺财经（2026/08/06 07:39，过去24小时）：【读财报】长安汽车拟定增募资52.67亿元 加码新能源与智能化 - 同花顺财经这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长3家、归母净利润同比增长2家。长江电力营收同比6.4%、净利同比30.5%；中国核电营收同比-6.6%、净利同比-34.2%；华电新能营收同比10.0%、净利同比-29.4%；中国广核营收同比-13.3%、净利同比-9.3%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】电力行业成分股主力资金合计-19.3亿元，占成交额-5.9%；资金流入前列包括永泰能源、国电电力、金房能源、惠天热电、乐山电力，成交活跃前列包括华电辽能、长江电力、中国核电、协鑫能科、永泰能源。新进入异动观察名单的是惠天热电、金房能源、亨通股份、陕西能源、廊坊发展。主力资金为成交统计口径，不等于机构持仓。",
+      "aiGenerated": false,
+      "aiUpdatedAt": "2026-08-06T11:59:35.125Z"
     },
     {
       "id": "coal",
@@ -6098,16 +6081,16 @@
           "timeRange": "近14天补充"
         },
         {
-          "title": "A股8月修复可期？科技仍为中长期主线？十大券商策略来了 - 财联社",
+          "title": "A股8月修复可期？科技仍为中长期主线？十大券商策略来了 - cls.cn",
           "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBlRFJsYU1nVkZZZTBDZTlaT2d4S1NESk5aSG01MW5VcUFFTWcxMGcyTXdQUWMxd2laT3dBRnBYeWFkY3k5bjdmRg?oc=5",
-          "source": "财联社",
+          "source": "cls.cn",
           "publishedAt": "Sun, 02 Aug 2026 08:56:00 GMT",
           "timeRange": "近14天补充"
         },
         {
-          "title": "拆解6月工业企业盈利：哪些行业的基本面领跑全市场？ - 腾讯新闻",
+          "title": "拆解6月工业企业盈利：哪些行业的基本面领跑全市场？ - QQ News",
           "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5tdE5Rdnd6UVVVQjdVZC12U2hKMFN0QUxCYTZUVGpvYWNDUk5mNjJBX096UnVrRHlycGxNeG5YTFpxd3ZrMXZGbUV6bEl6eWUtZDA0TUJB?oc=5",
-          "source": "腾讯新闻",
+          "source": "QQ News",
           "publishedAt": "Fri, 31 Jul 2026 07:34:00 GMT",
           "timeRange": "近14天补充"
         },
@@ -6199,7 +6182,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:05.187Z",
+        "asOf": "2026-08-06T11:59:32.188Z",
         "source": "东方财富公开行情",
         "boardCode": "BK0437",
         "boardName": "煤炭",
@@ -6548,9 +6531,9 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【资金与异动】A股煤炭板块于2026年8月6日收盘，较前一交易日上涨4.88%，主力净流入12.22亿元，净流入占比6.38%。全行业上涨家数33家，下跌1家，涨幅超过5%的个股达13家，行业整体呈现普涨态势。资金流入前列中，兖矿能源以2.30亿元净流入居首，换手率1.90亿元位列成交额榜首；潞安环能、淮北矿业、平煤股份及晋控煤业紧随其后，净流入均超8000万元。新进入观察名单的企业中，昊华能源表现最为显著，单日净流入6176.77万元，涨幅达10.03%。成交额前列的陕西煤业出现3249.06万元资金净流出，与行业整体流入方向形成差异。",
+      "aiSummary": "【资金与异动】2026年8月6日A股煤炭板块主力净流入12.22亿元，占比6.38%，上涨家数33家、下跌1家，涨幅超5%个股13家。资金流入前列为兖矿能源（净流入2.30亿元）、晋控煤业（净流入1.28亿元）及大有能源（净流入1.27亿元）；成交额前列依次为兖矿能源（19.04亿元）、中国神华（17.22亿元）及陕西煤业（13.61亿元）；新进入观察名单的显著企业为昊华能源（净流入0.62亿元，涨幅10.03%）。美股兖矿能源（2026年8月5日）收跌2.07%。行业层面，样本企业中陕西煤业与兖矿能源一季报净利润同比下滑，而新集能源实现正增长，基本面存在分化。",
       "aiGenerated": true,
-      "aiUpdatedAt": "2026-08-06T11:54:30.491Z",
+      "aiUpdatedAt": "2026-08-06T12:01:47.597Z",
       "aiProvider": "智谱 GLM-4.7-Flash"
     },
     {
@@ -6671,7 +6654,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:05.633Z",
+        "asOf": "2026-08-06T11:59:32.635Z",
         "source": "东方财富公开行情",
         "boardCode": "BK0478",
         "boardName": "有色金属",
@@ -7020,10 +7003,9 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【资金与异动】A股有色金属板块于2026年8月6日收盘，较前一交易日上涨1.98%。当日行业主力净流出4.48亿元，净流出占比-0.30%；上涨家数77家，下跌21家；涨幅超过5%的个股11家。资金流向呈现显著分化，流入前列为云南锗业（净流入4.67亿元）、中钨高新（净流入3.25亿元）及江南新材（净流入1.93亿元），其中云南锗业以10%的涨幅领跑。成交额方面，紫金矿业以140.64亿元居首，洛阳钼业以67.09亿元次之，但二者主力资金分别净流出4.46亿元和2.31亿元。新进入观察名单的个股中，云南锗业和中钨高新表现最为突出，分别录得10%和8.83%的涨幅及大幅资金净流入。",
-      "aiGenerated": true,
-      "aiUpdatedAt": "2026-08-06T11:54:30.491Z",
-      "aiProvider": "智谱 GLM-4.7-Flash"
+      "aiSummary": "【行业结论】有色金属A股参考指数在2026-08-06收盘上涨0.7%，美股参考在2026-08-05最近收盘上涨3.8%；涨跌幅均为较各自前一交易日收盘，两边同向走强，美股涨幅更大。全行业快照中上涨77家、下跌21家，涨幅达到5%的有11家，行情扩散面偏强。\n\n【产业与新闻】新浪财经（2026/08/03 11:31，近14天补充）：券商8月金股出炉：药明康德、宁德时代、紫金矿业关注度最高（附名单） - 新浪财经；财富号（2026/07/27 09:08，近14天补充）：【股市点评】市场调整之后，关注景气行业 - 财富号这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长6家、归母净利润同比增长6家。紫金矿业营收同比24.8%、净利同比97.5%；洛阳钼业营收同比44.3%、净利同比96.7%；北方稀土营收同比27.7%、净利同比113.1%；宏桥控股营收同比3.2%、净利同比37.6%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】有色金属成分股主力资金合计-4.5亿元，占成交额-0.3%；资金流入前列包括云南锗业、中钨高新、江南新材、盛达资源、东方钽业，成交活跃前列包括紫金矿业、中钨高新、厦门钨业、云南锗业、洛阳钼业。新进入异动观察名单的是云南锗业、中钨高新、江南新材、银河磁体、盛达资源。主力资金为成交统计口径，不等于机构持仓。",
+      "aiGenerated": false,
+      "aiUpdatedAt": "2026-08-06T11:59:35.125Z"
     },
     {
       "id": "chemical",
@@ -7182,7 +7164,7 @@
         }
       ],
       "sector": {
-        "asOf": "2026-08-06T11:52:06.079Z",
+        "asOf": "2026-08-06T11:59:33.083Z",
         "source": "东方财富公开行情",
         "boardCode": "BK0538",
         "boardName": "化学制品",
@@ -7531,13 +7513,12 @@
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
       },
-      "aiSummary": "【资金与异动】A股市场于2026年8月6日收盘，化学制品板块整体上涨2.89%，主力净流入12.94亿元，占比3.60%，全行业100只成分股全部上涨，涨幅超5%个股13只。资金流入前列为多氟多（净流入6.75亿元）、昊华科技（净流入3.66亿元）和和远气体（净流入1.50亿元）；成交活跃度前三为多氟多（成交76.08亿元）、昊华科技（成交40.86亿元）和万华化学（成交24.97亿元）；新进入观察名单的个股涨幅均超10%。行业层面，万华化学、巨化股份等龙头虽上涨但主力资金呈净流出状态，分别净流出9.59亿元和1.61亿元，显示资金向高弹性小市值标的集中。美股市场于2026年8月5日收盘，板块上涨1.23%。",
-      "aiGenerated": true,
-      "aiUpdatedAt": "2026-08-06T11:54:30.491Z",
-      "aiProvider": "智谱 GLM-4.7-Flash"
+      "aiSummary": "【行业结论】化工A股参考指数在2026-08-06收盘上涨1.5%，美股参考在2026-08-05最近收盘上涨1.2%；涨跌幅均为较各自前一交易日收盘，两边同向走强，幅度接近。全行业快照中上涨100家、下跌0家，涨幅达到5%的有13家，行情扩散面偏强。\n\n【产业与新闻】中财网（2026/08/06 19:12，过去24小时）：兴发集团(600141):湖北兴发化工集团股份有限公司关于2026年度向特定对象发行A股股票摊薄即期回报、填补措施及相关主体承诺- CFi.CN 中财网 - 中财网；中财网（2026/08/06 19:11，过去24小时）：兴发集团(600141):湖北兴发化工集团股份有限公司2026年度向特定对象发行A股股票方案论证分析报告 - 中财网；新浪网（2026/08/06 03:03，过去24小时）：机构论市：AI休整，哪些ETF共识高？ - 新浪网这些信息反映政策、供需或竞争格局线索，但不能单独解释此前已经发生的价格变化。\n\n【财报观察】已汇总6家行业代表公司的最新财报，其中营收同比增长6家、归母净利润同比增长5家。万华化学营收同比25.5%、净利同比20.6%；巨化股份营收同比3.7%、净利同比45.9%；卫星化学营收同比2.8%、净利同比35.0%；新 和 成营收同比15.7%、净利同比-2.8%样本用于观察行业分化，不代表全部企业。\n\n【资金与异动】化学制品成分股主力资金合计+12.9亿元，占成交额3.6%；资金流入前列包括多氟多、昊华科技、和远气体、高争民爆、宏柏新材，成交活跃前列包括多氟多、昊华科技、万华化学、巨化股份、东岳硅材。新进入异动观察名单的是中欣氟材、高争民爆、宏柏新材、键邦股份、和远气体。主力资金为成交统计口径，不等于机构持仓。",
+      "aiGenerated": false,
+      "aiUpdatedAt": "2026-08-06T11:59:35.125Z"
     }
   ],
   "source": "腾讯行情、东方财富公开行业与财报数据、公开新闻RSS",
   "aiModel": "Gemini 3.6 Flash / 智谱 GLM-4.7-Flash",
-  "updatedAt": "2026-08-06T11:54:30.491Z"
+  "updatedAt": "2026-08-06T12:01:47.597Z"
 }
