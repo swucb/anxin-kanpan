@@ -152,7 +152,42 @@ function parseUsDateTime(row, fallbackDate) {
   return date ? { date, hour: time.hour, minute: time.minute } : null;
 }
 
-async function loadUsIntraday(code, assetClass, fallbackDate) {
+async function loadYahooUsIntraday(code) {
+  const yahooCode = code.replaceAll(".", "-");
+  const response = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(yahooCode)}?interval=15m&range=5d&includePrePost=false&events=div%2Csplits`, {
+    headers: { accept: "application/json", "user-agent": "Mozilla/5.0" },
+    signal: AbortSignal.timeout(20000),
+  });
+  if (!response.ok) throw new Error(`Yahoo chart HTTP ${response.status}`);
+  const result = (await response.json()).chart?.result?.[0];
+  const timestamps = result?.timestamp ?? [];
+  const closes = result?.indicators?.quote?.[0]?.close ?? [];
+  const days = new Map();
+
+  for (let index = 0; index < timestamps.length; index += 1) {
+    const time = parseUsDateTime({ x: timestamps[index] }, "");
+    const close = Number(closes[index]);
+    if (!time || !Number.isFinite(close)) continue;
+    const minutes = time.hour * 60 + time.minute;
+    if (minutes < 570 || minutes > 960) continue;
+    const bucket = Math.min(Math.floor(minutes / 15) * 15, 960);
+    if (!days.has(time.date)) days.set(time.date, new Map());
+    days.get(time.date).set(bucket, close);
+  }
+
+  const candidates = [...days.entries()]
+    .map(([date, buckets]) => ({ date, buckets, latestBucket: Math.max(...buckets.keys()) }))
+    .filter((day) => day.buckets.size >= 20 && day.latestBucket >= 945)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const selected = candidates.at(-1);
+  if (!selected) throw new Error("Yahoo chart has no completed trade day");
+  return [...selected.buckets.entries()].sort((a, b) => a[0] - b[0]).map(([bucket, close]) => ({
+    date: `${selected.date} ${String(Math.floor(bucket / 60)).padStart(2, "0")}:${String(bucket % 60).padStart(2, "0")}`,
+    close,
+  }));
+}
+
+async function loadNasdaqUsIntraday(code, assetClass, fallbackDate) {
   const response = await fetch(`https://api.nasdaq.com/api/quote/${encodeURIComponent(code)}/chart?assetclass=${assetClass}`, {
     headers: { accept: "application/json", "user-agent": "Mozilla/5.0" },
     signal: AbortSignal.timeout(20000),
@@ -176,6 +211,16 @@ async function loadUsIntraday(code, assetClass, fallbackDate) {
     date: `${point.tradeDate} ${String(Math.floor(point.bucket / 60)).padStart(2, "0")}:${String(point.bucket % 60).padStart(2, "0")}`,
     close: point.close,
   }));
+}
+
+async function loadUsIntraday(code, assetClass, fallbackDate) {
+  try {
+    const points = await loadYahooUsIntraday(code);
+    if (points.length > 1) return points;
+  } catch (error) {
+    console.warn(`Yahoo intraday fallback for ${code}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+  return loadNasdaqUsIntraday(code, assetClass, fallbackDate);
 }
 
 async function loadQuoteSymbols(symbols) {
@@ -244,7 +289,7 @@ async function loadHistories() {
         } else {
           intraday = await loadUsIntraday(code, exchange === "AMEX" ? "etf" : "stocks", points.at(-1)?.date);
         }
-        await writeFile(`${historyDirectory}/${historyFilename(symbol)}`, `${JSON.stringify({ symbol, points, intraday, intradayIntervalMinutes: 15, intradayTimezone: exchange === "SSE" || exchange === "SZSE" ? "Asia/Shanghai" : "America/New_York", source: exchange === "SSE" || exchange === "SZSE" ? "腾讯行情" : "Nasdaq公开行情", updatedAt: new Date().toISOString() })}\n`, "utf8");
+        await writeFile(`${historyDirectory}/${historyFilename(symbol)}`, `${JSON.stringify({ symbol, points, intraday, intradayIntervalMinutes: 15, intradayTimezone: exchange === "SSE" || exchange === "SZSE" ? "Asia/Shanghai" : "America/New_York", source: exchange === "SSE" || exchange === "SZSE" ? "腾讯行情" : "Yahoo、Nasdaq公开行情", updatedAt: new Date().toISOString() })}\n`, "utf8");
         written += 1;
       } catch (error) {
         try {
