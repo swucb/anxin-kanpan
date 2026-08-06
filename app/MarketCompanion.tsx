@@ -125,7 +125,7 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
   const chartMinimum = minimum - padding;
   const spread = Math.max(maximum + padding - chartMinimum, 0.000001);
   const coordinates = visiblePoints.map((point, index) => {
-    const x = visiblePoints.length === 1 ? 200 : 12 + (index / (visiblePoints.length - 1)) * 376;
+    const x = visiblePoints.length === 1 ? 219 : 50 + (index / (visiblePoints.length - 1)) * 338;
     const y = 174 - ((point.close - chartMinimum) / spread) * 150;
     return `${x.toFixed(1)},${y.toFixed(1)}`;
   }).join(" ");
@@ -134,6 +134,8 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
   const changePct = first ? ((latest - first) / first) * 100 : 0;
   const direction = changePct > 0 ? "up" : changePct < 0 ? "down" : "flat";
   const tickIndexes = [...new Set([0, Math.round((visiblePoints.length - 1) / 3), Math.round(((visiblePoints.length - 1) * 2) / 3), visiblePoints.length - 1])].filter((index) => index >= 0);
+  const priceDigits = maximum < 1 ? 3 : maximum < 100 ? 2 : 0;
+  const yTicks = [maximum, (maximum + minimum) / 2, minimum];
 
   return (
     <div className="static-trend">
@@ -152,10 +154,15 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
         {([1, 7, 30, 90] as const).map((days) => <button type="button" className={range === days ? "is-selected" : ""} aria-pressed={range === days} key={days} onClick={() => setRange(days)}>{days === 1 ? "1日·15分" : `${days}日`}</button>)}
       </div>
       {failed ? <div className="trend-loading">本次趋势暂未生成，请稍后刷新。</div> : points.length ? (
-        <svg className={`trend-chart ${direction}`} viewBox="0 0 400 190" preserveAspectRatio="none" role="img" aria-label={`${activeLabel}${range === 1 ? "上一交易日" : `最近${range}个交易日`}趋势`}>
-          <line x1="12" x2="388" y1="174" y2="174" />
-          <polyline points={coordinates} />
-        </svg>
+        <div className="trend-chart-wrap">
+          <div className="trend-y-axis" aria-hidden="true">{yTicks.map((value) => <span key={value}>{value.toFixed(priceDigits)}</span>)}</div>
+          <svg className={`trend-chart ${direction}`} viewBox="0 0 400 190" preserveAspectRatio="none" role="img" aria-label={`${activeLabel}${range === 1 ? "上一交易日" : `最近${range}个交易日`}趋势`}>
+            <line x1="50" x2="388" y1="24" y2="24" />
+            <line x1="50" x2="388" y1="99" y2="99" />
+            <line x1="50" x2="388" y1="174" y2="174" />
+            <polyline points={coordinates} />
+          </svg>
+        </div>
       ) : <div className="trend-loading">正在加载趋势…</div>}
       {visiblePoints.length > 0 && (hasIntraday ? <div className="trend-hours">{tickIndexes.map((index) => <span key={visiblePoints[index].date}>{visiblePoints[index].date.slice(-5)}</span>)}</div> : <div className="trend-dates"><span>{visiblePoints[0].date.slice(5)}</span><span>{visiblePoints.at(-1)?.date.slice(5)}</span></div>)}
     </div>
