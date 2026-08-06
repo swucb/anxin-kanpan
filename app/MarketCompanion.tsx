@@ -47,8 +47,8 @@ type IndustryPulseItem = {
   aiProvider?: string;
   aiUpdatedAt?: string;
   companies?: Array<{ name: string; symbol: string; current?: number | null; previous?: number | null; changePct: number | null; asOf?: string; session?: string }>;
-  news?: Array<{ title: string; url: string; source: string; publishedAt: string; timeRange?: "过去24小时" | "近14天补充" }>;
-  financials?: Array<{ name: string; reportDate: string; reportType: string }>;
+  news?: Array<{ title: string; url: string; source: string; publishedAt: string; timeRange?: "过去24小时" | "近14天补充"; category?: string }>;
+  financials?: Array<{ name: string; reportDate: string; reportType: string; revenue?: number | null; revenueYoY?: number | null; netProfit?: number | null; netProfitYoY?: number | null }>;
   sector?: {
     boardName: string; mainNetFlow: number; mainNetFlowPct: number; advancers: number; decliners: number; up5Count: number; asOf?: string; source?: string;
     topInflows: Array<{ name: string; code: string; mainNetFlow: number }>;
@@ -248,9 +248,8 @@ function MarketOverview() {
 }
 
 const navItems: Array<{ id: Tab; label: string }> = [
-  { id: "today", label: "A股" },
-  { id: "industry", label: "行业公司" },
-  { id: "global", label: "美股" },
+  { id: "industry", label: "行业" },
+  { id: "global", label: "美股参照" },
 ];
 
 const companyGroups: CompanyGroup[] = [
@@ -868,7 +867,7 @@ function IndustryPulse({ industryId, onSelectCompany }: { industryId: string; on
         })}</div>
       </div> : null}
       {(active.news?.length || active.financials?.length) ? <div className="analysis-evidence">
-        {active.news?.slice(0, 3).map((item) => <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>新闻 · {item.timeRange ?? "近14天补充"}｜{formatChinaDateTime(item.publishedAt)}（北京时间）｜{item.source}｜{item.title}</a>)}
+        {active.news?.slice(0, 6).map((item) => <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>新闻 · {item.category ?? "行业"} · {item.timeRange ?? "近14天补充"}｜{formatChinaDateTime(item.publishedAt)}（北京时间）｜{item.source}｜{item.title}</a>)}
         {active.financials?.slice(0, 3).map((item) => <span key={`${item.name}-${item.reportDate}`}>财报｜{item.name} {item.reportType} · 报告期截至 {item.reportDate.slice(0, 10)}</span>)}
       </div> : null}
       <footer>
@@ -907,7 +906,7 @@ function stockFromInput(value: string): StockOption | null {
 }
 
 export function MarketCompanion() {
-  const [activeTab, setActiveTab] = useState<Tab>("today");
+  const [activeTab, setActiveTab] = useState<Tab>("industry");
   const [companyInput, setCompanyInput] = useState("贵州茅台");
   const [selectedCompany, setSelectedCompany] = useState(companies[0]);
   const [companyError, setCompanyError] = useState("");
@@ -948,11 +947,6 @@ export function MarketCompanion() {
       // The site remains usable when a browser blocks device-local storage.
     }
   }, [companyPrefsReady, favorites, recents]);
-
-  const activeIndustry = useMemo(
-    () => industries.find((item) => item.id === industryId) ?? industries[0],
-    [industryId],
-  );
 
   const companyMatches = useMemo(() => {
     const query = companyInput.trim().replace(/\s+/g, "").toLowerCase();
@@ -1254,7 +1248,7 @@ export function MarketCompanion() {
       {activeTab === "industry" && (
         <section className="page-section" aria-labelledby="industry-title">
           <div className="section-heading">
-            <h2 id="industry-title">行业对比</h2>
+            <h2 id="industry-title">行业日报</h2>
           </div>
 
           <div className="industry-picker">
@@ -1270,29 +1264,6 @@ export function MarketCompanion() {
           </div>
 
           <IndustryPulse industryId={industryId} onSelectCompany={openCompanyFromIndustry} />
-
-          {process.env.NEXT_PUBLIC_STATIC_DATA === "true" ? <StaticTrendWidget symbols={activeIndustry.symbols} /> : <TradingViewWidget
-            key={`industry-${activeIndustry.id}`}
-            script="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
-            height={560}
-            label={`${activeIndustry.name}对比`}
-            config={{
-              ...widgetBase,
-              height: "100%",
-              symbols: activeIndustry.symbols,
-              chartOnly: false,
-              chartType: "area",
-              lineWidth: 2,
-              dateRanges: ["1m|30", "3m|60", "12m|1D", "60m|1W"],
-              changeMode: "price-and-percent",
-              hideDateRanges: false,
-              hideMarketStatus: false,
-              hideSymbolLogo: false,
-              scalePosition: "right",
-              scaleMode: "Percentage",
-            }}
-          />}
-
         </section>
       )}
 

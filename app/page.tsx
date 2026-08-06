@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { MarketCompanion } from "./MarketCompanion";
 
 export const metadata: Metadata = {
-  title: "安心看盘｜A 股行情与行业对比",
-  description: "面向家庭投资爱好者，免登录查看 A 股行情、企业财务、行业公司对比和美股行业参考。",
+  title: "安心看盘｜行业资讯与美股参照",
+  description: "面向家庭投资爱好者，免登录阅读产业新闻、企业财报、资金变化与美股行业参照。",
 };
 
 export default function Home() {
