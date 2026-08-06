@@ -3,17 +3,23 @@
     {
       "id": "consumer",
       "name": "消费",
-      "summary": "A股消费ETF盘中下跌0.5%，美股消费必需品XLP最近收盘基本持平；一边平稳、一边波动，美股相对更强。",
+      "summary": "A股消费ETF盘中下跌0.7%，美股消费必需品XLP最近收盘基本持平；一边平稳、一边波动，美股相对更强。",
       "cn": {
         "label": "A股消费ETF",
         "symbol": "sz159928",
-        "changePct": -0.45,
-        "asOf": "2026-08-06 14:09",
+        "current": 0.669,
+        "previous": 0.674,
+        "change": -0.005,
+        "changePct": -0.74,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股消费必需品XLP",
         "symbol": "usXLP",
+        "current": 85.33,
+        "previous": 85.37,
+        "change": -0.04,
         "changePct": -0.05,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -22,17 +28,23 @@
     {
       "id": "bank",
       "name": "银行",
-      "summary": "A股银行ETF盘中上涨0.6%，美股银行KBE最近收盘下跌0.4%；两边走势分化，A股相对更强。",
+      "summary": "A股银行ETF盘中上涨0.4%，美股银行KBE最近收盘下跌0.4%；两边走势分化，A股相对更强。",
       "cn": {
         "label": "A股银行ETF",
         "symbol": "sh512800",
-        "changePct": 0.62,
-        "asOf": "2026-08-06 14:09",
+        "current": 0.804,
+        "previous": 0.801,
+        "change": 0.003,
+        "changePct": 0.37,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股银行KBE",
         "symbol": "usKBE",
+        "current": 71,
+        "previous": 71.3,
+        "change": -0.3,
         "changePct": -0.42,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -41,17 +53,23 @@
     {
       "id": "brokerage",
       "name": "券商",
-      "summary": "A股券商ETF盘中下跌1.3%，美股券商IAI最近收盘上涨0.5%；两边走势分化，美股相对更强。",
+      "summary": "A股券商ETF盘中下跌1.1%，美股券商IAI最近收盘上涨0.5%；两边走势分化，美股相对更强。",
       "cn": {
         "label": "A股券商ETF",
         "symbol": "sh512880",
-        "changePct": -1.26,
-        "asOf": "2026-08-06 14:09",
+        "current": 1.097,
+        "previous": 1.109,
+        "change": -0.012,
+        "changePct": -1.08,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股券商IAI",
         "symbol": "usIAI",
+        "current": 189.95,
+        "previous": 189,
+        "change": 0.95,
         "changePct": 0.5,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -60,17 +78,23 @@
     {
       "id": "chips",
       "name": "半导体",
-      "summary": "A股半导体ETF盘中下跌0.6%，美股半导体SOXX最近收盘下跌2.1%；两边同向回落，A股相对抗跌。",
+      "summary": "A股半导体ETF盘中上涨1.6%，美股半导体SOXX最近收盘下跌2.1%；两边走势分化，A股相对更强。",
       "cn": {
         "label": "A股半导体ETF",
         "symbol": "sh512480",
-        "changePct": -0.58,
-        "asOf": "2026-08-06 14:09",
+        "current": 1.049,
+        "previous": 1.033,
+        "change": 0.016,
+        "changePct": 1.55,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股半导体SOXX",
         "symbol": "usSOXX",
+        "current": 530.7,
+        "previous": 542.21,
+        "change": -11.51,
         "changePct": -2.12,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -79,17 +103,23 @@
     {
       "id": "ai",
       "name": "人工智能",
-      "summary": "A股人工智能ETF盘中下跌1.5%，美股人工智能AIQ最近收盘下跌1.2%；两边同向回落，幅度接近。",
+      "summary": "A股人工智能ETF盘中基本持平，美股人工智能AIQ最近收盘下跌1.2%；一边平稳、一边波动，A股相对更强。",
       "cn": {
         "label": "A股人工智能ETF",
         "symbol": "sz159819",
-        "changePct": -1.51,
-        "asOf": "2026-08-06 14:09",
+        "current": 1.852,
+        "previous": 1.852,
+        "change": 0,
+        "changePct": 0,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股人工智能AIQ",
         "symbol": "usAIQ",
+        "current": 62.36,
+        "previous": 63.13,
+        "change": -0.77,
         "changePct": -1.22,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -98,17 +128,23 @@
     {
       "id": "communication",
       "name": "通信",
-      "summary": "A股通信ETF盘中基本持平，美股通信XTL最近收盘下跌2.6%；一边平稳、一边波动，A股相对更强。",
+      "summary": "A股通信ETF盘中上涨1.7%，美股通信XTL最近收盘下跌2.6%；两边走势分化，A股相对更强。",
       "cn": {
         "label": "A股通信ETF",
         "symbol": "sh515880",
-        "changePct": 0,
-        "asOf": "2026-08-06 14:09",
+        "current": 0.653,
+        "previous": 0.642,
+        "change": 0.011,
+        "changePct": 1.71,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股通信XTL",
         "symbol": "usXTL",
+        "current": 216.58,
+        "previous": 222.35,
+        "change": -5.77,
         "changePct": -2.6,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -117,17 +153,23 @@
     {
       "id": "new-energy",
       "name": "新能源车",
-      "summary": "A股新能源车ETF盘中下跌2.2%，美股新能源车DRIV最近收盘下跌0.3%；两边同向回落，美股相对抗跌。",
+      "summary": "A股新能源车ETF盘中下跌1.7%，美股新能源车DRIV最近收盘下跌0.3%；两边同向回落，美股相对抗跌。",
       "cn": {
         "label": "A股新能源车ETF",
         "symbol": "sh515030",
-        "changePct": -2.22,
-        "asOf": "2026-08-06 14:09",
+        "current": 1.634,
+        "previous": 1.663,
+        "change": -0.029,
+        "changePct": -1.74,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股新能源车DRIV",
         "symbol": "usDRIV",
+        "current": 34.91,
+        "previous": 35,
+        "change": -0.09,
         "changePct": -0.25,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -136,17 +178,23 @@
     {
       "id": "solar",
       "name": "光伏",
-      "summary": "A股光伏ETF盘中下跌1.9%，美股光伏TAN最近收盘下跌3.9%；两边同向回落，A股相对抗跌。",
+      "summary": "A股光伏ETF盘中下跌1.2%，美股光伏TAN最近收盘下跌3.9%；两边同向回落，A股相对抗跌。",
       "cn": {
         "label": "A股光伏ETF",
         "symbol": "sh515790",
-        "changePct": -1.87,
-        "asOf": "2026-08-06 14:09",
+        "current": 0.845,
+        "previous": 0.855,
+        "change": -0.01,
+        "changePct": -1.17,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股光伏TAN",
         "symbol": "usTAN",
+        "current": 51.27,
+        "previous": 53.37,
+        "change": -2.1,
         "changePct": -3.93,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -155,17 +203,23 @@
     {
       "id": "healthcare",
       "name": "医药",
-      "summary": "A股医药ETF盘中下跌1.8%，美股医疗XLV最近收盘上涨1.3%；两边走势分化，美股相对更强。",
+      "summary": "A股医药ETF盘中下跌2.1%，美股医疗XLV最近收盘上涨1.3%；两边走势分化，美股相对更强。",
       "cn": {
         "label": "A股医药ETF",
         "symbol": "sh512010",
-        "changePct": -1.81,
-        "asOf": "2026-08-06 14:09",
+        "current": 0.379,
+        "previous": 0.387,
+        "change": -0.008,
+        "changePct": -2.07,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股医疗XLV",
         "symbol": "usXLV",
+        "current": 164.16,
+        "previous": 162.1,
+        "change": 2.06,
         "changePct": 1.27,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -174,17 +228,23 @@
     {
       "id": "home",
       "name": "家电",
-      "summary": "A股家电ETF盘中下跌0.8%，美股可选消费XLY最近收盘上涨0.3%；两边走势分化，美股相对更强。",
+      "summary": "A股家电ETF盘中下跌0.4%，美股可选消费XLY最近收盘上涨0.3%；两边走势分化，美股相对更强。",
       "cn": {
         "label": "A股家电ETF",
         "symbol": "sz159996",
-        "changePct": -0.84,
-        "asOf": "2026-08-06 14:09",
+        "current": 1.418,
+        "previous": 1.424,
+        "change": -0.006,
+        "changePct": -0.42,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股可选消费XLY",
         "symbol": "usXLY",
+        "current": 118.64,
+        "previous": 118.29,
+        "change": 0.35,
         "changePct": 0.3,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -193,17 +253,23 @@
     {
       "id": "defense",
       "name": "军工",
-      "summary": "A股军工ETF盘中下跌0.9%，美股航空国防ITA最近收盘上涨0.7%；两边走势分化，美股相对更强。",
+      "summary": "A股军工ETF盘中基本持平，美股航空国防ITA最近收盘上涨0.7%；一边平稳、一边波动，美股相对更强。",
       "cn": {
         "label": "A股军工ETF",
         "symbol": "sh512660",
-        "changePct": -0.88,
-        "asOf": "2026-08-06 14:09",
+        "current": 1.135,
+        "previous": 1.136,
+        "change": -0.001,
+        "changePct": -0.09,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股航空国防ITA",
         "symbol": "usITA",
+        "current": 252.28,
+        "previous": 250.65,
+        "change": 1.63,
         "changePct": 0.65,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -216,13 +282,19 @@
       "cn": {
         "label": "A股电力ETF",
         "symbol": "sz159611",
+        "current": 1.058,
+        "previous": 1.068,
+        "change": -0.01,
         "changePct": -0.94,
-        "asOf": "2026-08-06 14:09",
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股公用事业XLU",
         "symbol": "usXLU",
+        "current": 43.66,
+        "previous": 44.11,
+        "change": -0.45,
         "changePct": -1.02,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -231,17 +303,23 @@
     {
       "id": "coal",
       "name": "煤炭",
-      "summary": "A股煤炭ETF盘中上涨5.9%，美股能源XLE最近收盘下跌2.1%；两边走势分化，A股相对更强。",
+      "summary": "A股煤炭ETF盘中上涨5.7%，美股能源XLE最近收盘下跌2.1%；两边走势分化，A股相对更强。",
       "cn": {
         "label": "A股煤炭ETF",
         "symbol": "sh515220",
-        "changePct": 5.88,
-        "asOf": "2026-08-06 14:09",
+        "current": 1.241,
+        "previous": 1.174,
+        "change": 0.067,
+        "changePct": 5.71,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股能源XLE",
         "symbol": "usXLE",
+        "current": 57.31,
+        "previous": 58.52,
+        "change": -1.21,
         "changePct": -2.07,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -250,17 +328,23 @@
     {
       "id": "metals",
       "name": "有色金属",
-      "summary": "A股有色ETF盘中上涨0.3%，美股金属矿业XME最近收盘上涨3.8%；两边同向走强，美股涨幅更大。",
+      "summary": "A股有色ETF盘中上涨0.5%，美股金属矿业XME最近收盘上涨3.8%；两边同向走强，美股涨幅更大。",
       "cn": {
         "label": "A股有色ETF",
         "symbol": "sh512400",
-        "changePct": 0.26,
-        "asOf": "2026-08-06 14:09",
+        "current": 1.913,
+        "previous": 1.903,
+        "change": 0.01,
+        "changePct": 0.53,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股金属矿业XME",
         "symbol": "usXME",
+        "current": 111.92,
+        "previous": 107.86,
+        "change": 4.06,
         "changePct": 3.76,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -269,17 +353,23 @@
     {
       "id": "chemical",
       "name": "化工",
-      "summary": "A股化工ETF盘中上涨0.2%，美股材料XLB最近收盘上涨1.2%；两边同向走强，美股涨幅更大。",
+      "summary": "A股化工ETF盘中上涨0.8%，美股材料XLB最近收盘上涨1.2%；两边同向走强，幅度接近。",
       "cn": {
         "label": "A股化工ETF",
         "symbol": "sh516020",
-        "changePct": 0.23,
-        "asOf": "2026-08-06 14:09",
+        "current": 0.867,
+        "previous": 0.86,
+        "change": 0.007,
+        "changePct": 0.81,
+        "asOf": "2026-08-06 14:35",
         "session": "盘中"
       },
       "us": {
         "label": "美股材料XLB",
         "symbol": "usXLB",
+        "current": 52.64,
+        "previous": 52,
+        "change": 0.64,
         "changePct": 1.23,
         "asOf": "2026-08-05 16:00",
         "session": "最近收盘"
@@ -287,5 +377,5 @@
     }
   ],
   "source": "腾讯行情",
-  "updatedAt": "2026-08-06T06:09:42.618Z"
+  "updatedAt": "2026-08-06T06:35:51.695Z"
 }

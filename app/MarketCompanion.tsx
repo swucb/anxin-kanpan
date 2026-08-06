@@ -55,6 +55,15 @@ type IndustryPulseItem = {
   us: { label: string; symbol: string; changePct: number; asOf: string; session: string };
 };
 
+type MarketIndex = {
+  name: string;
+  code: string;
+  current: number;
+  change: number;
+  changePct: number;
+  asOf: string;
+};
+
 type CompanyPreferences = {
   version: 1;
   favorites: StockOption[];
@@ -67,10 +76,55 @@ const STATIC_DATA_ROOT = process.env.NEXT_PUBLIC_STATIC_DATA === "true"
   ? `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/data`
   : "/api";
 
-function dataEndpoint(name: "macro" | "industry-pulse"): string {
+function dataEndpoint(name: "macro" | "industry-pulse" | "market"): string {
   return process.env.NEXT_PUBLIC_STATIC_DATA === "true"
     ? `${STATIC_DATA_ROOT}/${name}.json`
     : `${STATIC_DATA_ROOT}/${name}`;
+}
+
+function MarketOverview() {
+  const [items, setItems] = useState<MarketIndex[]>([]);
+  const [status, setStatus] = useState<{ source: string; session: string } | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(dataEndpoint("market"), { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("market unavailable");
+        return response.json();
+      })
+      .then((payload) => {
+        setItems(payload.data ?? []);
+        setStatus({ source: payload.source ?? "公开行情", session: payload.session ?? "最近更新" });
+      })
+      .catch((error) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setFailed(true);
+      });
+    return () => controller.abort();
+  }, []);
+
+  if (failed) return <div className="market-status">行情暂时未加载，请稍后刷新。</div>;
+  if (!items.length) return <div className="market-status">正在加载今日行情…</div>;
+
+  return (
+    <div className="market-overview" aria-live="polite">
+      <div className="market-list">
+        {items.map((item) => {
+          const direction = item.changePct > 0 ? "up" : item.changePct < 0 ? "down" : "flat";
+          const sign = item.changePct > 0 ? "+" : "";
+          return (
+            <article className={`market-row ${direction}`} key={item.code}>
+              <div><strong>{item.name}</strong><span>{item.code}</span></div>
+              <div><strong>{item.current.toLocaleString("zh-CN", { maximumFractionDigits: 2 })}</strong><span>{sign}{item.change.toFixed(2)}　{sign}{item.changePct.toFixed(2)}%</span></div>
+            </article>
+          );
+        })}
+      </div>
+      <footer>{status?.session} · {items[0]?.asOf.slice(0, 16)} · {status?.source}</footer>
+    </div>
+  );
 }
 
 const navItems: Array<{ id: Tab; label: string }> = [
@@ -615,7 +669,13 @@ function TradingViewWidget({
     embed.onerror = () => setFailed(true);
 
     host.append(widget, attribution, embed);
-    return () => host.replaceChildren();
+    const timeout = window.setTimeout(() => {
+      if (!host.querySelector("iframe")) setFailed(true);
+    }, 7000);
+    return () => {
+      window.clearTimeout(timeout);
+      host.replaceChildren();
+    };
   }, [configText, label, script]);
 
   return (
@@ -623,7 +683,7 @@ function TradingViewWidget({
       <div ref={container} className="tradingview-widget-container" />
       {failed && (
         <a className="widget-fallback" href="https://cn.tradingview.com/markets/china/" target="_blank" rel="noreferrer">
-          行情加载失败，点此查看
+          当前浏览器未能加载图表，请用系统浏览器打开
         </a>
       )}
     </div>
@@ -855,19 +915,21 @@ export function MarketCompanion() {
             <h2 id="today-title">今日行情</h2>
             <span>A股 · 收盘数据</span>
           </div>
-          <TradingViewWidget
-            script="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"
-            height={560}
-            label="A股行情"
-            config={{
-              ...widgetBase,
-              height: "100%",
-              dateRange: "3M",
-              showChart: true,
-              showFloatingTooltip: false,
-              showSymbolLogo: true,
-              tabs: [
-                {
+          {process.env.NEXT_PUBLIC_STATIC_DATA === "true" ? (
+            <MarketOverview />
+          ) : (
+            <TradingViewWidget
+              script="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"
+              height={560}
+              label="A股行情"
+              config={{
+                ...widgetBase,
+                height: "100%",
+                dateRange: "3M",
+                showChart: true,
+                showFloatingTooltip: false,
+                showSymbolLogo: true,
+                tabs: [{
                   title: "A股指数",
                   symbols: [
                     { s: "SSE:000001", d: "上证指数" },
@@ -876,10 +938,10 @@ export function MarketCompanion() {
                     { s: "SSE:000300", d: "沪深300" },
                   ],
                   originalTitle: "A股指数",
-                },
-              ],
-            }}
-          />
+                }],
+              }}
+            />
+          )}
         </section>
       )}
 

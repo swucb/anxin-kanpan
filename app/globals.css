@@ -198,6 +198,50 @@ a:focus-visible {
   font-weight: 800;
 }
 
+.market-overview,
+.market-status {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.market-status {
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  color: #687673;
+  font-weight: 700;
+}
+
+.market-list {
+  padding: 8px 18px;
+}
+
+.market-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 82px;
+  border-bottom: 1px solid var(--line);
+}
+
+.market-row:last-child { border-bottom: 0; }
+.market-row > div { display: grid; gap: 5px; }
+.market-row > div:last-child { text-align: right; }
+.market-row strong { font-size: 1.12rem; }
+.market-row span { color: #7a8582; font-size: 0.82rem; }
+.market-row.up > div:last-child span { color: #b33d35; }
+.market-row.down > div:last-child span { color: #17866f; }
+
+.market-overview footer {
+  padding: 11px 18px;
+  border-top: 1px solid var(--line);
+  color: #7a8582;
+  font-size: 0.72rem;
+  text-align: right;
+}
+
 .company-search-wrap {
   position: relative;
   z-index: 5;
@@ -630,6 +674,12 @@ a:focus-visible {
   .widget-frame {
     border-radius: 15px;
   }
+
+  .market-overview,
+  .market-status { border-radius: 15px; }
+  .market-list { padding: 4px 14px; }
+  .market-row { min-height: 72px; }
+  .market-row strong { font-size: 1rem; }
 
   .company-search {
     grid-template-columns: minmax(0, 1fr) 74px;

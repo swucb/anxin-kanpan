@@ -28,6 +28,13 @@ const industryPairs = [
   { id: "chemical", name: "化工", cn: { label: "A股化工ETF", symbol: "sh516020" }, us: { label: "美股材料XLB", symbol: "usXLB" } },
 ];
 
+const marketIndices = [
+  { name: "上证指数", code: "000001", symbol: "sh000001" },
+  { name: "深证成指", code: "399001", symbol: "sz399001" },
+  { name: "创业板指", code: "399006", symbol: "sz399006" },
+  { name: "沪深300", code: "000300", symbol: "sh000300" },
+];
+
 async function latestObservation(config) {
   const currentYear = new Date().getUTCFullYear();
   const url = new URL(`https://api.worldbank.org/v2/country/${config.countryCode}/indicator/${config.indicator}`);
@@ -60,9 +67,35 @@ function parseQuotes(body) {
       ? reportedChange
       : previous > 0 && Number.isFinite(current) ? ((current - previous) / previous) * 100 : Number.NaN;
     const asOf = cleanQuoteDate(fields[30] ?? "");
-    if (Number.isFinite(changePct) && asOf) quotes.set(match[1], { changePct, asOf });
+    const change = Number(fields[31]);
+    if (Number.isFinite(changePct) && asOf) {
+      quotes.set(match[1], {
+        current,
+        previous,
+        change: Number.isFinite(change) ? change : current - previous,
+        changePct,
+        asOf,
+      });
+    }
   }
   return quotes;
+}
+
+async function loadMarketOverview() {
+  const response = await fetch(`https://qt.gtimg.cn/q=${marketIndices.map((item) => item.symbol).join(",")}`, {
+    headers: { accept: "text/plain,*/*" },
+    signal: AbortSignal.timeout(10000),
+  });
+  if (!response.ok) throw new Error(`Tencent quote HTTP ${response.status}`);
+  const quotes = parseQuotes(new TextDecoder().decode(await response.arrayBuffer()));
+  const data = marketIndices.map((item) => {
+    const quote = quotes.get(item.symbol);
+    if (!quote || !Number.isFinite(quote.current)) throw new Error(`Missing quote for ${item.symbol}`);
+    return { ...item, ...quote };
+  });
+  const latest = data.map((item) => item.asOf).sort().at(-1) ?? "";
+  const session = latest.slice(11, 16) >= "15:00" ? "收盘" : "盘中";
+  return { data, source: "腾讯行情", session, updatedAt: new Date().toISOString() };
 }
 
 function movement(value) {
@@ -133,4 +166,5 @@ await mkdir(outputDirectory, { recursive: true });
 await Promise.all([
   writeWithFallback("macro.json", async () => ({ data: await Promise.all(indicators.map(latestObservation)), source: "World Bank", updatedAt: new Date().toISOString() })),
   writeWithFallback("industry-pulse.json", loadIndustryPulse),
+  writeWithFallback("market.json", loadMarketOverview),
 ]);
