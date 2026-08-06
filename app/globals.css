@@ -494,6 +494,17 @@ a:focus-visible {
   font-size: 1.05rem;
 }
 
+.market-compare-stack {
+  display: grid;
+  gap: 24px;
+  margin-top: 18px;
+}
+
+.market-compare-stack > article > h3 {
+  margin: 0 2px 9px;
+  font-size: 1.05rem;
+}
+
 .subheading {
   margin: 30px 2px 12px;
 }

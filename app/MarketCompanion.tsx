@@ -15,28 +15,27 @@ type CompanyGroup = {
   items: StockOption[];
 };
 
+type ComparisonSymbols = [
+  [string, string],
+  [string, string],
+  [string, string],
+  [string, string],
+  [string, string],
+  [string, string],
+  [string, string],
+];
+
 type IndustryOption = {
   id: string;
   name: string;
-  symbols: [
-    [string, string],
-    [string, string],
-    [string, string],
-    [string, string],
-    [string, string],
-    [string, string],
-    [string, string],
-    ...Array<[string, string]>,
-  ];
+  symbols: ComparisonSymbols;
 };
 
 type GlobalSector = {
   id: string;
   name: string;
-  usName: string;
-  usSymbol: string;
-  cnName: string;
-  cnSymbol: string;
+  usSymbols: ComparisonSymbols;
+  cnSymbols: ComparisonSymbols;
 };
 
 type MacroItem = {
@@ -194,6 +193,7 @@ const companyGroups: CompanyGroup[] = [
     items: [
       { name: "中国石油", code: "601857", symbol: "SSE:601857" },
       { name: "中国石化", code: "600028", symbol: "SSE:600028" },
+      { name: "中国海油", code: "600938", symbol: "SSE:600938" },
       { name: "中国神华", code: "601088", symbol: "SSE:601088" },
       { name: "陕西煤业", code: "601225", symbol: "SSE:601225" },
       { name: "兖矿能源", code: "600188", symbol: "SSE:600188" },
@@ -443,11 +443,116 @@ const industries: IndustryOption[] = [
 ];
 
 const globalSectors: GlobalSector[] = [
-  { id: "technology", name: "科技", usName: "美股科技 XLK", usSymbol: "AMEX:XLK|12M", cnName: "A股半导体ETF", cnSymbol: "SSE:512480|12M" },
-  { id: "healthcare", name: "医疗", usName: "美股医疗 XLV", usSymbol: "AMEX:XLV|12M", cnName: "A股医药ETF", cnSymbol: "SSE:512010|12M" },
-  { id: "consumer", name: "消费", usName: "美股消费 XLY", usSymbol: "AMEX:XLY|12M", cnName: "A股酒类ETF", cnSymbol: "SSE:512690|12M" },
-  { id: "energy", name: "能源", usName: "美股能源 XLE", usSymbol: "AMEX:XLE|12M", cnName: "A股煤炭ETF", cnSymbol: "SSE:515220|12M" },
-  { id: "finance", name: "金融", usName: "美股金融 XLF", usSymbol: "AMEX:XLF|12M", cnName: "A股银行ETF", cnSymbol: "SSE:512800|12M" },
+  {
+    id: "technology",
+    name: "科技",
+    usSymbols: [
+      ["美股科技ETF XLK", "AMEX:XLK|12M"],
+      ["微软 MSFT", "NASDAQ:MSFT|12M"],
+      ["苹果 AAPL", "NASDAQ:AAPL|12M"],
+      ["英伟达 NVDA", "NASDAQ:NVDA|12M"],
+      ["Alphabet GOOGL", "NASDAQ:GOOGL|12M"],
+      ["博通 AVGO", "NASDAQ:AVGO|12M"],
+      ["Palantir PLTR", "NASDAQ:PLTR|12M"],
+    ],
+    cnSymbols: [
+      ["A股科技ETF", "SSE:515000|12M"],
+      ["中芯国际", "SSE:688981|12M"],
+      ["北方华创", "SZSE:002371|12M"],
+      ["工业富联", "SSE:601138|12M"],
+      ["科大讯飞", "SZSE:002230|12M"],
+      ["寒武纪", "SSE:688256|12M"],
+      ["中际旭创", "SZSE:300308|12M"],
+    ],
+  },
+  {
+    id: "healthcare",
+    name: "医疗",
+    usSymbols: [
+      ["美股医疗ETF XLV", "AMEX:XLV|12M"],
+      ["礼来 LLY", "NYSE:LLY|12M"],
+      ["联合健康 UNH", "NYSE:UNH|12M"],
+      ["强生 JNJ", "NYSE:JNJ|12M"],
+      ["艾伯维 ABBV", "NYSE:ABBV|12M"],
+      ["直觉外科 ISRG", "NASDAQ:ISRG|12M"],
+      ["Vertex VRTX", "NASDAQ:VRTX|12M"],
+    ],
+    cnSymbols: [
+      ["A股医药ETF", "SSE:512010|12M"],
+      ["恒瑞医药", "SSE:600276|12M"],
+      ["迈瑞医疗", "SZSE:300760|12M"],
+      ["药明康德", "SSE:603259|12M"],
+      ["百济神州", "SSE:688235|12M"],
+      ["科伦药业", "SZSE:002422|12M"],
+      ["联影医疗", "SSE:688271|12M"],
+    ],
+  },
+  {
+    id: "consumer",
+    name: "消费",
+    usSymbols: [
+      ["美股消费ETF XLP", "AMEX:XLP|12M"],
+      ["沃尔玛 WMT", "NASDAQ:WMT|12M"],
+      ["好市多 COST", "NASDAQ:COST|12M"],
+      ["宝洁 PG", "NYSE:PG|12M"],
+      ["可口可乐 KO", "NYSE:KO|12M"],
+      ["Celsius CELH", "NASDAQ:CELH|12M"],
+      ["e.l.f. Beauty ELF", "NYSE:ELF|12M"],
+    ],
+    cnSymbols: [
+      ["A股消费ETF", "SZSE:159928|12M"],
+      ["贵州茅台", "SSE:600519|12M"],
+      ["五粮液", "SZSE:000858|12M"],
+      ["伊利股份", "SSE:600887|12M"],
+      ["海天味业", "SSE:603288|12M"],
+      ["东鹏饮料", "SSE:605499|12M"],
+      ["珀莱雅", "SSE:603605|12M"],
+    ],
+  },
+  {
+    id: "energy",
+    name: "能源",
+    usSymbols: [
+      ["美股能源ETF XLE", "AMEX:XLE|12M"],
+      ["埃克森美孚 XOM", "NYSE:XOM|12M"],
+      ["雪佛龙 CVX", "NYSE:CVX|12M"],
+      ["康菲石油 COP", "NYSE:COP|12M"],
+      ["NextEra能源 NEE", "NYSE:NEE|12M"],
+      ["星座能源 CEG", "NASDAQ:CEG|12M"],
+      ["第一太阳能 FSLR", "NASDAQ:FSLR|12M"],
+    ],
+    cnSymbols: [
+      ["A股能源ETF", "SZSE:159930|12M"],
+      ["中国石油", "SSE:601857|12M"],
+      ["中国海油", "SSE:600938|12M"],
+      ["中国神华", "SSE:601088|12M"],
+      ["长江电力", "SSE:600900|12M"],
+      ["中国核电", "SSE:601985|12M"],
+      ["华电新能", "SSE:600930|12M"],
+    ],
+  },
+  {
+    id: "finance",
+    name: "金融",
+    usSymbols: [
+      ["美股金融ETF XLF", "AMEX:XLF|12M"],
+      ["摩根大通 JPM", "NYSE:JPM|12M"],
+      ["美国银行 BAC", "NYSE:BAC|12M"],
+      ["高盛 GS", "NYSE:GS|12M"],
+      ["Visa V", "NYSE:V|12M"],
+      ["Robinhood HOOD", "NASDAQ:HOOD|12M"],
+      ["SoFi SOFI", "NASDAQ:SOFI|12M"],
+    ],
+    cnSymbols: [
+      ["A股金融ETF", "SSE:510230|12M"],
+      ["工商银行", "SSE:601398|12M"],
+      ["招商银行", "SSE:600036|12M"],
+      ["中国平安", "SSE:601318|12M"],
+      ["中信证券", "SSE:600030|12M"],
+      ["东方财富", "SZSE:300059|12M"],
+      ["国泰海通", "SSE:601211|12M"],
+    ],
+  },
 ];
 
 const widgetBase = {
@@ -998,39 +1103,10 @@ export function MarketCompanion() {
       {activeTab === "global" && (
         <section className="page-section" aria-labelledby="global-title">
           <div className="section-heading">
-            <h2 id="global-title">美股参考</h2>
-            <span>延迟行情 · 不选美股</span>
+            <h2 id="global-title">中美行业对比</h2>
+            <span>美股在上 · 大A在下</span>
           </div>
 
-          <TradingViewWidget
-            script="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
-            height={500}
-            label="美股主要ETF"
-            config={{
-              ...widgetBase,
-              height: "100%",
-              symbols: [
-                ["标普500 SPY", "AMEX:SPY|12M"],
-                ["纳斯达克100 QQQ", "NASDAQ:QQQ|12M"],
-                ["道琼斯 DIA", "AMEX:DIA|12M"],
-              ],
-              chartOnly: false,
-              chartType: "area",
-              lineWidth: 2,
-              dateRanges: ["1m|30", "3m|60", "12m|1D", "60m|1W"],
-              changeMode: "price-and-percent",
-              hideDateRanges: false,
-              hideMarketStatus: false,
-              hideSymbolLogo: false,
-              scalePosition: "right",
-              scaleMode: "Percentage",
-            }}
-          />
-
-          <div className="subheading">
-            <h3>中美行业对照</h3>
-            <span>只比较走势</span>
-          </div>
           <div className="choice-row" role="group" aria-label="选择对照行业">
             {globalSectors.map((sector) => (
               <button type="button" key={sector.id} className={sector.id === globalSectorId ? "is-selected" : ""} aria-pressed={sector.id === globalSectorId} onClick={() => setGlobalSectorId(sector.id)}>
@@ -1039,30 +1115,57 @@ export function MarketCompanion() {
             ))}
           </div>
 
-          <TradingViewWidget
-            key={`global-${activeGlobalSector.id}`}
-            script="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
-            height={520}
-            label={`${activeGlobalSector.name}中美对照`}
-            config={{
-              ...widgetBase,
-              height: "100%",
-              symbols: [
-                [activeGlobalSector.usName, activeGlobalSector.usSymbol],
-                [activeGlobalSector.cnName, activeGlobalSector.cnSymbol],
-              ],
-              chartOnly: false,
-              chartType: "area",
-              lineWidth: 2,
-              dateRanges: ["1m|30", "3m|60", "12m|1D", "60m|1W"],
-              changeMode: "price-and-percent",
-              hideDateRanges: false,
-              hideMarketStatus: false,
-              hideSymbolLogo: false,
-              scalePosition: "right",
-              scaleMode: "Percentage",
-            }}
-          />
+          <div className="market-compare-stack">
+            <article>
+              <h3>美股 · {activeGlobalSector.name}</h3>
+              <TradingViewWidget
+                key={`global-us-${activeGlobalSector.id}`}
+                script="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
+                height={540}
+                label={`美股${activeGlobalSector.name}`}
+                config={{
+                  ...widgetBase,
+                  height: "100%",
+                  symbols: activeGlobalSector.usSymbols,
+                  chartOnly: false,
+                  chartType: "area",
+                  lineWidth: 2,
+                  dateRanges: ["1m|30", "3m|60", "12m|1D", "60m|1W"],
+                  changeMode: "price-and-percent",
+                  hideDateRanges: false,
+                  hideMarketStatus: false,
+                  hideSymbolLogo: false,
+                  scalePosition: "right",
+                  scaleMode: "Percentage",
+                }}
+              />
+            </article>
+
+            <article>
+              <h3>大A · {activeGlobalSector.name}</h3>
+              <TradingViewWidget
+                key={`global-cn-${activeGlobalSector.id}`}
+                script="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
+                height={540}
+                label={`大A${activeGlobalSector.name}`}
+                config={{
+                  ...widgetBase,
+                  height: "100%",
+                  symbols: activeGlobalSector.cnSymbols,
+                  chartOnly: false,
+                  chartType: "area",
+                  lineWidth: 2,
+                  dateRanges: ["1m|30", "3m|60", "12m|1D", "60m|1W"],
+                  changeMode: "price-and-percent",
+                  hideDateRanges: false,
+                  hideMarketStatus: false,
+                  hideSymbolLogo: false,
+                  scalePosition: "right",
+                  scaleMode: "Percentage",
+                }}
+              />
+            </article>
+          </div>
         </section>
       )}
 
