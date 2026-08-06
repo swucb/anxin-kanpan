@@ -46,11 +46,11 @@ type IndustryPulseItem = {
   aiGenerated?: boolean;
   aiProvider?: string;
   aiUpdatedAt?: string;
-  companies?: Array<{ name: string; symbol: string; changePct: number | null }>;
-  news?: Array<{ title: string; url: string; source: string; publishedAt: string }>;
+  companies?: Array<{ name: string; symbol: string; current?: number | null; previous?: number | null; changePct: number | null; asOf?: string; session?: string }>;
+  news?: Array<{ title: string; url: string; source: string; publishedAt: string; timeRange?: "过去24小时" | "近14天补充" }>;
   financials?: Array<{ name: string; reportDate: string; reportType: string }>;
   sector?: {
-    boardName: string; mainNetFlow: number; mainNetFlowPct: number; advancers: number; decliners: number; up5Count: number;
+    boardName: string; mainNetFlow: number; mainNetFlowPct: number; advancers: number; decliners: number; up5Count: number; asOf?: string; source?: string;
     topInflows: Array<{ name: string; code: string; mainNetFlow: number }>;
     marketCapLeaders: Array<{ name: string; code: string; marketCap: number }>;
     newWatch: Array<{ name: string; code: string; changePct: number }>;
@@ -92,6 +92,15 @@ function historyEndpoint(symbol: string): string {
   return `${STATIC_DATA_ROOT}/history/${symbol.replace(":", "-")}.json`;
 }
 
+function formatChinaDateTime(value?: string) {
+  if (!value) return "时间待更新";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value.slice(0, 16);
+  return new Intl.DateTimeFormat("zh-CN", {
+    timeZone: "Asia/Shanghai", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+  }).format(date);
+}
+
 function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
   const cleanSymbols = useMemo(() => symbols.map(([label, symbol]) => [label, symbol.split("|")[0]] as [string, string]), [symbols]);
   const [selected, setSelected] = useState(cleanSymbols[0]?.[1] ?? "");
@@ -124,8 +133,16 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
     return () => controller.abort();
   }, [activeSymbol]);
 
-  const hasIntraday = range === 1 && intraday.length > 1;
+  const hasIntradayData = intraday.length > 1;
+  const hasIntraday = range === 1 && hasIntradayData;
   const visiblePoints = range === 1 ? (hasIntraday ? intraday : points.slice(-2)) : points.slice(-range);
+  const [exchange] = activeSymbol.split(":");
+  const isUsMarket = exchange !== "SSE" && exchange !== "SZSE";
+  const intradayDate = intraday.at(-1)?.date;
+  const tradeDate = (hasIntraday && intradayDate && intradayDate.length >= 10 ? intradayDate.slice(0, 10) : points.at(-1)?.date.slice(0, 10)) ?? "日期待更新";
+  const periodLabel = range === 1
+    ? `${tradeDate} · ${hasIntraday ? `每15分钟（${intraday.length}个点）` : "收盘变化"}${isUsMarket ? " · 美东时间" : ""}`
+    : `${points.slice(-range)[0]?.date.slice(0, 10) ?? ""} 至 ${points.at(-1)?.date.slice(0, 10) ?? ""} · ${range}个交易日`;
   const values = visiblePoints.map((point) => point.close);
   const minimum = Math.min(...values);
   const maximum = Math.max(...values);
@@ -140,7 +157,8 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
   }).join(" ");
   const first = visiblePoints[0]?.close ?? 0;
   const latest = visiblePoints.at(-1)?.close ?? 0;
-  const changePct = first ? ((latest - first) / first) * 100 : 0;
+  const comparisonBase = range === 1 ? points.at(-2)?.close ?? first : first;
+  const changePct = comparisonBase ? ((latest - comparisonBase) / comparisonBase) * 100 : 0;
   const direction = changePct > 0 ? "up" : changePct < 0 ? "down" : "flat";
   const tickIndexes = [...new Set([0, Math.round((visiblePoints.length - 1) / 3), Math.round(((visiblePoints.length - 1) * 2) / 3), visiblePoints.length - 1])].filter((index) => index >= 0);
   const priceDigits = maximum < 1 ? 3 : maximum < 100 ? 2 : 0;
@@ -156,16 +174,16 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
         </div>
       )}
       <div className="trend-heading">
-        <div><strong>{activeLabel}</strong><span>{range === 1 ? (hasIntraday ? "上一交易日 · 每15分钟" : "上一交易日 · 收盘变化") : `最近${range}个交易日`}</span></div>
-        {points.length > 0 && <div className={direction}><strong>{latest.toLocaleString("zh-CN", { maximumFractionDigits: 2 })}</strong><span>{changePct > 0 ? "+" : ""}{changePct.toFixed(2)}%</span></div>}
+        <div><strong>{activeLabel}</strong><span>{periodLabel}</span></div>
+        {points.length > 0 && <div className={direction}><strong>{latest.toLocaleString("zh-CN", { maximumFractionDigits: 2 })}</strong><span>{range === 1 ? "较前收 " : "区间 "}{changePct > 0 ? "+" : ""}{changePct.toFixed(2)}%</span></div>}
       </div>
       <div className="range-tabs" role="group" aria-label="趋势周期">
-        {([1, 7, 30, 90] as const).map((days) => <button type="button" className={range === days ? "is-selected" : ""} aria-pressed={range === days} key={days} onClick={() => setRange(days)}>{days === 1 ? "1日·15分" : `${days}日`}</button>)}
+        {([1, 7, 30, 90] as const).map((days) => <button type="button" className={range === days ? "is-selected" : ""} aria-pressed={range === days} key={days} onClick={() => setRange(days)}>{days === 1 ? (hasIntradayData ? "1日·15分" : "1日·收盘") : `${days}日`}</button>)}
       </div>
       {failed ? <div className="trend-loading">本次趋势暂未生成，请稍后刷新。</div> : points.length ? (
         <div className="trend-chart-wrap">
           <div className="trend-y-axis" aria-hidden="true">{yTicks.map((value) => <span key={value}>{value.toFixed(priceDigits)}</span>)}</div>
-          <svg className={`trend-chart ${direction}`} viewBox="0 0 400 190" preserveAspectRatio="none" role="img" aria-label={`${activeLabel}${range === 1 ? "上一交易日" : `最近${range}个交易日`}趋势`}>
+          <svg className={`trend-chart ${direction}`} viewBox="0 0 400 190" preserveAspectRatio="none" role="img" aria-label={`${activeLabel} ${periodLabel} 趋势`}>
             <line x1="50" x2="388" y1="24" y2="24" />
             <line x1="50" x2="388" y1="99" y2="99" />
             <line x1="50" x2="388" y1="174" y2="174" />
@@ -180,7 +198,7 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
 
 function MarketOverview() {
   const [items, setItems] = useState<MarketIndex[]>([]);
-  const [status, setStatus] = useState<{ source: string; session: string } | null>(null);
+  const [status, setStatus] = useState<{ source: string; session: string; updatedAt?: string } | null>(null);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -192,7 +210,7 @@ function MarketOverview() {
       })
       .then((payload) => {
         setItems(payload.data ?? []);
-        setStatus({ source: payload.source ?? "公开行情", session: payload.session ?? "最近更新" });
+        setStatus({ source: payload.source ?? "公开行情", session: payload.session ?? "最近更新", updatedAt: payload.updatedAt });
       })
       .catch((error) => {
         if (error instanceof DOMException && error.name === "AbortError") return;
@@ -202,7 +220,7 @@ function MarketOverview() {
   }, []);
 
   if (failed) return <div className="market-status">行情暂时未加载，请稍后刷新。</div>;
-  if (!items.length) return <div className="market-status">正在加载今日行情…</div>;
+  if (!items.length) return <div className="market-status">正在加载A股指数…</div>;
 
   return (
     <div className="market-overview" aria-live="polite">
@@ -218,13 +236,13 @@ function MarketOverview() {
           const sign = item.changePct > 0 ? "+" : "";
           return (
             <article className={`market-row ${direction}`} key={item.code}>
-              <div><strong>{item.name}</strong><span>{item.code}</span></div>
-              <div><strong>{item.current.toLocaleString("zh-CN", { maximumFractionDigits: 2 })}</strong><span>{sign}{item.change.toFixed(2)}　{sign}{item.changePct.toFixed(2)}%</span></div>
+              <div><strong>{item.name}</strong><span>{item.code} · {item.asOf.slice(0, 10)} {item.asOf.slice(11, 16) >= "15:00" ? "收盘" : "盘中"}</span></div>
+              <div><strong>{item.current.toLocaleString("zh-CN", { maximumFractionDigits: 2 })}</strong><span>较前收 {sign}{item.change.toFixed(2)}　{sign}{item.changePct.toFixed(2)}%</span></div>
             </article>
           );
         })}
       </div>
-      <footer>{status?.session} · {items[0]?.asOf.slice(0, 16)} · {status?.source}</footer>
+      <footer>行情日 {items[0]?.asOf.slice(0, 10)} · {status?.session}｜抓取于 {formatChinaDateTime(status?.updatedAt)}（北京时间） · {status?.source}</footer>
     </div>
   );
 }
@@ -825,9 +843,9 @@ function IndustryPulse({ industryId, onSelectCompany }: { industryId: string; on
 
   return (
     <article className="industry-pulse" aria-live="polite">
-      {active.aiSummary && <div className="ai-analysis"><span>{active.aiGenerated ? `${active.aiProvider ?? "AI"} 全行业日报` : "全行业数据日报"}</span><p>{active.aiSummary}</p></div>}
+      {active.aiSummary && <div className="ai-analysis"><span>{active.aiGenerated ? `${active.aiProvider ?? "AI"} 全行业日报` : "全行业数据日报"} · A股 {active.cn.asOf.slice(0, 10)} / 美股 {active.us.asOf.slice(0, 10)} · 各自较前收{active.aiUpdatedAt ? ` · 生成于 ${formatChinaDateTime(active.aiUpdatedAt)}` : ""}</span><p>{active.aiSummary}</p></div>}
       {active.sector && <div className="sector-snapshot">
-        <strong>{active.sector.boardName}全行业</strong>
+        <strong>{active.sector.boardName}全行业 · {active.sector.asOf ? `抓取于 ${formatChinaDateTime(active.sector.asOf)}（北京时间）` : "历史快照，时间待更新"}</strong>
         <div><span>主力净额<b className={active.sector.mainNetFlow >= 0 ? "up" : "down"}>{active.sector.mainNetFlow >= 0 ? "+" : ""}{(active.sector.mainNetFlow / 100000000).toFixed(1)}亿</b></span><span>净流入占比<b>{active.sector.mainNetFlowPct?.toFixed(1)}%</b></span><span>上涨／下跌<b>{active.sector.advancers}／{active.sector.decliners}</b></span><span>涨幅≥5%<b>{active.sector.up5Count}家</b></span></div>
         {active.sector.topInflows?.length > 0 && <p>资金流入前列：{active.sector.topInflows.slice(0, 5).map((item) => item.name).join("、")}</p>}
         {active.sector.newWatch?.length > 0 && <p>新进入异动观察：{active.sector.newWatch.slice(0, 5).map((item) => item.name).join("、")}</p>}
@@ -840,8 +858,8 @@ function IndustryPulse({ industryId, onSelectCompany }: { industryId: string; on
         })}</div>
       </div> : null}
       {(active.news?.length || active.financials?.length) ? <div className="analysis-evidence">
-        {active.news?.slice(0, 3).map((item) => <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>新闻｜{new Date(item.publishedAt).toLocaleDateString("zh-CN", { month: "numeric", day: "numeric" })}｜{item.title}</a>)}
-        {active.financials?.slice(0, 3).map((item) => <span key={`${item.name}-${item.reportDate}`}>财报｜{item.name} {item.reportType} {item.reportDate.slice(0, 10)}</span>)}
+        {active.news?.slice(0, 3).map((item) => <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>新闻 · {item.timeRange ?? "近14天补充"}｜{formatChinaDateTime(item.publishedAt)}（北京时间）｜{item.source}｜{item.title}</a>)}
+        {active.financials?.slice(0, 3).map((item) => <span key={`${item.name}-${item.reportDate}`}>财报｜{item.name} {item.reportType} · 报告期截至 {item.reportDate.slice(0, 10)}</span>)}
       </div> : null}
       <footer>
         <span>A股 {active.cn.asOf.slice(0, 10)} {active.cn.session}</span>
@@ -1012,8 +1030,8 @@ export function MarketCompanion() {
       {activeTab === "today" && (
         <section className="page-section" aria-labelledby="today-title">
           <div className="section-heading">
-            <h2 id="today-title">今日行情</h2>
-            <span>A股 · 收盘数据</span>
+            <h2 id="today-title">A股行情</h2>
+            <span>具体日期见行情卡片</span>
           </div>
           {process.env.NEXT_PUBLIC_STATIC_DATA === "true" ? (
             <MarketOverview />
@@ -1048,8 +1066,8 @@ export function MarketCompanion() {
       {activeTab === "company" && (
         <section className="page-section" aria-labelledby="company-title">
           <div className="section-heading">
-            <h2 id="company-title">查公司</h2>
-            <span>A股 · 收盘数据</span>
+            <h2 id="company-title">公司详情</h2>
+            <span>A股 · 行情日期见图表</span>
           </div>
 
           <div

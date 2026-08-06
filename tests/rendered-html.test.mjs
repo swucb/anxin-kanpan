@@ -26,10 +26,9 @@ test("server-renders the concise market companion", async () => {
   const html = await response.text();
 
   assert.match(html, /<title>安心看盘/);
-  assert.match(html, /今日行情/);
+  assert.match(html, /A股行情/);
   assert.match(html, />A股<\/button>/);
-  assert.match(html, />公司<\/button>/);
-  assert.match(html, />行业<\/button>/);
+  assert.match(html, />行业公司<\/button>/);
   assert.match(html, />美股<\/button>/);
   assert.match(html, /<h1>安心看盘<\/h1>/);
   assert.doesNotMatch(html, />今<\/span>|>查<\/span>|>业<\/span>|>外<\/span>/);
