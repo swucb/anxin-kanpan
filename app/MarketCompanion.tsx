@@ -230,8 +230,7 @@ function MarketOverview() {
 
 const navItems: Array<{ id: Tab; label: string }> = [
   { id: "today", label: "A股" },
-  { id: "industry", label: "行业" },
-  { id: "company", label: "公司" },
+  { id: "industry", label: "行业公司" },
   { id: "global", label: "美股" },
 ];
 
@@ -949,6 +948,10 @@ export function MarketCompanion() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  function isNavActive(tab: Tab) {
+    return tab === "industry" ? activeTab === "industry" || activeTab === "company" : activeTab === tab;
+  }
+
   function submitCompany(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const stock = stockFromInput(companyInput);
@@ -993,7 +996,7 @@ export function MarketCompanion() {
 
       <nav className="top-nav" aria-label="主要功能">
         {navItems.map((item) => (
-          <button type="button" key={item.id} className={activeTab === item.id ? "is-active" : ""} onClick={() => jumpTo(item.id)}>
+          <button type="button" key={item.id} className={isNavActive(item.id) ? "is-active" : ""} onClick={() => jumpTo(item.id)}>
             {item.label}
           </button>
         ))}
@@ -1217,7 +1220,7 @@ export function MarketCompanion() {
         <section className="page-section" aria-labelledby="industry-title">
           <div className="section-heading">
             <h2 id="industry-title">行业对比</h2>
-            <span>{industries.length}个行业</span>
+            <button className="section-link-button" type="button" onClick={() => jumpTo("company")}>直接查公司 →</button>
           </div>
 
           <div className="industry-picker">
@@ -1330,7 +1333,7 @@ export function MarketCompanion() {
 
       <nav className="bottom-nav" aria-label="手机端主要功能">
         {navItems.map((item) => (
-          <button type="button" key={item.id} className={activeTab === item.id ? "is-active" : ""} onClick={() => jumpTo(item.id)}>
+          <button type="button" key={item.id} className={isNavActive(item.id) ? "is-active" : ""} onClick={() => jumpTo(item.id)}>
             {item.label}
           </button>
         ))}

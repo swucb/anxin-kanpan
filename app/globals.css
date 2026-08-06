@@ -87,7 +87,7 @@ a:focus-visible {
 
 .top-nav {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   margin: 14px 0 30px;
   padding: 7px;
@@ -579,6 +579,18 @@ a:focus-visible {
   font-size: 1.08rem;
 }
 
+.section-link-button {
+  min-height: 40px;
+  padding: 7px 13px;
+  border: 1px solid color-mix(in srgb, var(--brand) 35%, var(--line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand) 7%, var(--card));
+  color: var(--brand);
+  cursor: pointer;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
 .industry-company-links {
   margin-top: 18px;
   padding-top: 16px;
@@ -980,7 +992,7 @@ a:focus-visible {
     bottom: calc(8px + env(safe-area-inset-bottom));
     left: 8px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 4px;
     padding: 6px;
     border: 1px solid rgba(255, 255, 255, 0.22);
