@@ -2,6 +2,8 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 const outputDirectory = fileURLToPath(new URL("../public/data/", import.meta.url));
+const historyDirectory = fileURLToPath(new URL("../public/data/history/", import.meta.url));
+const companionSource = fileURLToPath(new URL("../app/MarketCompanion.tsx", import.meta.url));
 
 const indicators = [
   { id: "cn-gdp", countryCode: "CHN", country: "中国", indicator: "NY.GDP.MKTP.KD.ZG", name: "GDP 增速", unit: "%" },
@@ -70,6 +72,7 @@ function parseQuotes(body) {
     const change = Number(fields[31]);
     if (Number.isFinite(changePct) && asOf) {
       quotes.set(match[1], {
+        marketSymbol: fields[2] ?? "",
         current,
         previous,
         change: Number.isFinite(change) ? change : current - previous,
@@ -79,6 +82,85 @@ function parseQuotes(body) {
     }
   }
   return quotes;
+}
+
+function dateStamp(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function historyFilename(symbol) {
+  return `${symbol.replace(":", "-")}.json`;
+}
+
+async function fetchJson(url) {
+  let lastError;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      const response = await fetch(url, { headers: { accept: "application/json" }, signal: AbortSignal.timeout(15000) });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return await response.json();
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError;
+}
+
+async function loadQuoteSymbols(symbols) {
+  const result = new Map();
+  for (let offset = 0; offset < symbols.length; offset += 40) {
+    const batch = symbols.slice(offset, offset + 40);
+    const response = await fetch(`https://qt.gtimg.cn/q=${batch.join(",")}`, {
+      headers: { accept: "text/plain,*/*" },
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!response.ok) throw new Error(`Tencent quote HTTP ${response.status}`);
+    for (const [key, quote] of parseQuotes(new TextDecoder().decode(await response.arrayBuffer()))) result.set(key, quote);
+  }
+  return result;
+}
+
+async function loadHistories() {
+  const source = await readFile(companionSource, "utf8");
+  const symbols = [...new Set(source.match(/(?:SSE|SZSE|NASDAQ|NYSE|AMEX):[A-Z0-9.-]+/g) ?? [])];
+  const usSymbols = symbols.filter((symbol) => !symbol.startsWith("SSE:") && !symbol.startsWith("SZSE:"));
+  const usQuoteKeys = usSymbols.map((symbol) => `us${symbol.split(":")[1]}`);
+  const usQuotes = await loadQuoteSymbols(usQuoteKeys);
+  const end = new Date();
+  const start = new Date(end);
+  start.setUTCDate(start.getUTCDate() - 190);
+  let cursor = 0;
+  let written = 0;
+
+  async function worker() {
+    while (cursor < symbols.length) {
+      const symbol = symbols[cursor++];
+      const [exchange, code] = symbol.split(":");
+      const quoteKey = exchange === "SSE" ? `sh${code}` : exchange === "SZSE" ? `sz${code}` : `us${code}`;
+      const marketSymbol = usQuotes.get(quoteKey)?.marketSymbol;
+      const historyKey = exchange === "SSE" || exchange === "SZSE" ? quoteKey : marketSymbol ? `us${marketSymbol}` : "";
+      if (!historyKey) continue;
+      const dates = historyKey.startsWith("us") ? `${dateStamp(start)},${dateStamp(end)}` : ",";
+      const url = `https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=${historyKey},day,${dates},90,qfq`;
+      try {
+        const payload = await fetchJson(url);
+        const rows = payload.data?.[historyKey]?.qfqday ?? payload.data?.[historyKey]?.day ?? [];
+        const points = rows.map((row) => ({ date: row[0], close: Number(row[2]) })).filter((point) => point.date && Number.isFinite(point.close));
+        if (points.length < 2) throw new Error("not enough history");
+        await writeFile(`${historyDirectory}/${historyFilename(symbol)}`, `${JSON.stringify({ symbol, points, source: "腾讯行情", updatedAt: new Date().toISOString() })}\n`, "utf8");
+        written += 1;
+      } catch (error) {
+        try {
+          await readFile(`${historyDirectory}/${historyFilename(symbol)}`, "utf8");
+        } catch {
+          console.warn(`Skipped history ${symbol}: ${error instanceof Error ? error.message : String(error)}`);
+        }
+      }
+    }
+  }
+
+  await Promise.all(Array.from({ length: 10 }, worker));
+  console.log(`Updated ${written}/${symbols.length} trend files`);
 }
 
 async function loadMarketOverview() {
@@ -163,8 +245,10 @@ async function writeWithFallback(filename, loader) {
 }
 
 await mkdir(outputDirectory, { recursive: true });
+await mkdir(historyDirectory, { recursive: true });
 await Promise.all([
   writeWithFallback("macro.json", async () => ({ data: await Promise.all(indicators.map(latestObservation)), source: "World Bank", updatedAt: new Date().toISOString() })),
   writeWithFallback("industry-pulse.json", loadIndustryPulse),
   writeWithFallback("market.json", loadMarketOverview),
+  loadHistories(),
 ]);

@@ -64,6 +64,8 @@ type MarketIndex = {
   asOf: string;
 };
 
+type TrendPoint = { date: string; close: number };
+
 type CompanyPreferences = {
   version: 1;
   favorites: StockOption[];
@@ -80,6 +82,74 @@ function dataEndpoint(name: "macro" | "industry-pulse" | "market"): string {
   return process.env.NEXT_PUBLIC_STATIC_DATA === "true"
     ? `${STATIC_DATA_ROOT}/${name}.json`
     : `${STATIC_DATA_ROOT}/${name}`;
+}
+
+function historyEndpoint(symbol: string): string {
+  return `${STATIC_DATA_ROOT}/history/${symbol.replace(":", "-")}.json`;
+}
+
+function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
+  const cleanSymbols = useMemo(() => symbols.map(([label, symbol]) => [label, symbol.split("|")[0]] as [string, string]), [symbols]);
+  const [selected, setSelected] = useState(cleanSymbols[0]?.[1] ?? "");
+  const [points, setPoints] = useState<TrendPoint[]>([]);
+  const [failed, setFailed] = useState(false);
+  const activeSymbol = cleanSymbols.some((item) => item[1] === selected) ? selected : cleanSymbols[0]?.[1] ?? "";
+  const activeLabel = cleanSymbols.find((item) => item[1] === activeSymbol)?.[0] ?? "行情";
+
+  useEffect(() => {
+    if (!activeSymbol) return;
+    const controller = new AbortController();
+    setPoints([]);
+    setFailed(false);
+    fetch(historyEndpoint(activeSymbol), { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("history unavailable");
+        return response.json();
+      })
+      .then((payload) => setPoints(payload.points ?? []))
+      .catch((error) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setFailed(true);
+      });
+    return () => controller.abort();
+  }, [activeSymbol]);
+
+  const values = points.map((point) => point.close);
+  const minimum = Math.min(...values);
+  const maximum = Math.max(...values);
+  const spread = Math.max(maximum - minimum, maximum * 0.01, 1);
+  const coordinates = points.map((point, index) => {
+    const x = points.length === 1 ? 200 : 12 + (index / (points.length - 1)) * 376;
+    const y = 174 - ((point.close - minimum) / spread) * 150;
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(" ");
+  const first = points[0]?.close ?? 0;
+  const latest = points.at(-1)?.close ?? 0;
+  const changePct = first ? ((latest - first) / first) * 100 : 0;
+  const direction = changePct > 0 ? "up" : changePct < 0 ? "down" : "flat";
+
+  return (
+    <div className="static-trend">
+      {cleanSymbols.length > 1 && (
+        <div className="trend-tabs" role="tablist" aria-label="选择趋势">
+          {cleanSymbols.map(([label, symbol]) => (
+            <button type="button" role="tab" aria-selected={symbol === activeSymbol} className={symbol === activeSymbol ? "is-selected" : ""} key={symbol} onClick={() => setSelected(symbol)}>{label}</button>
+          ))}
+        </div>
+      )}
+      <div className="trend-heading">
+        <div><strong>{activeLabel}</strong><span>近90个交易日</span></div>
+        {points.length > 0 && <div className={direction}><strong>{latest.toLocaleString("zh-CN", { maximumFractionDigits: 2 })}</strong><span>{changePct > 0 ? "+" : ""}{changePct.toFixed(2)}%</span></div>}
+      </div>
+      {failed ? <div className="trend-loading">本次趋势暂未生成，请稍后刷新。</div> : points.length ? (
+        <svg className={`trend-chart ${direction}`} viewBox="0 0 400 190" role="img" aria-label={`${activeLabel}近90个交易日趋势`}>
+          <line x1="12" x2="388" y1="174" y2="174" />
+          <polyline points={coordinates} />
+        </svg>
+      ) : <div className="trend-loading">正在加载趋势…</div>}
+      {points.length > 0 && <div className="trend-dates"><span>{points[0].date.slice(5)}</span><span>{points.at(-1)?.date.slice(5)}</span></div>}
+    </div>
+  );
 }
 
 function MarketOverview() {
@@ -110,6 +180,12 @@ function MarketOverview() {
 
   return (
     <div className="market-overview" aria-live="polite">
+      <StaticTrendWidget symbols={[
+        ["上证", "SSE:000001"],
+        ["深证", "SZSE:399001"],
+        ["创业板", "SZSE:399006"],
+        ["沪深300", "SSE:000300"],
+      ]} />
       <div className="market-list">
         {items.map((item) => {
           const direction = item.changePct > 0 ? "up" : item.changePct < 0 ? "down" : "flat";
@@ -1068,7 +1144,7 @@ export function MarketCompanion() {
             </button>
           </div>
 
-          <TradingViewWidget
+          {process.env.NEXT_PUBLIC_STATIC_DATA === "true" ? <StaticTrendWidget symbols={[[selectedCompany.name, selectedCompany.symbol]]} /> : <TradingViewWidget
             key={`chart-${selectedCompany.symbol}`}
             script="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
             height={470}
@@ -1088,9 +1164,9 @@ export function MarketCompanion() {
               scalePosition: "right",
               scaleMode: "Normal",
             }}
-          />
+          />}
 
-          <div className="widget-grid">
+          {process.env.NEXT_PUBLIC_STATIC_DATA !== "true" && <div className="widget-grid">
             <article>
               <h3>财务数据</h3>
               <TradingViewWidget
@@ -1119,7 +1195,7 @@ export function MarketCompanion() {
                 }}
               />
             </article>
-          </div>
+          </div>}
         </section>
       )}
 
@@ -1141,7 +1217,7 @@ export function MarketCompanion() {
 
           <IndustryPulse industryId={industryId} />
 
-          <TradingViewWidget
+          {process.env.NEXT_PUBLIC_STATIC_DATA === "true" ? <StaticTrendWidget symbols={activeIndustry.symbols} /> : <TradingViewWidget
             key={`industry-${activeIndustry.id}`}
             script="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
             height={560}
@@ -1161,7 +1237,7 @@ export function MarketCompanion() {
               scalePosition: "right",
               scaleMode: "Percentage",
             }}
-          />
+          />}
 
           <div className="subheading">
             <h3>宏观数据</h3>
@@ -1189,7 +1265,7 @@ export function MarketCompanion() {
           <div className="market-compare-stack">
             <article>
               <h3>美股 · {activeGlobalSector.name}</h3>
-              <TradingViewWidget
+              {process.env.NEXT_PUBLIC_STATIC_DATA === "true" ? <StaticTrendWidget symbols={activeGlobalSector.usSymbols} /> : <TradingViewWidget
                 key={`global-us-${activeGlobalSector.id}`}
                 script="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
                 height={540}
@@ -1209,12 +1285,12 @@ export function MarketCompanion() {
                   scalePosition: "right",
                   scaleMode: "Percentage",
                 }}
-              />
+              />}
             </article>
 
             <article>
               <h3>大A · {activeGlobalSector.name}</h3>
-              <TradingViewWidget
+              {process.env.NEXT_PUBLIC_STATIC_DATA === "true" ? <StaticTrendWidget symbols={activeGlobalSector.cnSymbols} /> : <TradingViewWidget
                 key={`global-cn-${activeGlobalSector.id}`}
                 script="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
                 height={540}
@@ -1234,7 +1310,7 @@ export function MarketCompanion() {
                   scalePosition: "right",
                   scaleMode: "Percentage",
                 }}
-              />
+              />}
             </article>
           </div>
         </section>
