@@ -1,0 +1,51 @@
+{
+  "data": [
+    {
+      "name": "上证指数",
+      "code": "000001",
+      "symbol": "sh000001",
+      "marketSymbol": "000001",
+      "current": 3900.35,
+      "previous": 3878.43,
+      "change": 21.92,
+      "changePct": 0.57,
+      "asOf": "2026-08-06 16:14"
+    },
+    {
+      "name": "深证成指",
+      "code": "399001",
+      "symbol": "sz399001",
+      "marketSymbol": "399001",
+      "current": 14110.12,
+      "previous": 14144.2,
+      "change": -34.08,
+      "changePct": -0.24,
+      "asOf": "2026-08-06 16:14"
+    },
+    {
+      "name": "创业板指",
+      "code": "399006",
+      "symbol": "sz399006",
+      "marketSymbol": "399006",
+      "current": 3515.56,
+      "previous": 3535.14,
+      "change": -19.58,
+      "changePct": -0.55,
+      "asOf": "2026-08-06 16:14"
+    },
+    {
+      "name": "沪深300",
+      "code": "000300",
+      "symbol": "sh000300",
+      "marketSymbol": "000300",
+      "current": 4651.31,
+      "previous": 4658.15,
+      "change": -6.84,
+      "changePct": -0.15,
+      "asOf": "2026-08-06 16:14"
+    }
+  ],
+  "source": "腾讯行情",
+  "session": "收盘",
+  "updatedAt": "2026-08-06T11:51:58.249Z"
+}

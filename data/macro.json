@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "id": "cn-gdp",
+      "name": "GDP 增速",
+      "country": "中国",
+      "value": 4.95994886240992,
+      "year": "2025",
+      "unit": "%"
+    },
+    {
+      "id": "cn-inflation",
+      "name": "居民价格涨幅",
+      "country": "中国",
+      "value": 0.0595646916565403,
+      "year": "2025",
+      "unit": "%"
+    },
+    {
+      "id": "cn-manufacturing",
+      "name": "制造业占 GDP",
+      "country": "中国",
+      "value": 24.7344421687689,
+      "year": "2025",
+      "unit": "%"
+    },
+    {
+      "id": "us-gdp",
+      "name": "GDP 增速",
+      "country": "美国",
+      "value": 2.16138195623856,
+      "year": "2025",
+      "unit": "%"
+    }
+  ],
+  "source": "World Bank",
+  "updatedAt": "2026-08-06T07:31:51.544Z"
+}
