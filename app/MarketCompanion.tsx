@@ -34,11 +34,11 @@ type MacroItem = {
   unit: string;
 };
 
-const navItems: Array<{ id: Tab; mark: string; label: string }> = [
-  { id: "today", mark: "今", label: "今日行情" },
-  { id: "company", mark: "查", label: "查公司" },
-  { id: "industry", mark: "业", label: "行业对比" },
-  { id: "global", mark: "外", label: "美股参考" },
+const navItems: Array<{ id: Tab; label: string }> = [
+  { id: "today", label: "A股" },
+  { id: "company", label: "公司" },
+  { id: "industry", label: "行业" },
+  { id: "global", label: "美股" },
 ];
 
 const companies: StockOption[] = [
@@ -303,7 +303,6 @@ export function MarketCompanion() {
       <nav className="top-nav" aria-label="主要功能">
         {navItems.map((item) => (
           <button type="button" key={item.id} className={activeTab === item.id ? "is-active" : ""} onClick={() => jumpTo(item.id)}>
-            <span aria-hidden="true">{item.mark}</span>
             {item.label}
           </button>
         ))}
@@ -549,8 +548,7 @@ export function MarketCompanion() {
       <nav className="bottom-nav" aria-label="手机端主要功能">
         {navItems.map((item) => (
           <button type="button" key={item.id} className={activeTab === item.id ? "is-active" : ""} onClick={() => jumpTo(item.id)}>
-            <span aria-hidden="true">{item.mark}</span>
-            <small>{item.label}</small>
+            {item.label}
           </button>
         ))}
       </nav>

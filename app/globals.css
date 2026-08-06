@@ -137,36 +137,17 @@ a:focus-visible {
   min-height: 50px;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   border: 0;
   border-radius: 12px;
   background: transparent;
   color: var(--soft);
   cursor: pointer;
+  font-size: 0.88rem;
   font-weight: 800;
-}
-
-.top-nav button span {
-  display: grid;
-  width: 28px;
-  height: 28px;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--card);
-  color: var(--ink);
-  font-family: serif;
-  font-size: 0.78rem;
 }
 
 .top-nav button.is-active {
   background: var(--brand);
-  color: white;
-}
-
-.top-nav button.is-active span {
-  border-color: rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.12);
   color: white;
 }
 
@@ -569,12 +550,13 @@ a:focus-visible {
     min-height: 55px;
     place-items: center;
     align-content: center;
-    gap: 1px;
     border: 0;
     border-radius: 13px;
     background: transparent;
     color: rgba(255, 255, 255, 0.7);
     cursor: pointer;
+    font-size: 0.78rem;
+    font-weight: 800;
   }
 
   .bottom-nav button.is-active {
@@ -582,16 +564,6 @@ a:focus-visible {
     color: white;
   }
 
-  .bottom-nav button > span {
-    font-family: serif;
-    font-size: 1.05rem;
-    font-weight: 850;
-  }
-
-  .bottom-nav small {
-    font-size: 0.58rem;
-    font-weight: 750;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
