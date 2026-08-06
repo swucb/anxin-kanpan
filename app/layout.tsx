@@ -3,21 +3,21 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "安心看盘｜把 A 股和全球行业线索说得明白",
+    default: "安心看盘｜A 股行情与行业对比",
     template: "%s｜安心看盘",
   },
-  description: "长辈也能轻松使用的 A 股行情、企业分析、行业观察、同业比较与美股参考工具。",
+  description: "免登录查看 A 股行情、企业财务、行业公司对比和美股行业参考。",
   applicationName: "安心看盘",
   openGraph: {
-    title: "安心看盘｜把 A 股和全球行业线索说得明白",
-    description: "每日行情、企业优劣、行业形势、中美行业参考，一眼看明白。",
+    title: "安心看盘｜A 股行情与行业对比",
+    description: "A 股行情、企业财务、行业公司对比和美股行业参考。",
     type: "website",
     locale: "zh_CN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "安心看盘｜把 A 股和全球行业线索说得明白",
-    description: "每日行情、企业优劣、行业形势、中美行业参考，一眼看明白。",
+    title: "安心看盘｜A 股行情与行业对比",
+    description: "A 股行情、企业财务、行业公司对比和美股行业参考。",
   },
 };
 
