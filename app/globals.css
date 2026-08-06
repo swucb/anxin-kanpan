@@ -592,6 +592,12 @@ a:focus-visible {
   font-size: 0.75rem;
 }
 
+.industry-company-links > strong span {
+  margin-left: 6px;
+  color: var(--brand);
+  font-size: 0.66rem;
+}
+
 .industry-company-links > div {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

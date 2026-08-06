@@ -243,13 +243,12 @@ async function loadHistories() {
   const dynamicSymbols = (pulse.data ?? []).flatMap((item) => {
     const candidates = [
       ...(item.companies ?? []).map((company) => ({ code: String(company.symbol ?? "").replace(/^\D+/, "") })),
-      ...(item.sector?.marketCapLeaders ?? []),
-      ...(item.sector?.topInflows ?? []),
-      ...(item.sector?.newWatch ?? []),
+      ...(item.sector?.marketCapLeaders ?? []).slice(0, 6),
+      ...(item.sector?.topInflows ?? []).slice(0, 5),
+      ...(item.sector?.newWatch ?? []).slice(0, 5),
     ];
     return candidates
       .filter((company, index, list) => /^\d{6}$/.test(company.code) && list.findIndex((candidate) => candidate.code === company.code) === index)
-      .slice(0, 12)
       .map((company) => `${/^[569]/.test(company.code) ? "SSE" : "SZSE"}:${company.code}`);
   });
   const symbols = [...new Set([...(source.match(/(?:SSE|SZSE|NASDAQ|NYSE|AMEX):[A-Z0-9.-]+/g) ?? []), ...dynamicSymbols])];

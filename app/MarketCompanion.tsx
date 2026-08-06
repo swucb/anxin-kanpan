@@ -831,15 +831,25 @@ function IndustryPulse({ industryId, onSelectCompany }: { industryId: string; on
   const active = items.find((item) => item.id === industryId);
   if (failed) return <p className="industry-pulse-status">行业日报暂时未加载，趋势仍可查看。</p>;
   if (!active) return <p className="industry-pulse-status">正在加载行业日报…</p>;
-  const industryCompanies = [
-    ...(active.companies ?? []).map((item) => ({ name: item.name, code: item.symbol.replace(/^\D+/, "") })),
-    ...(active.sector?.marketCapLeaders ?? []),
-    ...(active.sector?.topInflows ?? []),
-    ...(active.sector?.newWatch ?? []),
-  ].filter((item) => /^\d{6}$/.test(item.code))
-    .filter((item, index, list) => list.findIndex((candidate) => candidate.code === item.code) === index)
-    .slice(0, 12)
-    .map((item) => ({ name: item.name, code: item.code, symbol: `${/^[569]/.test(item.code) ? "SSE" : "SZSE"}:${item.code}` }));
+  const companyCandidates = [
+    ...(active.companies ?? []).map((item) => ({ name: item.name, code: item.symbol.replace(/^\D+/, ""), reason: "代表企业" })),
+    ...(active.sector?.marketCapLeaders ?? []).slice(0, 6).map((item) => ({ ...item, reason: "市值龙头" })),
+    ...(active.sector?.topInflows ?? []).slice(0, 5).map((item) => ({ ...item, reason: "资金流入" })),
+    ...(active.sector?.newWatch ?? []).slice(0, 5).map((item) => ({ ...item, reason: "新异动" })),
+  ].filter((item) => /^\d{6}$/.test(item.code));
+  const companyMap = new Map<string, { name: string; code: string; reasons: string[] }>();
+  for (const item of companyCandidates) {
+    const existing = companyMap.get(item.code);
+    if (existing) {
+      if (!existing.reasons.includes(item.reason)) existing.reasons.push(item.reason);
+    } else {
+      companyMap.set(item.code, { name: item.name, code: item.code, reasons: [item.reason] });
+    }
+  }
+  const industryCompanies = [...companyMap.values()].map((item) => ({
+    ...item,
+    symbol: `${/^[569]/.test(item.code) ? "SSE" : "SZSE"}:${item.code}`,
+  }));
 
   return (
     <article className="industry-pulse" aria-live="polite">
@@ -852,9 +862,9 @@ function IndustryPulse({ industryId, onSelectCompany }: { industryId: string; on
         <small>主力资金为成交统计口径，不等于机构持仓。</small>
       </div>}
       {industryCompanies.length ? <div className="industry-company-links">
-        <strong>行业公司 · {industryCompanies.length}家</strong>
+        <strong>行业公司 · {industryCompanies.length}家 <span>含每日资金流入与新异动名单</span></strong>
         <div>{industryCompanies.map((company) => {
-          return <button type="button" key={company.symbol} onClick={() => onSelectCompany(company)}>{company.name}<span>查看详情 →</span></button>;
+          return <button type="button" key={company.symbol} onClick={() => onSelectCompany(company)}>{company.name}<span>{company.reasons.join(" · ")} · 查看详情 →</span></button>;
         })}</div>
       </div> : null}
       {(active.news?.length || active.financials?.length) ? <div className="analysis-evidence">
