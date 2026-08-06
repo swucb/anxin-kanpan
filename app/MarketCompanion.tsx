@@ -46,6 +46,11 @@ type IndustryPulseItem = {
   aiUpdatedAt?: string;
   news?: Array<{ title: string; url: string; source: string; publishedAt: string }>;
   financials?: Array<{ name: string; reportDate: string; reportType: string }>;
+  sector?: {
+    boardName: string; mainNetFlow: number; mainNetFlowPct: number; advancers: number; decliners: number; up5Count: number;
+    topInflows: Array<{ name: string; mainNetFlow: number }>;
+    newWatch: Array<{ name: string; changePct: number }>;
+  } | null;
   cn: { label: string; symbol: string; changePct: number; asOf: string; session: string };
   us: { label: string; symbol: string; changePct: number; asOf: string; session: string };
 };
@@ -810,7 +815,14 @@ function IndustryPulse({ industryId }: { industryId: string }) {
     <article className="industry-pulse" aria-live="polite">
       <strong>上一交易日</strong>
       <p>{active.summary}</p>
-      {active.aiSummary && <div className="ai-analysis"><span>Gemini 新闻与财报归纳</span><p>{active.aiSummary}</p></div>}
+      {active.aiSummary && <div className="ai-analysis"><span>Gemini 全行业日报</span><p>{active.aiSummary}</p></div>}
+      {active.sector && <div className="sector-snapshot">
+        <strong>{active.sector.boardName}全行业</strong>
+        <div><span>主力净额<b className={active.sector.mainNetFlow >= 0 ? "up" : "down"}>{active.sector.mainNetFlow >= 0 ? "+" : ""}{(active.sector.mainNetFlow / 100000000).toFixed(1)}亿</b></span><span>净流入占比<b>{active.sector.mainNetFlowPct?.toFixed(1)}%</b></span><span>上涨／下跌<b>{active.sector.advancers}／{active.sector.decliners}</b></span><span>涨幅≥5%<b>{active.sector.up5Count}家</b></span></div>
+        {active.sector.topInflows?.length > 0 && <p>资金流入前列：{active.sector.topInflows.slice(0, 5).map((item) => item.name).join("、")}</p>}
+        {active.sector.newWatch?.length > 0 && <p>新进入异动观察：{active.sector.newWatch.slice(0, 5).map((item) => item.name).join("、")}</p>}
+        <small>主力资金为成交统计口径，不等于机构持仓。</small>
+      </div>}
       {(active.news?.length || active.financials?.length) ? <div className="analysis-evidence">
         {active.news?.slice(0, 2).map((item) => <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>新闻｜{item.title}</a>)}
         {active.financials?.slice(0, 3).map((item) => <span key={`${item.name}-${item.reportDate}`}>财报｜{item.name} {item.reportType} {item.reportDate.slice(0, 10)}</span>)}
