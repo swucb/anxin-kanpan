@@ -44,6 +44,7 @@ type IndustryPulseItem = {
   summary: string;
   aiSummary?: string;
   aiGenerated?: boolean;
+  aiProvider?: string;
   aiUpdatedAt?: string;
   news?: Array<{ title: string; url: string; source: string; publishedAt: string }>;
   financials?: Array<{ name: string; reportDate: string; reportType: string }>;
@@ -816,7 +817,7 @@ function IndustryPulse({ industryId }: { industryId: string }) {
     <article className="industry-pulse" aria-live="polite">
       <strong>上一交易日</strong>
       <p>{active.summary}</p>
-      {active.aiSummary && <div className="ai-analysis"><span>{active.aiGenerated ? "Gemini 全行业日报" : "全行业数据日报"}</span><p>{active.aiSummary}</p></div>}
+      {active.aiSummary && <div className="ai-analysis"><span>{active.aiGenerated ? `${active.aiProvider ?? "AI"} 全行业日报` : "全行业数据日报"}</span><p>{active.aiSummary}</p></div>}
       {active.sector && <div className="sector-snapshot">
         <strong>{active.sector.boardName}全行业</strong>
         <div><span>主力净额<b className={active.sector.mainNetFlow >= 0 ? "up" : "down"}>{active.sector.mainNetFlow >= 0 ? "+" : ""}{(active.sector.mainNetFlow / 100000000).toFixed(1)}亿</b></span><span>净流入占比<b>{active.sector.mainNetFlowPct?.toFixed(1)}%</b></span><span>上涨／下跌<b>{active.sector.advancers}／{active.sector.decliners}</b></span><span>涨幅≥5%<b>{active.sector.up5Count}家</b></span></div>
