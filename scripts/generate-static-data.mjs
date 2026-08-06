@@ -161,7 +161,20 @@ async function loadQuoteSymbols(symbols) {
 
 async function loadHistories() {
   const source = await readFile(companionSource, "utf8");
-  const symbols = [...new Set(source.match(/(?:SSE|SZSE|NASDAQ|NYSE|AMEX):[A-Z0-9.-]+/g) ?? [])];
+  const pulse = await readFile(`${outputDirectory}/industry-pulse.json`, "utf8").then(JSON.parse).catch(() => ({ data: [] }));
+  const dynamicSymbols = (pulse.data ?? []).flatMap((item) => {
+    const candidates = [
+      ...(item.companies ?? []).map((company) => ({ code: String(company.symbol ?? "").replace(/^\D+/, "") })),
+      ...(item.sector?.marketCapLeaders ?? []),
+      ...(item.sector?.topInflows ?? []),
+      ...(item.sector?.newWatch ?? []),
+    ];
+    return candidates
+      .filter((company, index, list) => /^\d{6}$/.test(company.code) && list.findIndex((candidate) => candidate.code === company.code) === index)
+      .slice(0, 12)
+      .map((company) => `${/^[569]/.test(company.code) ? "SSE" : "SZSE"}:${company.code}`);
+  });
+  const symbols = [...new Set([...(source.match(/(?:SSE|SZSE|NASDAQ|NYSE|AMEX):[A-Z0-9.-]+/g) ?? []), ...dynamicSymbols])];
   const usSymbols = symbols.filter((symbol) => !symbol.startsWith("SSE:") && !symbol.startsWith("SZSE:"));
   const usQuoteKeys = usSymbols.map((symbol) => `us${symbol.split(":")[1]}`);
   const usQuotes = await loadQuoteSymbols(usQuoteKeys);
@@ -198,7 +211,6 @@ async function loadHistories() {
         } else {
           intraday = await loadUsIntraday(code, exchange === "AMEX" ? "etf" : "stocks");
         }
-        if (intraday.length < 2) throw new Error("not enough intraday history");
         await writeFile(`${historyDirectory}/${historyFilename(symbol)}`, `${JSON.stringify({ symbol, points, intraday, source: exchange === "SSE" || exchange === "SZSE" ? "腾讯行情" : "Nasdaq公开行情", updatedAt: new Date().toISOString() })}\n`, "utf8");
         written += 1;
       } catch (error) {
@@ -523,5 +535,5 @@ await mkdir(historyDirectory, { recursive: true });
 await Promise.all([
   writeWithFallback("industry-pulse.json", loadIndustryPulse),
   writeWithFallback("market.json", loadMarketOverview),
-  loadHistories(),
 ]);
+await loadHistories();
