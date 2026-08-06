@@ -51,6 +51,8 @@ type IndustryPulseItem = {
   id: string;
   name: string;
   summary: string;
+  aiSummary?: string;
+  aiUpdatedAt?: string;
   cn: { label: string; symbol: string; changePct: number; asOf: string; session: string };
   us: { label: string; symbol: string; changePct: number; asOf: string; session: string };
 };
@@ -93,6 +95,7 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
   const [selected, setSelected] = useState(cleanSymbols[0]?.[1] ?? "");
   const [points, setPoints] = useState<TrendPoint[]>([]);
   const [failed, setFailed] = useState(false);
+  const [range, setRange] = useState<1 | 7 | 30 | 90>(1);
   const activeSymbol = cleanSymbols.some((item) => item[1] === selected) ? selected : cleanSymbols[0]?.[1] ?? "";
   const activeLabel = cleanSymbols.find((item) => item[1] === activeSymbol)?.[0] ?? "行情";
 
@@ -114,17 +117,18 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
     return () => controller.abort();
   }, [activeSymbol]);
 
-  const values = points.map((point) => point.close);
+  const visiblePoints = points.slice(-(range === 1 ? 2 : range));
+  const values = visiblePoints.map((point) => point.close);
   const minimum = Math.min(...values);
   const maximum = Math.max(...values);
   const spread = Math.max(maximum - minimum, maximum * 0.01, 1);
-  const coordinates = points.map((point, index) => {
-    const x = points.length === 1 ? 200 : 12 + (index / (points.length - 1)) * 376;
+  const coordinates = visiblePoints.map((point, index) => {
+    const x = visiblePoints.length === 1 ? 200 : 12 + (index / (visiblePoints.length - 1)) * 376;
     const y = 174 - ((point.close - minimum) / spread) * 150;
     return `${x.toFixed(1)},${y.toFixed(1)}`;
   }).join(" ");
-  const first = points[0]?.close ?? 0;
-  const latest = points.at(-1)?.close ?? 0;
+  const first = visiblePoints[0]?.close ?? 0;
+  const latest = visiblePoints.at(-1)?.close ?? 0;
   const changePct = first ? ((latest - first) / first) * 100 : 0;
   const direction = changePct > 0 ? "up" : changePct < 0 ? "down" : "flat";
 
@@ -138,8 +142,11 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
         </div>
       )}
       <div className="trend-heading">
-        <div><strong>{activeLabel}</strong><span>近90个交易日</span></div>
+        <div><strong>{activeLabel}</strong><span>{range === 1 ? "上一交易日表现" : `最近${range}个交易日`}</span></div>
         {points.length > 0 && <div className={direction}><strong>{latest.toLocaleString("zh-CN", { maximumFractionDigits: 2 })}</strong><span>{changePct > 0 ? "+" : ""}{changePct.toFixed(2)}%</span></div>}
+      </div>
+      <div className="range-tabs" role="group" aria-label="趋势周期">
+        {([1, 7, 30, 90] as const).map((days) => <button type="button" className={range === days ? "is-selected" : ""} aria-pressed={range === days} key={days} onClick={() => setRange(days)}>{days}日</button>)}
       </div>
       {failed ? <div className="trend-loading">本次趋势暂未生成，请稍后刷新。</div> : points.length ? (
         <svg className={`trend-chart ${direction}`} viewBox="0 0 400 190" role="img" aria-label={`${activeLabel}近90个交易日趋势`}>
@@ -147,7 +154,7 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
           <polyline points={coordinates} />
         </svg>
       ) : <div className="trend-loading">正在加载趋势…</div>}
-      {points.length > 0 && <div className="trend-dates"><span>{points[0].date.slice(5)}</span><span>{points.at(-1)?.date.slice(5)}</span></div>}
+      {visiblePoints.length > 0 && <div className="trend-dates"><span>{visiblePoints[0].date.slice(5)}</span><span>{visiblePoints.at(-1)?.date.slice(5)}</span></div>}
     </div>
   );
 }
@@ -821,13 +828,14 @@ function IndustryPulse({ industryId }: { industryId: string }) {
   }, []);
 
   const active = items.find((item) => item.id === industryId);
-  if (failed) return <p className="industry-pulse-status">今日对比暂时未加载，图表仍可查看。</p>;
-  if (!active) return <p className="industry-pulse-status">正在生成今日对比…</p>;
+  if (failed) return <p className="industry-pulse-status">上一交易日对比暂时未加载，趋势仍可查看。</p>;
+  if (!active) return <p className="industry-pulse-status">正在加载上一交易日对比…</p>;
 
   return (
     <article className="industry-pulse" aria-live="polite">
-      <strong>今日一句</strong>
+      <strong>上一交易日</strong>
       <p>{active.summary}</p>
+      {active.aiSummary && <div className="ai-analysis"><span>Gemini 数据归纳</span><p>{active.aiSummary}</p></div>}
       <footer>
         <span>A股 {active.cn.asOf.slice(0, 10)} {active.cn.session}</span>
         <span>美股 {active.us.asOf.slice(0, 10)} {active.us.session}</span>

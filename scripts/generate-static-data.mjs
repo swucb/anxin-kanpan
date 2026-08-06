@@ -13,7 +13,7 @@ const indicators = [
 ];
 
 const industryPairs = [
-  { id: "consumer", name: "消费", cn: { label: "A股消费ETF", symbol: "sz159928" }, us: { label: "美股消费必需品XLP", symbol: "usXLP" } },
+  { id: "consumer", name: "消费", cn: { label: "A股消费ETF", symbol: "sz159928" }, us: { label: "美股消费必需品XLP", symbol: "usXLP" }, companies: [["贵州茅台", "sh600519"], ["伊利股份", "sh600887"], ["东鹏饮料", "sh605499"]] },
   { id: "bank", name: "银行", cn: { label: "A股银行ETF", symbol: "sh512800" }, us: { label: "美股银行KBE", symbol: "usKBE" } },
   { id: "brokerage", name: "券商", cn: { label: "A股券商ETF", symbol: "sh512880" }, us: { label: "美股券商IAI", symbol: "usIAI" } },
   { id: "chips", name: "半导体", cn: { label: "A股半导体ETF", symbol: "sh512480" }, us: { label: "美股半导体SOXX", symbol: "usSOXX" } },
@@ -29,6 +29,25 @@ const industryPairs = [
   { id: "metals", name: "有色金属", cn: { label: "A股有色ETF", symbol: "sh512400" }, us: { label: "美股金属矿业XME", symbol: "usXME" } },
   { id: "chemical", name: "化工", cn: { label: "A股化工ETF", symbol: "sh516020" }, us: { label: "美股材料XLB", symbol: "usXLB" } },
 ];
+
+const industryCompanyFallbacks = {
+  bank: [["工商银行", "sh601398"], ["招商银行", "sh600036"], ["江苏银行", "sh600919"]],
+  brokerage: [["中信证券", "sh600030"], ["东方财富", "sz300059"], ["国泰海通", "sh601211"]],
+  chips: [["中芯国际", "sh688981"], ["北方华创", "sz002371"], ["寒武纪", "sh688256"]],
+  ai: [["科大讯飞", "sz002230"], ["金山办公", "sh688111"], ["寒武纪", "sh688256"]],
+  communication: [["中兴通讯", "sz000063"], ["中际旭创", "sz300308"], ["新易盛", "sz300502"]],
+  "new-energy": [["宁德时代", "sz300750"], ["比亚迪", "sz002594"], ["赛力斯", "sh601127"]],
+  solar: [["隆基绿能", "sh601012"], ["阳光电源", "sz300274"], ["晶科能源", "sh688223"]],
+  healthcare: [["恒瑞医药", "sh600276"], ["迈瑞医疗", "sz300760"], ["百济神州", "sh688235"]],
+  home: [["美的集团", "sz000333"], ["海尔智家", "sh600690"], ["石头科技", "sh688169"]],
+  defense: [["中国船舶", "sh600150"], ["中航沈飞", "sh600760"], ["中航成飞", "sz302132"]],
+  power: [["长江电力", "sh600900"], ["中国核电", "sh601985"], ["华电新能", "sh600930"]],
+  coal: [["中国神华", "sh601088"], ["陕西煤业", "sh601225"], ["新集能源", "sh601918"]],
+  metals: [["紫金矿业", "sh601899"], ["洛阳钼业", "sh603993"], ["北方稀土", "sh600111"]],
+  chemical: [["万华化学", "sh600309"], ["巨化股份", "sh600160"], ["卫星化学", "sz002648"]],
+};
+
+for (const pair of industryPairs) pair.companies ??= industryCompanyFallbacks[pair.id] ?? [];
 
 const marketIndices = [
   { name: "上证指数", code: "000001", symbol: "sh000001" },
@@ -208,14 +227,14 @@ function comparison(cn, us) {
 }
 
 async function loadIndustryPulse() {
-  const symbols = industryPairs.flatMap((pair) => [pair.cn.symbol, pair.us.symbol]);
+  const symbols = [...new Set(industryPairs.flatMap((pair) => [pair.cn.symbol, pair.us.symbol, ...pair.companies.map((company) => company[1])]))];
   const response = await fetch(`https://qt.gtimg.cn/q=${symbols.join(",")}`, {
     headers: { accept: "text/plain,*/*" },
     signal: AbortSignal.timeout(10000),
   });
   if (!response.ok) throw new Error(`Tencent quote HTTP ${response.status}`);
   const quotes = parseQuotes(new TextDecoder().decode(await response.arrayBuffer()));
-  const data = industryPairs.map((pair) => {
+  let data = industryPairs.map((pair) => {
     const cn = quotes.get(pair.cn.symbol);
     const us = quotes.get(pair.us.symbol);
     if (!cn || !us) throw new Error(`Missing quote for ${pair.id}`);
@@ -225,11 +244,46 @@ async function loadIndustryPulse() {
       id: pair.id,
       name: pair.name,
       summary: `${pair.cn.label}${cnSession}${movement(cn.changePct)}，${pair.us.label}${usSession}${movement(us.changePct)}；${comparison(cn.changePct, us.changePct)}`,
+      companies: pair.companies.map(([name, symbol]) => ({ name, symbol, changePct: quotes.get(symbol)?.changePct ?? null })),
       cn: { ...pair.cn, ...cn, session: cnSession },
       us: { ...pair.us, ...us, session: usSession },
     };
   });
-  return { data, source: "腾讯行情", updatedAt: new Date().toISOString() };
+  const prior = await readFile(`${outputDirectory}/industry-pulse.json`, "utf8").then(JSON.parse).catch(() => ({ data: [] }));
+  const priorMap = new Map((prior.data ?? []).map((item) => [item.id, item]));
+  data = data.map((item) => ({ ...item, aiSummary: priorMap.get(item.id)?.aiSummary, aiUpdatedAt: priorMap.get(item.id)?.aiUpdatedAt }));
+
+  if (process.env.GEMINI_API_KEY) {
+    try {
+      const promptData = data.map((item) => ({
+        id: item.id,
+        industry: item.name,
+        aShareChangePct: item.cn.changePct,
+        usReferenceChangePct: item.us.changePct,
+        companies: item.companies.map((company) => ({ name: company.name, changePct: company.changePct })),
+      }));
+      const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent", {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
+        signal: AbortSignal.timeout(60000),
+        body: JSON.stringify({
+          contents: [{ role: "user", parts: [{ text: `你是家庭投资信息工具的数据归纳员。只允许依据给出的上一交易日涨跌数据，不得补充新闻、财务、估值或预测。为每个行业写一句45到90字的中文归纳，必须提及A股行业、至少一家给定企业及美股参考的相对表现；语气客观，不使用买入、卖出、推荐、看多、看空。输出JSON数组，每项仅含id和summary。数据：${JSON.stringify(promptData)}` }] }],
+          generationConfig: { temperature: 0.2, responseMimeType: "application/json" },
+        }),
+      });
+      if (!response.ok) throw new Error(`Gemini HTTP ${response.status}`);
+      const payload = await response.json();
+      const text = payload.candidates?.[0]?.content?.parts?.map((part) => part.text ?? "").join("") ?? "";
+      const generated = JSON.parse(text.replace(/^```json\s*|\s*```$/g, ""));
+      const generatedMap = new Map(generated.filter((item) => typeof item.id === "string" && typeof item.summary === "string").map((item) => [item.id, item.summary.slice(0, 180)]));
+      const aiUpdatedAt = new Date().toISOString();
+      data = data.map((item) => generatedMap.has(item.id) ? { ...item, aiSummary: generatedMap.get(item.id), aiUpdatedAt } : item);
+    } catch (error) {
+      console.warn(`Kept prior Gemini summaries: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  return { data, source: "腾讯行情", aiModel: "Gemini 3.6 Flash", updatedAt: new Date().toISOString() };
 }
 
 async function writeWithFallback(filename, loader) {

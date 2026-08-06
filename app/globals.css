@@ -286,6 +286,18 @@ a:focus-visible {
 .trend-heading .up span { color: #b33d35; }
 .trend-heading .down span { color: #17866f; }
 
+.range-tabs { display: flex; gap: 7px; padding: 14px 18px 0; }
+.range-tabs button {
+  min-width: 54px;
+  min-height: 38px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 800;
+}
+.range-tabs button.is-selected { background: #eef1f2; }
+
 .trend-chart { display: block; width: 100%; height: auto; padding: 2px 8px 0; }
 .trend-chart line { stroke: #e8e2d7; stroke-width: 1; }
 .trend-chart polyline { fill: none; stroke: #3478d4; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
@@ -293,6 +305,14 @@ a:focus-visible {
 .trend-chart.down polyline { stroke: #17866f; }
 .trend-loading { min-height: 210px; display: grid; place-items: center; color: #7a8582; font-weight: 700; }
 .trend-dates { display: flex; justify-content: space-between; padding: 0 18px 14px; color: #8a928f; font-size: 0.7rem; }
+
+.ai-analysis {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.ai-analysis span { color: #9b6a1e; font-size: 0.72rem; font-weight: 800; }
+.ai-analysis p { margin: 7px 0 0; }
 
 .company-search-wrap {
   position: relative;
