@@ -63,6 +63,15 @@ type CompanyPreferences = {
 
 const COMPANY_PREFS_KEY = "anxin-company-prefs-v1";
 const MAX_SAVED_COMPANIES = 8;
+const STATIC_DATA_ROOT = process.env.NEXT_PUBLIC_STATIC_DATA === "true"
+  ? `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/data`
+  : "/api";
+
+function dataEndpoint(name: "macro" | "industry-pulse"): string {
+  return process.env.NEXT_PUBLIC_STATIC_DATA === "true"
+    ? `${STATIC_DATA_ROOT}/${name}.json`
+    : `${STATIC_DATA_ROOT}/${name}`;
+}
 
 const navItems: Array<{ id: Tab; label: string }> = [
   { id: "today", label: "A股" },
@@ -627,7 +636,7 @@ function MacroData() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/api/macro", { signal: controller.signal })
+    fetch(dataEndpoint("macro"), { signal: controller.signal })
       .then((response) => {
         if (!response.ok) throw new Error("macro unavailable");
         return response.json();
@@ -662,7 +671,7 @@ function IndustryPulse({ industryId }: { industryId: string }) {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/api/industry-pulse", { signal: controller.signal })
+    fetch(dataEndpoint("industry-pulse"), { signal: controller.signal })
       .then((response) => {
         if (!response.ok) throw new Error("industry pulse unavailable");
         return response.json();
