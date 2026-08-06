@@ -21,6 +21,55 @@
           "changePct": -1.35
         }
       ],
+      "news": [
+        {
+          "title": "科技反攻，大消费承压回调，贵州茅台跌超2%！消费ETF汇添富(159928)逆市收跌1.59%！政策组合拳加码，服务消费成下半年扩内需重点 - 东方财富",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9oZW9tMDVfVXBIUmpWOEw4LXlTRVZxYVAybFNXTDNVemk3MnZRNzIwSUtvSUZZYV9BMHBTYlpCZ19BQklhdWFxM19NbjRvVHVzaHZwTi00Zy1OSW1HNlpQag?oc=5",
+          "source": "东方财富",
+          "publishedAt": "Wed, 05 Aug 2026 12:00:45 GMT"
+        },
+        {
+          "title": "大消费逆市回调，资金持续关注！消费ETF汇添富(159928)跌近1%全天净申购超1.6亿份！2026Q2食饮持仓新低，风格再平衡下关注板块低位窗口！ - 东方财富",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFAtR29VLVR3UHU1QmJGb3hwZDVWdk5vWEhaWnRfQnB1NXdWVklFaWcxdVVwSUpoYi1RYjItUmFORlRtT2FETW9kWVZrcXRPQ2RpZmMzR0pkcWh3NDBldDhrVw?oc=5",
+          "source": "东方财富",
+          "publishedAt": "Thu, 06 Aug 2026 04:35:50 GMT"
+        }
+      ],
+      "financials": [
+        {
+          "name": "贵州茅台",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 54702912385.23,
+          "revenueYoY": 6.336009277123,
+          "netProfit": 27242512886.45,
+          "netProfitYoY": 1.471418294983,
+          "roe": 10.57,
+          "grossMargin": 89.7592176242
+        },
+        {
+          "name": "伊利股份",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 34824961423.65,
+          "revenueYoY": 5.471897300835,
+          "netProfit": 5394651297.16,
+          "netProfitYoY": 10.679850661484,
+          "roe": 9.44,
+          "grossMargin": 38.3747065224
+        },
+        {
+          "name": "东鹏饮料",
+          "reportDate": "2026-06-30 00:00:00",
+          "reportType": "中报",
+          "revenue": 12443036555.29,
+          "revenueYoY": 15.893339317866,
+          "netProfit": 2866801858.34,
+          "netProfitYoY": 20.720114123842,
+          "roe": 19.03,
+          "grossMargin": 48.3648973261
+        }
+      ],
       "cn": {
         "label": "A股消费ETF",
         "symbol": "sz159928",
@@ -29,7 +78,7 @@
         "previous": 0.674,
         "change": -0.005,
         "changePct": -0.74,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:51",
         "session": "收盘"
       },
       "us": {
@@ -65,6 +114,67 @@
           "changePct": 1.29
         }
       ],
+      "news": [
+        {
+          "title": "银行ETF华泰柏瑞（560670）跌0.67%，半日成交额1363.34万元 - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQc0hqN25hT1hsQXVfOHF0dGhnbzY4UkpFRjR4dnk1ZzYzZWJiT3pMMDNSTXc0d0NmakV2ZThhUERyT1FZenRSSzJFbFVmTnpId2tvZEdCMjdQakhZVVkxYUZqZEI3cnM1ekdkcnhZM1QwUndpTzNUdENYV1VGWXF4R3d1TEN1RnAtUEUyN241eU50YXRNTk13dQ?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Thu, 06 Aug 2026 03:35:00 GMT"
+        },
+        {
+          "title": "金融地产ETF华夏（510650）跌0.80%，半日成交额93.02万元 - 搜狐网",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxONEktaFlDaFdnaFRUYklKbnVrS05FQkx4U3MwcnBrWmk4Zzc5bWZqZVI3cEptWGZNaUh1QlJiQTBJVkw2MkU2MDNLSjJKVG9CYTZmbzIzNFlMQjktd04zRUR3a1hwcE1IQzZEbGhVUjRXZ1dxOU1JZGoweW01T1B0a1ZfdlRvb1hKRlhfeQ?oc=5",
+          "source": "搜狐网",
+          "publishedAt": "Thu, 06 Aug 2026 03:31:12 GMT"
+        },
+        {
+          "title": "利率市场化改革深入推进 多地相继落地DR基准利率贷款 - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMi_AZBVV95cUxQeVRjZWMyZk1xczhlbklxazJjcDhQZGlwMHdEN09oY0dLR0l6czJCMkh4cFFkOHBFRzhaQkdMbEZLSmVOVHNzUG84SmljVnFUTkczSGNHRUpXZEczeHZaenBzOWxtTkVDZGlBRTVTb056R1BMc1JXcF9Ia3Jua2F5OVBSNTJnMlZyMTRqSUxLSGQwcUkzcVZpUmI2Z1RnS0FpcTJXSHNIWHRadDBJQjZqRVJNWS1zenA1UnBMc3V1cXlTV3JHV2VkcFljVE9QdDliWHBMOW9LNE9aUDdfX1FvLTFwT3AwTXhVR2htMUV3REw5emlmRldRRXBPeUNLQk0wU0k4LWUtRUFabWtkdHpzaGwteFNKdmRydGtGTXVsOFY0ZFFUWEdFVGE4SDhCVDhrQnVYNngwaGFZNUdxVEhOTXdER0ZiUmE1OUxpNlVjZFpvN1o3b3gyMzFRUWFUY3dUeEF5c3lnYnJYUENyb0NIXzgzVGtCcEhiSEJUWXlsSzhGRDMxbWg2b1kwTnF5djQ3OGZtQ245QTlqUFNrTWVUX1VwU052ZlQ2amF5Z05TbEU0MWhwRW1FeEtVMUh4bVJpeVpKVlBnODNRcUNaUHA2dTZ5RVlVOEpQbFBPNDNvYjRRTVRVemZZLXJkRTVMQ2RBdEhQRkRQcFZCT0FEMGhLR1M0cl92N3NOd3kta0dJSjB2NTFNTUVwYlF5NW9LYUhMWkpCNUdlSjBsa1ZDSDJfYlVERzY3Q2hCWjdfWi1PTXhCa29lTEMyVmV5UE9xdXBhdVBMZG9TTjdYQTVoYVNycnEwSTJrcS1BQktEX1RockNfdjlYM0hnZks0c3Nqczl1Wnk4azRTQ0dOa2NBSjB5Q1BKNUpuQUdweTJYOXM3a3NFdXFacEl4QXRZOE44Y1JQY0ZYSkxiUlhJckkwZkx6aU9ZUVptcTc3Slh2czdUeXlNZl9GNktnTEx5MkdUckZpTW5abjgtaXVjcW04UTR2a1QwSE1Fa2FlMF8teWk5R0ZkMlBMcmNBWHQ2THZrdEhTTDdlZ2M3aHkxSm50bFE4VV9sdVZzQzFpVWEyd3hYb0I0dHBxYm9icm40UFMzVDhsc1JDQ3YyVnlCSWl3V25HWm1DOGxiTTFJSlJBQnJzaV9nV0tjQ0gyeVVGQVVQT0NoNnR5Z0FGX08xUFU1?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Wed, 05 Aug 2026 15:18:00 GMT"
+        },
+        {
+          "title": "价值ETF华宝（510030）开盘跌0.29%，重仓股中国平安跌0.04%，招商银行涨0.15% - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPcllKWHFpUnN0ZDBZZUs2TVFjb21CU2NuMnRBQnBTUk9DTU1ZcVd2S0drMldldlhZWk44X25NQ2FjcXg2cGxTaHVrRkNzaDVrWkRUUzh3cEJjaGFvNmRXSk1qM2V1ZFFoQmp2R1hwcU1ja2hvT0lmQk5KZGhDUnFFZGVVamdlZjY3UjU4ZUJpUDNNcUU1cXBVWQ?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Thu, 06 Aug 2026 01:35:00 GMT"
+        }
+      ],
+      "financials": [
+        {
+          "name": "工商银行",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 230370000000,
+          "revenueYoY": 8.26980740128,
+          "netProfit": 86941000000,
+          "netProfitYoY": 3.309330291364,
+          "roe": 2.2075,
+          "grossMargin": null
+        },
+        {
+          "name": "招商银行",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 86940000000,
+          "revenueYoY": 3.807715728767,
+          "netProfit": 37852000000,
+          "netProfitYoY": 1.517996030682,
+          "roe": 3.37,
+          "grossMargin": null
+        },
+        {
+          "name": "江苏银行",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 24180308000,
+          "revenueYoY": 8.411806101543,
+          "netProfit": 10582060000,
+          "netProfitYoY": 8.2009893044,
+          "roe": 4.0925,
+          "grossMargin": null
+        }
+      ],
       "cn": {
         "label": "A股银行ETF",
         "symbol": "sh512800",
@@ -73,7 +183,7 @@
         "previous": 0.801,
         "change": 0.004,
         "changePct": 0.5,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -109,6 +219,67 @@
           "changePct": -0.78
         }
       ],
+      "news": [
+        {
+          "title": "8月5日券商ETF华宝基金份额减少1.31亿份，重仓股中信证券、东方财富、国泰海通_基金提醒_雷达 - 证券之星",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE02THRfSzNQcGZKLThvNy1CRXd5czFNSzJVM0h2SlNoY3hqRllWaEo4QXREWFlJRjJoNkhTazE5d04tcmtORUIzWXR3c0J4N201OW53a1ZJaTZJcldTbV9BZzdR?oc=5",
+          "source": "证券之星",
+          "publishedAt": "Wed, 05 Aug 2026 22:32:44 GMT"
+        },
+        {
+          "title": "券商ETF银华（159842）跌0.38%，半日成交额1.67亿元 - 新浪网",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9nYVNPVkJaTkVhbEUzM1p2YkV6VFVCWHJuZU1nRlRYdDFPOEd5UXhIV05QTWFsT0ZQalNvY1dpSTFESFQ1alRvc3dJNXB0RzNwV2MzOUtMei01UVg3alVYTGhjc1B6ZXZEdEdfdG9UZlI?oc=5",
+          "source": "新浪网",
+          "publishedAt": "Wed, 05 Aug 2026 08:07:00 GMT"
+        },
+        {
+          "title": "7月A股券商市值排行：华安证券跌30%，中信建投等4家单月减超百亿 - 东方财富",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNdjR2c0o1NGUyXzlZNlE4SFE5ZnZ5aWk2dE0zNFBUaVgzdnhPc29yUmlHZjU0Q0tYaVRPQVFuNlExZzNNUmNseHgyLXBZZ2xQWGpyR0VOREJNdUFPY0dVN1d3cVo0dWQxa3VWcHJTU0poeUR1TzRlZVQ1dlVsQmxTam9qcUxGUVRrRkJ4VDM3RjJOSUttLXdtMUNMcmJpbDRWSG9FajZ6ZmhMYWlDV1I2UUxKWQ?oc=5",
+          "source": "东方财富",
+          "publishedAt": "Wed, 05 Aug 2026 15:08:16 GMT"
+        },
+        {
+          "title": "8月5日证券ETF华泰柏瑞基金份额减少100万份，重仓股中信证券、东方财富、国泰海通_基金提醒_雷达 - 证券之星",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5HRzJRMWllVlREaXlRZlItOVRGRGNmREVHRlJaVGNRYm52SktBU0VWWlptRWpyUUxpMThVQVNLTXJhZVRZNXNDR3A1WW8wdXBNRnRlMS11U0FwV1VZdUx1ckpR?oc=5",
+          "source": "证券之星",
+          "publishedAt": "Wed, 05 Aug 2026 22:37:31 GMT"
+        }
+      ],
+      "financials": [
+        {
+          "name": "中信证券",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 23155089056.75,
+          "revenueYoY": 40.913815604729,
+          "netProfit": 10216128310.91,
+          "netProfitYoY": 54.601822460428,
+          "roe": 3.46,
+          "grossMargin": null
+        },
+        {
+          "name": "东方财富",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 5031027125.4,
+          "revenueYoY": 44.33801552735,
+          "netProfit": 3737779855.92,
+          "netProfitYoY": 37.669892046298,
+          "roe": 3.99,
+          "grossMargin": 73.9716278356
+        },
+        {
+          "name": "国泰海通",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 16232110965,
+          "revenueYoY": 58.906924614517,
+          "netProfit": 6388465090,
+          "netProfitYoY": -47.815412352742,
+          "roe": 1.95,
+          "grossMargin": null
+        }
+      ],
       "cn": {
         "label": "A股券商ETF",
         "symbol": "sh512880",
@@ -117,7 +288,7 @@
         "previous": 1.109,
         "change": -0.013,
         "changePct": -1.17,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -153,6 +324,67 @@
           "changePct": 2.75
         }
       ],
+      "news": [
+        {
+          "title": "公募基金二季报重磅信号！十大重仓股洗牌：中际旭创登顶，新易盛、寒武纪紧随其后，算力科技霸榜、传统白马淡出前排 - 新浪网",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBOS2EwSlh0VEEzdjFhMmJGQ0JITnNSNDh2bFluQ21wazFaUnB6Q3Fld0RlMWpiNWdkUllmN0xLWmZ5WHNIQXdsZGhoQXBFOGxCb0FTZVAwTUJSSndkSVRHc25pR21hWUhrSDlLRy1mOXQ3QQ?oc=5",
+          "source": "新浪网",
+          "publishedAt": "Wed, 05 Aug 2026 13:58:36 GMT"
+        },
+        {
+          "title": "中微公司(SH688012)股票股价_股价行情_讨论_资讯_财报_数据报告 - 雪球",
+          "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE5xSWlNNF80bDJYcTVQak5PNTlINUg2Z0gwbDFlM09OSm9QZU5BUlF0M3ZTS2d4NEtqbVBRdEJaUmhTb1U?oc=5",
+          "source": "雪球",
+          "publishedAt": "Wed, 05 Aug 2026 14:39:24 GMT"
+        },
+        {
+          "title": "半导体设备、材料低开高走！长鑫订单充足拒绝苹果压价，国产芯片从“被动替代”走向“主动定价”！ - 金融界",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE55QnhHS2wtSGk3YUVzYnRmWHkyc1YyamVjVWJCZ01yaGU2RDlaR2ZQQk1Dc1ZxUVRJYlRCdFp1UXVaUW8xZGVMS3E4RWZkQ196Q3lZMllKVVlyekVZOUI5UDFJNDcxanYxVW9PM2ZCUW0?oc=5",
+          "source": "金融界",
+          "publishedAt": "Thu, 06 Aug 2026 02:06:25 GMT"
+        },
+        {
+          "title": "海外设备交期延长叠加全球缺货，国产半导体替代速度或将大幅加速 - caiwennews.com",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5jbWpKUmFERXJlZHlPYUJwQmlPM0hKVFQtWGJ6VkV1VS1haG52ZmQ4NFhRMEpESG9aYXRhVW1LLWltTkpDSWd2R0U5R09GSzN2OFgzYXJGZVcydTN1?oc=5",
+          "source": "caiwennews.com",
+          "publishedAt": "Thu, 06 Aug 2026 02:59:00 GMT"
+        }
+      ],
+      "financials": [
+        {
+          "name": "中芯国际",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 17617218000,
+          "revenueYoY": 8.073898148497,
+          "netProfit": 1361209000,
+          "netProfitYoY": 0.356465104757,
+          "roe": 0.9,
+          "grossMargin": 21.4758595824
+        },
+        {
+          "name": "北方华创",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 10322863908.82,
+          "revenueYoY": 25.796090241943,
+          "netProfit": 1634739048.68,
+          "netProfitYoY": 3.418201634519,
+          "roe": 4.25,
+          "grossMargin": 40.7727895045
+        },
+        {
+          "name": "寒武纪",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 2884696746.86,
+          "revenueYoY": 159.555473493732,
+          "netProfit": 1013213581.94,
+          "netProfitYoY": 185.038722485382,
+          "roe": 8.2,
+          "grossMargin": 54.3303762465
+        }
+      ],
       "cn": {
         "label": "A股半导体ETF",
         "symbol": "sh512480",
@@ -161,7 +393,7 @@
         "previous": 1.033,
         "change": 0.014,
         "changePct": 1.36,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -197,6 +429,42 @@
           "changePct": 2.75
         }
       ],
+      "news": [],
+      "financials": [
+        {
+          "name": "科大讯飞",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 5274188660.25,
+          "revenueYoY": 13.233090702103,
+          "netProfit": -169724621.52,
+          "netProfitYoY": 12.174332368417,
+          "roe": -0.91,
+          "grossMargin": 38.9725300764
+        },
+        {
+          "name": "金山办公",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 1613223593.44,
+          "revenueYoY": 23.954024902969,
+          "netProfit": 2195163937.16,
+          "netProfitYoY": 444.96595237217,
+          "roe": 15.7,
+          "grossMargin": 86.5936512254
+        },
+        {
+          "name": "寒武纪",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 2884696746.86,
+          "revenueYoY": 159.555473493732,
+          "netProfit": 1013213581.94,
+          "netProfitYoY": 185.038722485382,
+          "roe": 8.2,
+          "grossMargin": 54.3303762465
+        }
+      ],
       "cn": {
         "label": "A股人工智能ETF",
         "symbol": "sz159819",
@@ -205,7 +473,7 @@
         "previous": 1.852,
         "change": -0.007,
         "changePct": -0.38,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -241,6 +509,67 @@
           "changePct": -0.57
         }
       ],
+      "news": [
+        {
+          "title": "英伟达急寻中国AI基站供应商 - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1CdzhEbjVnaUlpaUo2cjhkQkFKYWlpYkY0NnRfM3A0SlJvaWdFU2kzZkl5ajlWbmJKSjNUcllFN095VXNLdGFVWjA1VlVqSC1RYnFfRWNFYTZQTlR0WEhOZ1l3UWlwbjJZcTg5VEc3Q3VDU3I4N21LZA?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Thu, 06 Aug 2026 01:40:00 GMT"
+        },
+        {
+          "title": "中兴通讯2026生态中国行产品巡展南京站成功举办 - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE96c1RKUmF4bTRfdG16b1ZIRkpxbnhUNmtES2RXUWNPaV83S0xnTmxYWDFUSUpIZlVJSU51R2hjekN2NDlZdDB3ZS1HTUhOcERuZFZLWTBkcWNfZmc2WWppMnpEMnhBb1VoU3U1VHJCYWQ?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Wed, 05 Aug 2026 11:48:10 GMT"
+        },
+        {
+          "title": "57股获融资客大手笔净买入 - 富途牛牛",
+          "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5LWFFnbVkyOVhQNkNHdHpndjEyeURzSF9YWnhCeHF5T0lWcWdTZ3VMeGNOa2pGaEVKWUFnbjdCTVFwZ2JQRE9MS2VlMnZRdw?oc=5",
+          "source": "富途牛牛",
+          "publishedAt": "Thu, 06 Aug 2026 02:02:56 GMT"
+        },
+        {
+          "title": "2.33亿元资金今日流入通信股 - 富途牛牛",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9EVFB4ZlhveU1rVlZXR2JnOGhZZ0NUTV9KSEhQZ180MXhCQVFjYWFzcXJUSV92QklCOXFEUXpBM3pBbmZ5YVBlUzgzLWtaQktBVEE?oc=5",
+          "source": "富途牛牛",
+          "publishedAt": "Wed, 05 Aug 2026 08:55:00 GMT"
+        }
+      ],
+      "financials": [
+        {
+          "name": "中兴通讯",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 34988057000,
+          "revenueYoY": 6.12669555835,
+          "netProfit": 1310444000,
+          "netProfitYoY": -46.581650206345,
+          "roe": 1.72,
+          "grossMargin": 28.2761572042
+        },
+        {
+          "name": "中际旭创",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 19496398083.95,
+          "revenueYoY": 192.116909423257,
+          "netProfit": 5734501526.83,
+          "netProfitYoY": 262.283657132941,
+          "roe": 17.54,
+          "grossMargin": 46.0581330258
+        },
+        {
+          "name": "新易盛",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 8337902040.74,
+          "revenueYoY": 105.759481459036,
+          "netProfit": 2780222960.23,
+          "netProfitYoY": 76.799832428124,
+          "roe": 14.52,
+          "grossMargin": 49.1609551491
+        }
+      ],
       "cn": {
         "label": "A股通信ETF",
         "symbol": "sh515880",
@@ -249,7 +578,7 @@
         "previous": 0.642,
         "change": 0.01,
         "changePct": 1.56,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -285,6 +614,67 @@
           "changePct": -2.96
         }
       ],
+      "news": [
+        {
+          "title": "电池ETF建信（159775）开盘涨0.50%，重仓股宁德时代涨1.18%，比亚迪跌0.35% - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOd0o0SVlLRVM2MU5mWXloaVpRZkpITFo5aFY1enZIcDA5LUtaMS0xWWtCTXZYUGtHNzhZcnp4X3JOX1YwR3IxVW16ZlVqREt3bjhwSk1YaHlXeW9uUFY1dGtKUkJaVTJWOWE3aVJfTW9vQ1BUalg1M3lpVm02T3hud1JpNlZ6U2htd3BsOWwxY1YwSXZqaWdsUg?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Thu, 06 Aug 2026 01:32:00 GMT"
+        },
+        {
+          "title": "新能源车企给宁德时代打工？其他电池厂利润又如何呢？ - 汽车之家",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE50aERwMzdNSEtXREd3SmQtTFctV3BnSUVIRl9IM191bno4YWRQNzZKUTl2V1hQODBCTGhwQTZ2TVdCWFFCb0tlNG9oTnZtZ215VVpSZkZDYlNrd0E?oc=5",
+          "source": "汽车之家",
+          "publishedAt": "Wed, 05 Aug 2026 10:30:33 GMT"
+        },
+        {
+          "title": "车企淘汰赛这次真来了，谁是幸存者？专家：首要门槛是年产200万辆 - QQ News",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFB1MFZrTDh1MkFJOXVpUTFjaEdLVGY4blM2QWpKdlJ4V0p3emJ4cXBkSi1ZRXRVYkJNYllJT182WG5Fa1B0MUFPNkh3ZDA3OFVaYW1VNVdyVHJNNzVnUHlSWGhZMGZNQUNJTUpCRDF4TzQtd2xEWEhVSg?oc=5",
+          "source": "QQ News",
+          "publishedAt": "Wed, 05 Aug 2026 08:19:00 GMT"
+        },
+        {
+          "title": "市占率超七成，中国动力电池军团再创新高 | 动力电池排名⑥ - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNaU1IY3ZHTWZyRVVVY25wMTYzQ0xKQzI3V0tsYS1iOFFrU2R1YjFKZEVBbGZWN3Q2eFpkc1J0R21wNHBBRFVWQ2lZVHIxTXdOWWlvbmN0dllOcU5jd0E0eXpMNjRqTk16QWJ5NlNaNUY2WFFSSTZDRjZTNU82LUxPSTlJMHpxbTE4VXcwRFVR?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Wed, 05 Aug 2026 13:11:00 GMT"
+        }
+      ],
+      "financials": [
+        {
+          "name": "宁德时代",
+          "reportDate": "2026-06-30 00:00:00",
+          "reportType": "中报",
+          "revenue": 276916580000,
+          "revenueYoY": 54.800369148545,
+          "netProfit": 43284002000,
+          "netProfitYoY": 41.983941749454,
+          "roe": 12.08,
+          "grossMargin": 23.9283938867
+        },
+        {
+          "name": "比亚迪",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 150225314000,
+          "revenueYoY": -11.819136563905,
+          "netProfit": 4084551000,
+          "netProfitYoY": -55.384405326715,
+          "roe": 1.65,
+          "grossMargin": 18.806213978
+        },
+        {
+          "name": "赛力斯",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 25745711786.75,
+          "revenueYoY": 34.462859318588,
+          "netProfit": 754464672.82,
+          "netProfitYoY": 0.892116224144,
+          "roe": 1.83,
+          "grossMargin": 26.2383155002
+        }
+      ],
       "cn": {
         "label": "A股新能源车ETF",
         "symbol": "sh515030",
@@ -293,7 +683,7 @@
         "previous": 1.663,
         "change": -0.024,
         "changePct": -1.44,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -329,6 +719,67 @@
           "changePct": -3.06
         }
       ],
+      "news": [
+        {
+          "title": "靠“炒美股”大赚超10亿，组件主业却仍陷亏损，天合光能的底牌还剩多少？ - solarzoom.com",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5kcFNFdklVMGhiNVZzRWtXM2Z5REV4TmM3SVoyVmF5VVVIOVBiUXgzSXNlSUdtbGw4cWxicllwNGVoV2hDYTh6Wm9UUzgyYUtGdzZqUzFWYXJPREU?oc=5",
+          "source": "solarzoom.com",
+          "publishedAt": "Wed, 05 Aug 2026 08:20:47 GMT"
+        },
+        {
+          "title": "光伏ETF招商（516230）开盘跌0.76%，重仓股阳光电源跌1.15%，特变电工涨0.05% - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOR1pzVDgzaVVkbk4yQzRDWlBLUEFkVTYxekpDWVprYkxvWVJwei1kWWtXUjlUdzI5Q3pzRlplOWlSLVF4dHN1SE9rYTIxUTNLeGRudUZZX3R2blJjdEpmc2RRcFU2dkRDQnIwMXZmUV9Sd3kxZXR3RWZSS0gzT0NNOWJWSVdJNkVvWmszam8yNlNQVUFoX2xsMw?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Thu, 06 Aug 2026 01:35:00 GMT"
+        },
+        {
+          "title": "光伏ETF博时（560310）开盘涨1.04%，重仓股阳光电源跌1.15%，特变电工涨0.05% - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQcmhWemFYa2pGYjVuRHNJYUNfSEJsVzd5clp1V3B2NGNhUy1zX1BTUXRFd1hCdzJVNFBEQ0tFRjljYVRmalFETUtOR3FvNkxpZVFFM3JJRmlwbHd0V25VcE8wbll4Tk1nbFZHVjZtNzIxdjJ2d2JqZEFyX1BZZHVyRXF1UFp6cUVIdDV2aU9YMVJwNXViei1zTw?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Thu, 06 Aug 2026 01:35:00 GMT"
+        },
+        {
+          "title": "国泰君安：光伏行业或处于预期底部位置- Futubull - 富途牛牛",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNNWZqUU5VcDhfYWRUa2hlYzAyaTdkdUNOS09FWTBrSlJGNmx2ODg3QkhIY1ZpX3c1LUZrV0g3cG1wSUpZVUprUVhqMEhYN29GRHlTdkxxUDE4Z3psTGxWVEpOc1dCQXhvRGdQNEdrc21UTTBnbFlEZ2pqRXdfYVdGNzZVU2tNVkR2OHpVcUEtbzFySzNF?oc=5",
+          "source": "富途牛牛",
+          "publishedAt": "Wed, 05 Aug 2026 17:23:57 GMT"
+        }
+      ],
+      "financials": [
+        {
+          "name": "隆基绿能",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 11191552278.54,
+          "revenueYoY": -18.025461201503,
+          "netProfit": -1919902418.4,
+          "netProfitYoY": -34.197566456205,
+          "roe": -3.61,
+          "grossMargin": -1.1879332758
+        },
+        {
+          "name": "阳光电源",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 15560645284.03,
+          "revenueYoY": -18.258672180954,
+          "netProfit": 2291269562.74,
+          "netProfitYoY": -40.115703122625,
+          "roe": 4.81,
+          "grossMargin": 33.2629317483
+        },
+        {
+          "name": "晶科能源",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 12247625530.56,
+          "revenueYoY": -11.52384840269,
+          "netProfit": -1350127115.87,
+          "netProfitYoY": 2.848536253813,
+          "roe": -5.4,
+          "grossMargin": 6.156302092
+        }
+      ],
       "cn": {
         "label": "A股光伏ETF",
         "symbol": "sh515790",
@@ -337,7 +788,7 @@
         "previous": 0.855,
         "change": -0.01,
         "changePct": -1.17,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -373,6 +824,49 @@
           "changePct": -4.13
         }
       ],
+      "news": [
+        {
+          "title": "创新药的Beta验证！摩根大通、里昂纷纷上调药明康德目标价 - 东方财富",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB0NkkyQXJadW9JZzlkaGNoUTBWbzFpaWpWVzZoSXBaemZqWVh3dS1LaE1fYUU1UUNQc2NIM1pReHU4RDFaZGNiWXdSa01JSHRtbFd2c1VhMTJibjhrZkdxNw?oc=5",
+          "source": "东方财富",
+          "publishedAt": "Wed, 05 Aug 2026 08:55:39 GMT"
+        }
+      ],
+      "financials": [
+        {
+          "name": "恒瑞医药",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 8140565320.77,
+          "revenueYoY": 12.975362979304,
+          "netProfit": 2282268233.13,
+          "netProfitYoY": 21.782316948345,
+          "roe": 4.15,
+          "grossMargin": 86.5986071559
+        },
+        {
+          "name": "迈瑞医疗",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 8352015912,
+          "revenueYoY": 1.394129069312,
+          "netProfit": 2329658005,
+          "netProfitYoY": -11.372013981418,
+          "roe": 5.96,
+          "grossMargin": 61.8700838989
+        },
+        {
+          "name": "百济神州",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 10544044000,
+          "revenueYoY": 31.016579542165,
+          "netProfit": 1607782000,
+          "netProfitYoY": 1801.30260415013,
+          "roe": 5.05,
+          "grossMargin": 89.0212427035
+        }
+      ],
       "cn": {
         "label": "A股医药ETF",
         "symbol": "sh512010",
@@ -381,7 +875,7 @@
         "previous": 0.387,
         "change": -0.008,
         "changePct": -2.07,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -417,6 +911,49 @@
           "changePct": -2.41
         }
       ],
+      "news": [
+        {
+          "title": "家电ETF汇添富（159192）跌0.10%，半日成交额14.49万元 - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQdHZ3aHM1NGRnbHpvSWpjTGF4ZW5QUmQ0Z3NET1o5dVZLNVAzU3hrVWQzUWJUM1ExWUZlWGFtWFlFZHhVSVAwcU9GWFRvS0ZxOFMwV3JhVjZXa3p3Z084UnBncHNpcXUtVDdmQjJLdUpQOEUwRjd3V2ZwSHhzOHRSRHloMldpU2tDRHFFVVR6ZzBMcTh1aEJDTA?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Thu, 06 Aug 2026 03:35:00 GMT"
+        }
+      ],
+      "financials": [
+        {
+          "name": "美的集团",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 131580870000,
+          "revenueYoY": 2.454635021947,
+          "netProfit": 12674556000,
+          "netProfitYoY": 2.031220956812,
+          "roe": 5.56,
+          "grossMargin": 25.5711317621
+        },
+        {
+          "name": "海尔智家",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 73686720161.13,
+          "revenueYoY": -6.864988379494,
+          "netProfit": 4651612980.68,
+          "netProfitYoY": -15.218894868464,
+          "roe": 3.86,
+          "grossMargin": 25.3437866989
+        },
+        {
+          "name": "石头科技",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 4227137560,
+          "revenueYoY": 23.312423502858,
+          "netProfit": 323196897,
+          "netProfitYoY": 20.826938157933,
+          "roe": 2.28,
+          "grossMargin": 43.2551668368
+        }
+      ],
       "cn": {
         "label": "A股家电ETF",
         "symbol": "sz159996",
@@ -425,7 +962,7 @@
         "previous": 1.424,
         "change": -0.005,
         "changePct": -0.35,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:51",
         "session": "收盘"
       },
       "us": {
@@ -461,6 +998,42 @@
           "changePct": -0.21
         }
       ],
+      "news": [],
+      "financials": [
+        {
+          "name": "中国船舶",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 43312405150.04,
+          "revenueYoY": 54.896834248845,
+          "netProfit": 4832277995.78,
+          "netProfitYoY": 251.640663443622,
+          "roe": 3.3,
+          "grossMargin": 17.4752695769
+        },
+        {
+          "name": "中航沈飞",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 2611674589.37,
+          "revenueYoY": -55.231143654848,
+          "netProfit": 164962016.08,
+          "netProfitYoY": -61.687279328367,
+          "roe": 0.7,
+          "grossMargin": 10.580759429
+        },
+        {
+          "name": "中航成飞",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 5946010407.01,
+          "revenueYoY": 79.711600361567,
+          "netProfit": 192737554.94,
+          "netProfitYoY": 23.159466244003,
+          "roe": 0.9,
+          "grossMargin": 9.706345238
+        }
+      ],
       "cn": {
         "label": "A股军工ETF",
         "symbol": "sh512660",
@@ -469,7 +1042,7 @@
         "previous": 1.136,
         "change": -0.001,
         "changePct": -0.09,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -505,6 +1078,42 @@
           "changePct": -2.09
         }
       ],
+      "news": [],
+      "financials": [
+        {
+          "name": "长江电力",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 18111540767.5,
+          "revenueYoY": 6.442778170349,
+          "netProfit": 6761006898.48,
+          "netProfitYoY": 30.50157685081,
+          "roe": 3.01,
+          "grossMargin": 55.6463177522
+        },
+        {
+          "name": "中国核电",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 18924861299.78,
+          "revenueYoY": -6.64854773008,
+          "netProfit": 2064416127.86,
+          "netProfitYoY": -34.191281406826,
+          "roe": 1.73,
+          "grossMargin": 39.5018012149
+        },
+        {
+          "name": "华电新能",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 10587503120,
+          "revenueYoY": 9.964387559325,
+          "netProfit": 2061318117,
+          "netProfitYoY": -29.444942373363,
+          "roe": 1.74,
+          "grossMargin": 40.8081369614
+        }
+      ],
       "cn": {
         "label": "A股电力ETF",
         "symbol": "sz159611",
@@ -513,7 +1122,7 @@
         "previous": 1.068,
         "change": -0.009,
         "changePct": -0.84,
-        "asOf": "2026-08-06 15:30",
+        "asOf": "2026-08-06 15:51",
         "session": "收盘"
       },
       "us": {
@@ -549,6 +1158,42 @@
           "changePct": 4.14
         }
       ],
+      "news": [],
+      "financials": [
+        {
+          "name": "中国神华",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 70397000000,
+          "revenueYoY": 1.166918157649,
+          "netProfit": 10667000000,
+          "netProfitYoY": -10.728931291321,
+          "roe": 2.4,
+          "grossMargin": 32.8891856187
+        },
+        {
+          "name": "陕西煤业",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 38953072382.69,
+          "revenueYoY": -3.01055523174,
+          "netProfit": 4209991046.33,
+          "netProfitYoY": -12.378955491961,
+          "roe": 4.21,
+          "grossMargin": 31.1232800066
+        },
+        {
+          "name": "新集能源",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 3606871165.63,
+          "revenueYoY": 23.963851322437,
+          "netProfit": 548208016.81,
+          "netProfitYoY": 3.078679084641,
+          "roe": 3.19,
+          "grossMargin": 35.8144195581
+        }
+      ],
       "cn": {
         "label": "A股煤炭ETF",
         "symbol": "sh515220",
@@ -557,7 +1202,7 @@
         "previous": 1.174,
         "change": 0.069,
         "changePct": 5.88,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -593,6 +1238,67 @@
           "changePct": 0.34
         }
       ],
+      "news": [
+        {
+          "title": "8月5日有色ETF景顺基金份额减少700万份，重仓股紫金矿业、洛阳钼业、北方稀土_基金提醒_雷达 - 证券之星",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBjREVINEJTQm0zNG5jWGwzT2w4RXVXZ1czSkpETjUwSGVjTTE3VGxHQ0Qxc210Y3FiUjRsc3pqS2NrTUlaekhLOXhHemRSOG45NWl6R1g4OXJkdHhtdGg4bFBR?oc=5",
+          "source": "证券之星",
+          "publishedAt": "Wed, 05 Aug 2026 22:37:25 GMT"
+        },
+        {
+          "title": "有色金属王者归来？现货黄金冲击4300美元！云南锗业三连板，华宝基金有色ETF（159876）盘中拉升2.45% - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPbTVhd0dVdThwZlcwcTFrTjVkOEVQaHNmUlNBQS1fVVZXb3BjUVBrM0FTVkxFQXJEa1JmN2t6WndpR2xPalFOb3dvMUZWSVg2YjJ0SzMxNWZRWTFlckNNUUxSMGZpVUt4TmRJMnUwMmlZMFlobWxQVGZQRjBGUU9OS0FIUG1hemZnaGk0WHc2RHpuanpmT3F1Wnp4RlhfTnYyTE9fRw?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Thu, 06 Aug 2026 03:45:40 GMT"
+        },
+        {
+          "title": "有色ETF华安（512940）开盘涨3.33%，重仓股紫金矿业涨3.75%，洛阳钼业涨2.59% - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQSVppZUZ5NWtMNDFzUnhlcWo1RlVzTW9uRHNYbTF4My1NVVdmMi1LbUdhRms3V192Z19IUWctZklUNnhHRkotdDM2bEtBRUFVTDR6dk5jMGlISE84NW1tSDZJaDllOTF6RmpvV3dpNXdORldUdjVMREFIbkc5WmRlQy1GbWxGYVFTajhZM1BrVUo0V0hvbWUtVQ?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Thu, 06 Aug 2026 01:35:00 GMT"
+        },
+        {
+          "title": "有色ETF景顺（560290）开盘涨3.53%，重仓股紫金矿业涨3.75%，洛阳钼业涨2.59% - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNNDZENV94RkN5aVRSdXhWT3I1cVp1Y3F1UndTcnhISGJJU1Y4TmEwdjJPRkhDRk5fUHdhUlptM2FWS1hDN21odDZtNmVJR1FKdTJvYWtGdDJBQlQxbHduNFlFLWd6alRVYWFtNXFMTHVZRzVtSEJzZVFaVF9tdGwtNVdzY29TT0drZkJEcUpUQ1ZleURBSjQzbw?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Thu, 06 Aug 2026 01:35:00 GMT"
+        }
+      ],
+      "financials": [
+        {
+          "name": "紫金矿业",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 98497579591,
+          "revenueYoY": 24.793769675475,
+          "netProfit": 20079391507,
+          "netProfitYoY": 97.500066337394,
+          "roe": 10.35,
+          "grossMargin": 36.3257532424
+        },
+        {
+          "name": "洛阳钼业",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 66403195123.35,
+          "revenueYoY": 44.33616810728,
+          "netProfit": 7760054120.3,
+          "netProfitYoY": 96.654961912629,
+          "roe": 9.06,
+          "grossMargin": 22.8849393275
+        },
+        {
+          "name": "北方稀土",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 11858916345.03,
+          "revenueYoY": 27.693588458117,
+          "netProfit": 917740662.2,
+          "netProfitYoY": 113.117324523247,
+          "roe": 3.65,
+          "grossMargin": 13.223781835
+        }
+      ],
       "cn": {
         "label": "A股有色ETF",
         "symbol": "sh512400",
@@ -601,7 +1307,7 @@
         "previous": 1.903,
         "change": 0.014,
         "changePct": 0.74,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -637,6 +1343,67 @@
           "changePct": 0.44
         }
       ],
+      "news": [
+        {
+          "title": "化工ETF汇添富（159093）涨0.10%，半日成交额1272.45万元 - 新浪财经",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQUkNLV1pRWUlFWE1YVVAxNkZWek5JOU40X0FRNDlWTjZiM1ZMdmQ0eWVwUWdnMnVYTjc5QU8xb2tjRmo3U2E5c2FVVmQzUERZaURtZFdGNl95bFVtSzlOVF9xVm9QUUtWMGNlTUpXU2tLaGNpdmRsZjgzNmpoYkJTU29Wc2RySm1GLUd2eGpHUGxHNFdBd0NYUQ?oc=5",
+          "source": "新浪财经",
+          "publishedAt": "Thu, 06 Aug 2026 03:36:00 GMT"
+        },
+        {
+          "title": "化工ETF万家（159087）涨0.10%，半日成交额2240.53万元 - 搜狐网",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOMzlpQnlTYS00Yy1KT2ducTdKWXhvMmpPRjVnMFZtMFJ0TkxzSzdublRkR0poYUg2MjF4Um9mS2tUMi1odGVlTmtnRDd2d2pPMVJoek1FMVE2UXNnOGM2bm5sekhzZkN5TWd6SlhpSHEzdG5xVlhOenBIRW40ZGlLOTdEdjI3dDM1R3NreA?oc=5",
+          "source": "搜狐网",
+          "publishedAt": "Thu, 06 Aug 2026 03:36:05 GMT"
+        },
+        {
+          "title": "化工ETF汇添富（159093）涨0.10%，半日成交额1272.45万元 - 搜狐网",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNQldDaThXTjVINmgtY0JzVXRtUW9aZUdaczR0RjBXT0tRLTZJcnRtdWxnRXJsRjdxLTVHMi12OEE2NHpxU0FUd19rRnhiNWVFeVBhN2IxdktmVVhTNUpjV0ptaFc0emkwUjQ4Z1BMYldrdlNjdXRNUlBCYjNCRWhGM1E2NXNJUXhzblBTZg?oc=5",
+          "source": "搜狐网",
+          "publishedAt": "Thu, 06 Aug 2026 03:36:05 GMT"
+        },
+        {
+          "title": "化工ETF华泰柏瑞（561620）涨0.29%，半日成交额1506.03万元 - 搜狐网",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPSkVidElFamJzTmtiVi1SVzJYS0t6T0d3WWNxZ25scG9CeW5nazhEa1JpcTZrN2lka3pmenNVd2MyV1lVTFFQZDBTaWJURWVnREhaYzR3V3ZibFRPaTd4X0JkX1dFS3QxM0VNNWthTUtjTXFwVDgwaVFSV2ZUTVpMS3gzVjJTa285NUJuMQ?oc=5",
+          "source": "搜狐网",
+          "publishedAt": "Thu, 06 Aug 2026 03:36:05 GMT"
+        }
+      ],
+      "financials": [
+        {
+          "name": "万华化学",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 54052165361.36,
+          "revenueYoY": 25.504673217753,
+          "netProfit": 3717707873.93,
+          "netProfitYoY": 20.623880961541,
+          "roe": 3.38,
+          "grossMargin": 14.7280439014
+        },
+        {
+          "name": "巨化股份",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 6017793269.71,
+          "revenueYoY": 3.747931521961,
+          "netProfit": 1173009944.11,
+          "netProfitYoY": 45.926216010676,
+          "roe": 5.58,
+          "grossMargin": 34.3878472013
+        },
+        {
+          "name": "卫星化学",
+          "reportDate": "2026-03-31 00:00:00",
+          "reportType": "一季报",
+          "revenue": 12676889925.99,
+          "revenueYoY": 2.822005881337,
+          "netProfit": 2117004162.34,
+          "netProfitYoY": 34.972621447573,
+          "roe": 6.14,
+          "grossMargin": 24.3379426425
+        }
+      ],
       "cn": {
         "label": "A股化工ETF",
         "symbol": "sh516020",
@@ -645,7 +1412,7 @@
         "previous": 0.86,
         "change": 0.013,
         "changePct": 1.51,
-        "asOf": "2026-08-06 15:31",
+        "asOf": "2026-08-06 15:52",
         "session": "收盘"
       },
       "us": {
@@ -661,7 +1428,7 @@
       }
     }
   ],
-  "source": "腾讯行情",
+  "source": "腾讯行情、东方财富公开财报、公开新闻RSS",
   "aiModel": "Gemini 3.6 Flash",
-  "updatedAt": "2026-08-06T07:31:51.177Z"
+  "updatedAt": "2026-08-06T07:52:32.799Z"
 }

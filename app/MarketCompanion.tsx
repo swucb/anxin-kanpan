@@ -38,21 +38,14 @@ type GlobalSector = {
   cnSymbols: ComparisonSymbols;
 };
 
-type MacroItem = {
-  id: string;
-  name: string;
-  country: string;
-  value: number;
-  year: string;
-  unit: string;
-};
-
 type IndustryPulseItem = {
   id: string;
   name: string;
   summary: string;
   aiSummary?: string;
   aiUpdatedAt?: string;
+  news?: Array<{ title: string; url: string; source: string; publishedAt: string }>;
+  financials?: Array<{ name: string; reportDate: string; reportType: string }>;
   cn: { label: string; symbol: string; changePct: number; asOf: string; session: string };
   us: { label: string; symbol: string; changePct: number; asOf: string; session: string };
 };
@@ -80,7 +73,7 @@ const STATIC_DATA_ROOT = process.env.NEXT_PUBLIC_STATIC_DATA === "true"
   ? `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/data`
   : "/api";
 
-function dataEndpoint(name: "macro" | "industry-pulse" | "market"): string {
+function dataEndpoint(name: "industry-pulse" | "market"): string {
   return process.env.NEXT_PUBLIC_STATIC_DATA === "true"
     ? `${STATIC_DATA_ROOT}/${name}.json`
     : `${STATIC_DATA_ROOT}/${name}`;
@@ -94,7 +87,7 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
   const cleanSymbols = useMemo(() => symbols.map(([label, symbol]) => [label, symbol.split("|")[0]] as [string, string]), [symbols]);
   const [selected, setSelected] = useState(cleanSymbols[0]?.[1] ?? "");
   const [points, setPoints] = useState<TrendPoint[]>([]);
-  const [hourly, setHourly] = useState<TrendPoint[]>([]);
+  const [intraday, setIntraday] = useState<TrendPoint[]>([]);
   const [failed, setFailed] = useState(false);
   const [range, setRange] = useState<1 | 7 | 30 | 90>(1);
   const activeSymbol = cleanSymbols.some((item) => item[1] === selected) ? selected : cleanSymbols[0]?.[1] ?? "";
@@ -104,7 +97,7 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
     if (!activeSymbol) return;
     const controller = new AbortController();
     setPoints([]);
-    setHourly([]);
+    setIntraday([]);
     setFailed(false);
     fetch(`${historyEndpoint(activeSymbol)}?refresh=${Date.now()}`, { signal: controller.signal, cache: "no-store" })
       .then((response) => {
@@ -113,7 +106,7 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
       })
       .then((payload) => {
         setPoints(payload.points ?? []);
-        setHourly(payload.hourly ?? []);
+        setIntraday(payload.intraday ?? payload.hourly ?? []);
       })
       .catch((error) => {
         if (error instanceof DOMException && error.name === "AbortError") return;
@@ -122,21 +115,25 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
     return () => controller.abort();
   }, [activeSymbol]);
 
-  const hasHourly = range === 1 && hourly.length > 1;
-  const visiblePoints = range === 1 ? (hasHourly ? hourly : points.slice(-2)) : points.slice(-range);
+  const hasIntraday = range === 1 && intraday.length > 1;
+  const visiblePoints = range === 1 ? (hasIntraday ? intraday : points.slice(-2)) : points.slice(-range);
   const values = visiblePoints.map((point) => point.close);
   const minimum = Math.min(...values);
   const maximum = Math.max(...values);
-  const spread = Math.max(maximum - minimum, maximum * 0.01, 1);
+  const rawSpread = maximum - minimum;
+  const padding = Math.max(rawSpread * 0.12, Math.abs(maximum) * 0.0002, 0.000001);
+  const chartMinimum = minimum - padding;
+  const spread = Math.max(maximum + padding - chartMinimum, 0.000001);
   const coordinates = visiblePoints.map((point, index) => {
     const x = visiblePoints.length === 1 ? 200 : 12 + (index / (visiblePoints.length - 1)) * 376;
-    const y = 174 - ((point.close - minimum) / spread) * 150;
+    const y = 174 - ((point.close - chartMinimum) / spread) * 150;
     return `${x.toFixed(1)},${y.toFixed(1)}`;
   }).join(" ");
   const first = visiblePoints[0]?.close ?? 0;
   const latest = visiblePoints.at(-1)?.close ?? 0;
   const changePct = first ? ((latest - first) / first) * 100 : 0;
   const direction = changePct > 0 ? "up" : changePct < 0 ? "down" : "flat";
+  const tickIndexes = [...new Set([0, Math.round((visiblePoints.length - 1) / 3), Math.round(((visiblePoints.length - 1) * 2) / 3), visiblePoints.length - 1])].filter((index) => index >= 0);
 
   return (
     <div className="static-trend">
@@ -148,19 +145,19 @@ function StaticTrendWidget({ symbols }: { symbols: Array<[string, string]> }) {
         </div>
       )}
       <div className="trend-heading">
-        <div><strong>{activeLabel}</strong><span>{range === 1 ? (hasHourly ? "上一交易日 · 分小时" : "上一交易日 · 收盘变化") : `最近${range}个交易日`}</span></div>
+        <div><strong>{activeLabel}</strong><span>{range === 1 ? (hasIntraday ? "上一交易日 · 每15分钟" : "上一交易日 · 收盘变化") : `最近${range}个交易日`}</span></div>
         {points.length > 0 && <div className={direction}><strong>{latest.toLocaleString("zh-CN", { maximumFractionDigits: 2 })}</strong><span>{changePct > 0 ? "+" : ""}{changePct.toFixed(2)}%</span></div>}
       </div>
       <div className="range-tabs" role="group" aria-label="趋势周期">
-        {([1, 7, 30, 90] as const).map((days) => <button type="button" className={range === days ? "is-selected" : ""} aria-pressed={range === days} key={days} onClick={() => setRange(days)}>{days === 1 ? "1日·小时" : `${days}日`}</button>)}
+        {([1, 7, 30, 90] as const).map((days) => <button type="button" className={range === days ? "is-selected" : ""} aria-pressed={range === days} key={days} onClick={() => setRange(days)}>{days === 1 ? "1日·15分" : `${days}日`}</button>)}
       </div>
       {failed ? <div className="trend-loading">本次趋势暂未生成，请稍后刷新。</div> : points.length ? (
-        <svg className={`trend-chart ${direction}`} viewBox="0 0 400 190" role="img" aria-label={`${activeLabel}${range === 1 ? "上一交易日" : `最近${range}个交易日`}趋势`}>
+        <svg className={`trend-chart ${direction}`} viewBox="0 0 400 190" preserveAspectRatio="none" role="img" aria-label={`${activeLabel}${range === 1 ? "上一交易日" : `最近${range}个交易日`}趋势`}>
           <line x1="12" x2="388" y1="174" y2="174" />
           <polyline points={coordinates} />
         </svg>
       ) : <div className="trend-loading">正在加载趋势…</div>}
-      {visiblePoints.length > 0 && (hasHourly ? <div className="trend-hours">{visiblePoints.map((point) => <span key={point.date}>{point.date.slice(11)}</span>)}</div> : <div className="trend-dates"><span>{visiblePoints[0].date.slice(5)}</span><span>{visiblePoints.at(-1)?.date.slice(5)}</span></div>)}
+      {visiblePoints.length > 0 && (hasIntraday ? <div className="trend-hours">{tickIndexes.map((index) => <span key={visiblePoints[index].date}>{visiblePoints[index].date.slice(-5)}</span>)}</div> : <div className="trend-dates"><span>{visiblePoints[0].date.slice(5)}</span><span>{visiblePoints.at(-1)?.date.slice(5)}</span></div>)}
     </div>
   );
 }
@@ -779,41 +776,6 @@ function TradingViewWidget({
   );
 }
 
-function MacroData() {
-  const [items, setItems] = useState<MacroItem[]>([]);
-  const [failed, setFailed] = useState(false);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    fetch(dataEndpoint("macro"), { signal: controller.signal })
-      .then((response) => {
-        if (!response.ok) throw new Error("macro unavailable");
-        return response.json();
-      })
-      .then((payload) => setItems(payload.data ?? []))
-      .catch((error) => {
-        if (error instanceof DOMException && error.name === "AbortError") return;
-        setFailed(true);
-      });
-    return () => controller.abort();
-  }, []);
-
-  if (failed) return <p className="small-status">宏观数据暂时未加载。</p>;
-  if (!items.length) return <p className="small-status">加载宏观数据…</p>;
-
-  return (
-    <div className="macro-data-grid">
-      {items.map((item) => (
-        <article key={item.id}>
-          <span>{item.country} · {item.year}</span>
-          <strong>{item.value.toFixed(1)}{item.unit}</strong>
-          <p>{item.name}</p>
-        </article>
-      ))}
-    </div>
-  );
-}
-
 function IndustryPulse({ industryId }: { industryId: string }) {
   const [items, setItems] = useState<IndustryPulseItem[]>([]);
   const [failed, setFailed] = useState(false);
@@ -841,7 +803,11 @@ function IndustryPulse({ industryId }: { industryId: string }) {
     <article className="industry-pulse" aria-live="polite">
       <strong>上一交易日</strong>
       <p>{active.summary}</p>
-      {active.aiSummary && <div className="ai-analysis"><span>Gemini 数据归纳</span><p>{active.aiSummary}</p></div>}
+      {active.aiSummary && <div className="ai-analysis"><span>Gemini 新闻与财报归纳</span><p>{active.aiSummary}</p></div>}
+      {(active.news?.length || active.financials?.length) ? <div className="analysis-evidence">
+        {active.news?.slice(0, 2).map((item) => <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>新闻｜{item.title}</a>)}
+        {active.financials?.slice(0, 3).map((item) => <span key={`${item.name}-${item.reportDate}`}>财报｜{item.name} {item.reportType} {item.reportDate.slice(0, 10)}</span>)}
+      </div> : null}
       <footer>
         <span>A股 {active.cn.asOf.slice(0, 10)} {active.cn.session}</span>
         <span>美股 {active.us.asOf.slice(0, 10)} {active.us.session}</span>
@@ -1253,11 +1219,6 @@ export function MarketCompanion() {
             }}
           />}
 
-          <div className="subheading">
-            <h3>宏观数据</h3>
-            <a href="https://data.worldbank.org/" target="_blank" rel="noreferrer">世界银行</a>
-          </div>
-          <MacroData />
         </section>
       )}
 

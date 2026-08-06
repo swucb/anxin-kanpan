@@ -298,7 +298,7 @@ a:focus-visible {
 }
 .range-tabs button.is-selected { background: #eef1f2; }
 
-.trend-chart { display: block; width: 100%; height: auto; padding: 2px 8px 0; }
+.trend-chart { display: block; width: 100%; height: clamp(220px, 30vw, 340px); padding: 2px 8px 0; }
 .trend-chart line { stroke: #e8e2d7; stroke-width: 1; }
 .trend-chart polyline { fill: none; stroke: #3478d4; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 .trend-chart.up polyline { stroke: #b33d35; }
@@ -314,6 +314,17 @@ a:focus-visible {
 }
 .ai-analysis span { color: #9b6a1e; font-size: 0.72rem; font-weight: 800; }
 .ai-analysis p { margin: 7px 0 0; }
+.analysis-evidence {
+  display: grid;
+  gap: 7px;
+  margin: 0 0 12px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  background: #f6f2e9;
+  color: var(--soft);
+  font-size: 0.68rem;
+}
+.analysis-evidence a { color: #426c85; text-decoration: none; }
 
 .company-search-wrap {
   position: relative;
