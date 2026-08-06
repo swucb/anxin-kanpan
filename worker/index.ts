@@ -2,6 +2,7 @@
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
 import { handleMacroApi } from "./macro-data";
+import { handleIndustryPulseApi } from "./industry-pulse";
 
 interface Env {
   ASSETS: Fetcher;
@@ -32,6 +33,9 @@ const worker = {
 
     const apiResponse = await handleMacroApi(request);
     if (apiResponse) return apiResponse;
+
+    const industryPulseResponse = await handleIndustryPulseApi(request);
+    if (industryPulseResponse) return industryPulseResponse;
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];

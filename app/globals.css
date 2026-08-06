@@ -189,7 +189,7 @@ a:focus-visible {
 
 .section-heading > span,
 .subheading > span,
-.selected-title > span {
+.selected-title > div > span {
   flex: 0 0 auto;
   padding: 5px 10px;
   border-radius: 999px;
@@ -341,6 +341,55 @@ a:focus-visible {
   margin: 12px 0;
 }
 
+.company-personal {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 16px 2px 18px;
+}
+
+.company-list-block {
+  min-width: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.company-list-heading {
+  display: flex;
+  min-height: 28px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.company-list-heading h3 {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.company-list-heading button {
+  min-height: 34px;
+  padding: 3px 9px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--soft);
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 750;
+}
+
+.company-list-block .quick-picks {
+  margin: 7px 0 0;
+}
+
+.company-list-empty {
+  min-height: 40px;
+  margin: 7px 0 0;
+  color: var(--soft);
+  font-size: 0.74rem;
+}
+
 .choice-row {
   margin: 0 0 14px;
 }
@@ -396,8 +445,79 @@ a:focus-visible {
   margin: 0 2px 10px;
 }
 
+.selected-title > div {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
 .selected-title h3 {
   font-size: 1.35rem;
+}
+
+.favorite-toggle {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 7px 13px;
+  border: 1px solid var(--brand);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--brand);
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.favorite-toggle[aria-pressed="true"] {
+  background: var(--brand);
+  color: white;
+}
+
+.industry-pulse,
+.industry-pulse-status {
+  margin: 0 0 14px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.industry-pulse {
+  padding: 16px 18px 13px;
+}
+
+.industry-pulse > strong {
+  color: var(--gold);
+  font-size: 0.74rem;
+}
+
+.industry-pulse p {
+  margin: 6px 0 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.industry-pulse footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 13px;
+  color: var(--soft);
+  font-size: 0.65rem;
+}
+
+.industry-pulse footer a {
+  color: #426c85;
+  text-decoration: none;
+}
+
+.industry-pulse-status {
+  min-height: 92px;
+  padding: 30px 18px;
+  color: var(--soft);
+  font-size: 0.78rem;
+  text-align: center;
 }
 
 .widget-grid {
@@ -596,6 +716,40 @@ a:focus-visible {
     min-height: 38px;
     padding: 5px 11px;
     font-size: 0.72rem;
+  }
+
+  .company-personal {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .selected-title {
+    align-items: flex-start;
+  }
+
+  .selected-title > div {
+    display: grid;
+    gap: 3px;
+  }
+
+  .selected-title > div > span {
+    width: fit-content;
+  }
+
+  .favorite-toggle {
+    min-height: 42px;
+    padding-right: 11px;
+    padding-left: 11px;
+    font-size: 0.7rem;
+  }
+
+  .industry-pulse {
+    padding: 14px 14px 12px;
+  }
+
+  .industry-pulse p {
+    font-size: 0.9rem;
   }
 
   .selected-title h3 {

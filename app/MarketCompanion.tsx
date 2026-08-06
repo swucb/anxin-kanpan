@@ -39,6 +39,23 @@ type MacroItem = {
   unit: string;
 };
 
+type IndustryPulseItem = {
+  id: string;
+  name: string;
+  summary: string;
+  cn: { label: string; symbol: string; changePct: number; asOf: string; session: string };
+  us: { label: string; symbol: string; changePct: number; asOf: string; session: string };
+};
+
+type CompanyPreferences = {
+  version: 1;
+  favorites: StockOption[];
+  recents: StockOption[];
+};
+
+const COMPANY_PREFS_KEY = "anxin-company-prefs-v1";
+const MAX_SAVED_COMPANIES = 8;
+
 const navItems: Array<{ id: Tab; label: string }> = [
   { id: "today", label: "A股" },
   { id: "company", label: "公司" },
@@ -439,6 +456,54 @@ function MacroData() {
   );
 }
 
+function IndustryPulse({ industryId }: { industryId: string }) {
+  const [items, setItems] = useState<IndustryPulseItem[]>([]);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/api/industry-pulse", { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("industry pulse unavailable");
+        return response.json();
+      })
+      .then((payload) => setItems(payload.data ?? []))
+      .catch((error) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setFailed(true);
+      });
+    return () => controller.abort();
+  }, []);
+
+  const active = items.find((item) => item.id === industryId);
+  if (failed) return <p className="industry-pulse-status">今日对比暂时未加载，图表仍可查看。</p>;
+  if (!active) return <p className="industry-pulse-status">正在生成今日对比…</p>;
+
+  return (
+    <article className="industry-pulse" aria-live="polite">
+      <strong>今日一句</strong>
+      <p>{active.summary}</p>
+      <footer>
+        <span>A股 {active.cn.asOf.slice(0, 10)} {active.cn.session}</span>
+        <span>美股 {active.us.asOf.slice(0, 10)} {active.us.session}</span>
+        <a href="https://gu.qq.com/" target="_blank" rel="noreferrer">腾讯行情</a>
+      </footer>
+    </article>
+  );
+}
+
+function isStoredStock(value: unknown): value is StockOption {
+  if (!value || typeof value !== "object") return false;
+  const stock = value as Partial<StockOption>;
+  return typeof stock.name === "string"
+    && stock.name.length > 0
+    && stock.name.length <= 24
+    && typeof stock.code === "string"
+    && /^\d{6}$/.test(stock.code)
+    && typeof stock.symbol === "string"
+    && /^(SSE|SZSE):\d{6}$/.test(stock.symbol);
+}
+
 function stockFromInput(value: string): StockOption | null {
   const normalized = value.trim().replace(/\s+/g, "");
   const known = companies.find((item) => item.name === normalized || item.code === normalized);
@@ -461,6 +526,9 @@ export function MarketCompanion() {
   const [selectedCompany, setSelectedCompany] = useState(companies[0]);
   const [companyError, setCompanyError] = useState("");
   const [companySearchOpen, setCompanySearchOpen] = useState(false);
+  const [favorites, setFavorites] = useState<StockOption[]>([]);
+  const [recents, setRecents] = useState<StockOption[]>([]);
+  const [companyPrefsReady, setCompanyPrefsReady] = useState(false);
   const [industryId, setIndustryId] = useState(industries[0].id);
   const [globalSectorId, setGlobalSectorId] = useState(globalSectors[0].id);
 
@@ -479,6 +547,37 @@ export function MarketCompanion() {
     window.localStorage.setItem("anxin-large-type", String(largeType));
   }, [largeType, typeReady]);
 
+  useEffect(() => {
+    let savedFavorites: StockOption[] = [];
+    let savedRecents: StockOption[] = [];
+    try {
+      const stored = JSON.parse(window.localStorage.getItem(COMPANY_PREFS_KEY) ?? "null") as Partial<CompanyPreferences> | null;
+      if (stored?.version === 1) {
+        savedFavorites = Array.isArray(stored.favorites) ? stored.favorites.filter(isStoredStock).slice(0, MAX_SAVED_COMPANIES) : [];
+        savedRecents = Array.isArray(stored.recents) ? stored.recents.filter(isStoredStock).slice(0, MAX_SAVED_COMPANIES) : [];
+      }
+    } catch {
+      // Ignore damaged device-local preferences and start with an empty list.
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      setFavorites(savedFavorites);
+      setRecents(savedRecents);
+      setCompanyPrefsReady(true);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    if (!companyPrefsReady) return;
+    const preferences: CompanyPreferences = { version: 1, favorites, recents };
+    try {
+      window.localStorage.setItem(COMPANY_PREFS_KEY, JSON.stringify(preferences));
+    } catch {
+      // The site remains usable when a browser blocks device-local storage.
+    }
+  }, [companyPrefsReady, favorites, recents]);
+
   const activeIndustry = useMemo(
     () => industries.find((item) => item.id === industryId) ?? industries[0],
     [industryId],
@@ -486,11 +585,22 @@ export function MarketCompanion() {
 
   const companyMatches = useMemo(() => {
     const query = companyInput.trim().replace(/\s+/g, "").toLowerCase();
-    if (!query) return featuredCompanies.slice(0, 6);
+    if (!query) {
+      return [...favorites, ...recents, ...featuredCompanies]
+        .filter((item, index, list) => list.findIndex((candidate) => candidate.code === item.code) === index)
+        .slice(0, 6);
+    }
     return companies
       .filter((item) => item.name.toLowerCase().includes(query) || item.code.includes(query))
       .slice(0, 6);
-  }, [companyInput]);
+  }, [companyInput, favorites, recents]);
+
+  const visibleRecents = useMemo(
+    () => recents.filter((stock) => !favorites.some((favorite) => favorite.code === stock.code)),
+    [favorites, recents],
+  );
+
+  const selectedIsFavorite = favorites.some((stock) => stock.code === selectedCompany.code);
 
   const activeGlobalSector = useMemo(
     () => globalSectors.find((item) => item.id === globalSectorId) ?? globalSectors[0],
@@ -509,10 +619,11 @@ export function MarketCompanion() {
       setCompanyError("请选择搜索结果，或输入 6 位股票代码。");
       return;
     }
-    setSelectedCompany(stock);
-    setCompanyInput(stock.name);
-    setCompanyError("");
-    setCompanySearchOpen(false);
+    chooseCompany(stock);
+  }
+
+  function rememberCompany(stock: StockOption) {
+    setRecents((current) => [stock, ...current.filter((item) => item.code !== stock.code)].slice(0, MAX_SAVED_COMPANIES));
   }
 
   function chooseCompany(stock: StockOption) {
@@ -520,6 +631,14 @@ export function MarketCompanion() {
     setCompanyInput(stock.name);
     setCompanyError("");
     setCompanySearchOpen(false);
+    rememberCompany(stock);
+  }
+
+  function toggleFavorite(stock: StockOption) {
+    setFavorites((current) => current.some((item) => item.code === stock.code)
+      ? current.filter((item) => item.code !== stock.code)
+      : [stock, ...current.filter((item) => item.code !== stock.code)].slice(0, MAX_SAVED_COMPANIES));
+    rememberCompany(stock);
   }
 
   return (
@@ -631,12 +750,41 @@ export function MarketCompanion() {
           </div>
           {companyError && <p className="form-error" role="alert">{companyError}</p>}
 
-          <div className="quick-picks" aria-label="常用公司">
-            {featuredCompanies.map((stock) => (
-              <button type="button" key={stock.code} className={stock.code === selectedCompany.code ? "is-selected" : ""} onClick={() => chooseCompany(stock)}>
-                {stock.name}
-              </button>
-            ))}
+          <div className="company-personal">
+            <section className="company-list-block" aria-labelledby="favorites-title">
+              <div className="company-list-heading">
+                <h3 id="favorites-title">我的常用</h3>
+              </div>
+              {companyPrefsReady && favorites.length > 0 ? (
+                <div className="quick-picks">
+                  {favorites.map((stock) => (
+                    <button type="button" key={stock.code} className={stock.code === selectedCompany.code ? "is-selected" : ""} onClick={() => chooseCompany(stock)}>
+                      {stock.name}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <p className="company-list-empty">查看公司后，可加入常用。</p>
+              )}
+            </section>
+
+            <section className="company-list-block" aria-labelledby="recents-title">
+              <div className="company-list-heading">
+                <h3 id="recents-title">最近查看</h3>
+                {visibleRecents.length > 0 && <button type="button" onClick={() => setRecents([])}>清空</button>}
+              </div>
+              {companyPrefsReady && visibleRecents.length > 0 ? (
+                <div className="quick-picks">
+                  {visibleRecents.map((stock) => (
+                    <button type="button" key={stock.code} className={stock.code === selectedCompany.code ? "is-selected" : ""} onClick={() => chooseCompany(stock)}>
+                      {stock.name}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <p className="company-list-empty">还没有查看记录。</p>
+              )}
+            </section>
           </div>
 
           <div className="company-directory">
@@ -662,8 +810,13 @@ export function MarketCompanion() {
           </div>
 
           <div className="selected-title">
-            <h3>{selectedCompany.name}</h3>
-            <span>{selectedCompany.code}</span>
+            <div>
+              <h3>{selectedCompany.name}</h3>
+              <span>{selectedCompany.code}</span>
+            </div>
+            <button type="button" className="favorite-toggle" aria-pressed={selectedIsFavorite} onClick={() => toggleFavorite(selectedCompany)}>
+              {selectedIsFavorite ? "移出常用" : "加入常用"}
+            </button>
           </div>
 
           <TradingViewWidget
@@ -736,6 +889,8 @@ export function MarketCompanion() {
               ))}
             </select>
           </div>
+
+          <IndustryPulse industryId={industryId} />
 
           <TradingViewWidget
             key={`industry-${activeIndustry.id}`}
