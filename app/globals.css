@@ -39,7 +39,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -49,6 +50,7 @@ button {
 
 button:focus-visible,
 input:focus-visible,
+select:focus-visible,
 a:focus-visible {
   outline: 3px solid rgba(169, 118, 38, 0.55);
   outline-offset: 3px;
@@ -234,6 +236,11 @@ a:focus-visible {
   font-weight: 800;
 }
 
+.company-search-wrap {
+  position: relative;
+  z-index: 5;
+}
+
 .company-search {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -271,6 +278,52 @@ a:focus-visible {
   font-weight: 850;
 }
 
+.company-suggestions {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 7px);
+  right: 0;
+  left: 0;
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--card);
+  box-shadow: 0 14px 32px rgba(24, 48, 46, 0.16);
+}
+
+.company-suggestions button {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+  cursor: pointer;
+  text-align: left;
+}
+
+.company-suggestions button:last-child {
+  border-bottom: 0;
+}
+
+.company-suggestions button:hover,
+.company-suggestions button[aria-selected="true"] {
+  background: var(--brand-soft);
+}
+
+.company-suggestions strong {
+  font-size: 0.84rem;
+}
+
+.company-suggestions span {
+  color: var(--soft);
+  font-size: 0.72rem;
+}
+
 .form-error {
   margin: 8px 4px 0;
   color: var(--danger);
@@ -285,7 +338,7 @@ a:focus-visible {
 }
 
 .quick-picks {
-  margin: 12px 0 24px;
+  margin: 12px 0;
 }
 
 .choice-row {
@@ -310,6 +363,33 @@ a:focus-visible {
   border-color: var(--brand);
   background: var(--brand);
   color: white;
+}
+
+.company-directory,
+.industry-picker {
+  margin-bottom: 20px;
+}
+
+.company-directory label,
+.industry-picker label {
+  display: block;
+  margin: 0 0 7px 3px;
+  color: var(--soft);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.company-directory select,
+.industry-picker select {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 750;
 }
 
 .selected-title {
@@ -491,7 +571,24 @@ a:focus-visible {
   }
 
   .quick-picks {
-    margin-bottom: 18px;
+    margin-bottom: 12px;
+  }
+
+  .company-suggestions button {
+    min-height: 50px;
+    padding-right: 13px;
+    padding-left: 13px;
+  }
+
+  .company-directory,
+  .industry-picker {
+    margin-bottom: 16px;
+  }
+
+  .company-directory select,
+  .industry-picker select {
+    min-height: 50px;
+    font-size: 0.8rem;
   }
 
   .quick-picks button,

@@ -10,6 +10,11 @@ type StockOption = {
   symbol: string;
 };
 
+type CompanyGroup = {
+  name: string;
+  items: StockOption[];
+};
+
 type IndustryOption = {
   id: string;
   name: string;
@@ -41,30 +46,146 @@ const navItems: Array<{ id: Tab; label: string }> = [
   { id: "global", label: "美股" },
 ];
 
-const companies: StockOption[] = [
-  { name: "贵州茅台", code: "600519", symbol: "SSE:600519" },
-  { name: "宁德时代", code: "300750", symbol: "SZSE:300750" },
-  { name: "招商银行", code: "600036", symbol: "SSE:600036" },
-  { name: "美的集团", code: "000333", symbol: "SZSE:000333" },
-  { name: "比亚迪", code: "002594", symbol: "SZSE:002594" },
-  { name: "中国平安", code: "601318", symbol: "SSE:601318" },
-  { name: "五粮液", code: "000858", symbol: "SZSE:000858" },
-  { name: "格力电器", code: "000651", symbol: "SZSE:000651" },
-  { name: "恒瑞医药", code: "600276", symbol: "SSE:600276" },
-  { name: "迈瑞医疗", code: "300760", symbol: "SZSE:300760" },
-  { name: "中芯国际", code: "688981", symbol: "SSE:688981" },
-  { name: "长江电力", code: "600900", symbol: "SSE:600900" },
+const companyGroups: CompanyGroup[] = [
+  {
+    name: "消费食品",
+    items: [
+      { name: "贵州茅台", code: "600519", symbol: "SSE:600519" },
+      { name: "五粮液", code: "000858", symbol: "SZSE:000858" },
+      { name: "泸州老窖", code: "000568", symbol: "SZSE:000568" },
+      { name: "伊利股份", code: "600887", symbol: "SSE:600887" },
+      { name: "山西汾酒", code: "600809", symbol: "SSE:600809" },
+      { name: "海天味业", code: "603288", symbol: "SSE:603288" },
+      { name: "双汇发展", code: "000895", symbol: "SZSE:000895" },
+      { name: "青岛啤酒", code: "600600", symbol: "SSE:600600" },
+      { name: "牧原股份", code: "002714", symbol: "SZSE:002714" },
+    ],
+  },
+  {
+    name: "金融",
+    items: [
+      { name: "招商银行", code: "600036", symbol: "SSE:600036" },
+      { name: "工商银行", code: "601398", symbol: "SSE:601398" },
+      { name: "农业银行", code: "601288", symbol: "SSE:601288" },
+      { name: "建设银行", code: "601939", symbol: "SSE:601939" },
+      { name: "兴业银行", code: "601166", symbol: "SSE:601166" },
+      { name: "中国平安", code: "601318", symbol: "SSE:601318" },
+      { name: "中国太保", code: "601601", symbol: "SSE:601601" },
+      { name: "中信证券", code: "600030", symbol: "SSE:600030" },
+      { name: "东方财富", code: "300059", symbol: "SZSE:300059" },
+      { name: "华泰证券", code: "601688", symbol: "SSE:601688" },
+    ],
+  },
+  {
+    name: "汽车新能源",
+    items: [
+      { name: "宁德时代", code: "300750", symbol: "SZSE:300750" },
+      { name: "比亚迪", code: "002594", symbol: "SZSE:002594" },
+      { name: "隆基绿能", code: "601012", symbol: "SSE:601012" },
+      { name: "阳光电源", code: "300274", symbol: "SZSE:300274" },
+      { name: "通威股份", code: "600438", symbol: "SSE:600438" },
+      { name: "亿纬锂能", code: "300014", symbol: "SZSE:300014" },
+      { name: "上汽集团", code: "600104", symbol: "SSE:600104" },
+      { name: "长安汽车", code: "000625", symbol: "SZSE:000625" },
+    ],
+  },
+  {
+    name: "科技通信",
+    items: [
+      { name: "中芯国际", code: "688981", symbol: "SSE:688981" },
+      { name: "寒武纪", code: "688256", symbol: "SSE:688256" },
+      { name: "北方华创", code: "002371", symbol: "SZSE:002371" },
+      { name: "韦尔股份", code: "603501", symbol: "SSE:603501" },
+      { name: "海光信息", code: "688041", symbol: "SSE:688041" },
+      { name: "科大讯飞", code: "002230", symbol: "SZSE:002230" },
+      { name: "金山办公", code: "688111", symbol: "SSE:688111" },
+      { name: "海康威视", code: "002415", symbol: "SZSE:002415" },
+      { name: "立讯精密", code: "002475", symbol: "SZSE:002475" },
+      { name: "工业富联", code: "601138", symbol: "SSE:601138" },
+      { name: "中国移动", code: "600941", symbol: "SSE:600941" },
+      { name: "中国联通", code: "600050", symbol: "SSE:600050" },
+      { name: "中兴通讯", code: "000063", symbol: "SZSE:000063" },
+      { name: "中际旭创", code: "300308", symbol: "SZSE:300308" },
+    ],
+  },
+  {
+    name: "医药医疗",
+    items: [
+      { name: "恒瑞医药", code: "600276", symbol: "SSE:600276" },
+      { name: "迈瑞医疗", code: "300760", symbol: "SZSE:300760" },
+      { name: "云南白药", code: "000538", symbol: "SZSE:000538" },
+      { name: "药明康德", code: "603259", symbol: "SSE:603259" },
+      { name: "爱尔眼科", code: "300015", symbol: "SZSE:300015" },
+      { name: "片仔癀", code: "600436", symbol: "SSE:600436" },
+    ],
+  },
+  {
+    name: "家电制造军工",
+    items: [
+      { name: "美的集团", code: "000333", symbol: "SZSE:000333" },
+      { name: "格力电器", code: "000651", symbol: "SZSE:000651" },
+      { name: "海尔智家", code: "600690", symbol: "SSE:600690" },
+      { name: "三一重工", code: "600031", symbol: "SSE:600031" },
+      { name: "汇川技术", code: "300124", symbol: "SZSE:300124" },
+      { name: "中国中车", code: "601766", symbol: "SSE:601766" },
+      { name: "中国船舶", code: "600150", symbol: "SSE:600150" },
+      { name: "航发动力", code: "600893", symbol: "SSE:600893" },
+      { name: "中航沈飞", code: "600760", symbol: "SSE:600760" },
+      { name: "京东方A", code: "000725", symbol: "SZSE:000725" },
+    ],
+  },
+  {
+    name: "能源资源化工",
+    items: [
+      { name: "中国石油", code: "601857", symbol: "SSE:601857" },
+      { name: "中国石化", code: "600028", symbol: "SSE:600028" },
+      { name: "中国神华", code: "601088", symbol: "SSE:601088" },
+      { name: "陕西煤业", code: "601225", symbol: "SSE:601225" },
+      { name: "兖矿能源", code: "600188", symbol: "SSE:600188" },
+      { name: "紫金矿业", code: "601899", symbol: "SSE:601899" },
+      { name: "洛阳钼业", code: "603993", symbol: "SSE:603993" },
+      { name: "北方稀土", code: "600111", symbol: "SSE:600111" },
+      { name: "江西铜业", code: "600362", symbol: "SSE:600362" },
+      { name: "长江电力", code: "600900", symbol: "SSE:600900" },
+      { name: "中国核电", code: "601985", symbol: "SSE:601985" },
+      { name: "三峡能源", code: "600905", symbol: "SSE:600905" },
+      { name: "华能水电", code: "600025", symbol: "SSE:600025" },
+      { name: "万华化学", code: "600309", symbol: "SSE:600309" },
+      { name: "盐湖股份", code: "000792", symbol: "SZSE:000792" },
+      { name: "巨化股份", code: "600160", symbol: "SSE:600160" },
+    ],
+  },
+  {
+    name: "地产基建物流",
+    items: [
+      { name: "万科A", code: "000002", symbol: "SZSE:000002" },
+      { name: "保利发展", code: "600048", symbol: "SSE:600048" },
+      { name: "招商蛇口", code: "001979", symbol: "SZSE:001979" },
+      { name: "中国建筑", code: "601668", symbol: "SSE:601668" },
+      { name: "海螺水泥", code: "600585", symbol: "SSE:600585" },
+      { name: "顺丰控股", code: "002352", symbol: "SZSE:002352" },
+      { name: "中国中免", code: "601888", symbol: "SSE:601888" },
+    ],
+  },
 ];
+
+const companies = companyGroups.flatMap((group) => group.items);
+
+const featuredCompanies = ["600519", "300750", "600036", "000333", "002594", "601318", "688981", "600900"]
+  .flatMap((code) => {
+    const company = companies.find((item) => item.code === code);
+    return company ? [company] : [];
+  });
 
 const industries: IndustryOption[] = [
   {
     id: "consumer",
-    name: "消费白酒",
+    name: "消费",
     symbols: [
-      ["酒类ETF", "SSE:512690|12M"],
+      ["消费ETF", "SZSE:159928|12M"],
+      ["伊利股份", "SSE:600887|12M"],
       ["贵州茅台", "SSE:600519|12M"],
       ["五粮液", "SZSE:000858|12M"],
-      ["泸州老窖", "SZSE:000568|12M"],
     ],
   },
   {
@@ -78,6 +199,16 @@ const industries: IndustryOption[] = [
     ],
   },
   {
+    id: "brokerage",
+    name: "券商",
+    symbols: [
+      ["券商ETF", "SSE:512880|12M"],
+      ["东方财富", "SZSE:300059|12M"],
+      ["中信证券", "SSE:600030|12M"],
+      ["华泰证券", "SSE:601688|12M"],
+    ],
+  },
+  {
     id: "chips",
     name: "半导体",
     symbols: [
@@ -85,6 +216,46 @@ const industries: IndustryOption[] = [
       ["中芯国际", "SSE:688981|12M"],
       ["韦尔股份", "SSE:603501|12M"],
       ["北方华创", "SZSE:002371|12M"],
+    ],
+  },
+  {
+    id: "ai",
+    name: "人工智能",
+    symbols: [
+      ["人工智能ETF", "SZSE:159819|12M"],
+      ["科大讯飞", "SZSE:002230|12M"],
+      ["寒武纪", "SSE:688256|12M"],
+      ["金山办公", "SSE:688111|12M"],
+    ],
+  },
+  {
+    id: "communication",
+    name: "通信",
+    symbols: [
+      ["通信ETF", "SSE:515880|12M"],
+      ["中兴通讯", "SZSE:000063|12M"],
+      ["工业富联", "SSE:601138|12M"],
+      ["中际旭创", "SZSE:300308|12M"],
+    ],
+  },
+  {
+    id: "new-energy",
+    name: "新能源车",
+    symbols: [
+      ["新能源车ETF", "SSE:515030|12M"],
+      ["宁德时代", "SZSE:300750|12M"],
+      ["比亚迪", "SZSE:002594|12M"],
+      ["亿纬锂能", "SZSE:300014|12M"],
+    ],
+  },
+  {
+    id: "solar",
+    name: "光伏",
+    symbols: [
+      ["光伏ETF", "SSE:515790|12M"],
+      ["特变电工", "SSE:600089|12M"],
+      ["隆基绿能", "SSE:601012|12M"],
+      ["阳光电源", "SZSE:300274|12M"],
     ],
   },
   {
@@ -105,6 +276,56 @@ const industries: IndustryOption[] = [
       ["美的集团", "SZSE:000333|12M"],
       ["格力电器", "SZSE:000651|12M"],
       ["海尔智家", "SSE:600690|12M"],
+    ],
+  },
+  {
+    id: "defense",
+    name: "军工",
+    symbols: [
+      ["军工ETF", "SSE:512660|12M"],
+      ["中国船舶", "SSE:600150|12M"],
+      ["航发动力", "SSE:600893|12M"],
+      ["中航沈飞", "SSE:600760|12M"],
+    ],
+  },
+  {
+    id: "power",
+    name: "电力",
+    symbols: [
+      ["电力ETF", "SZSE:159611|12M"],
+      ["长江电力", "SSE:600900|12M"],
+      ["中国核电", "SSE:601985|12M"],
+      ["三峡能源", "SSE:600905|12M"],
+    ],
+  },
+  {
+    id: "coal",
+    name: "煤炭",
+    symbols: [
+      ["煤炭ETF", "SSE:515220|12M"],
+      ["中国神华", "SSE:601088|12M"],
+      ["陕西煤业", "SSE:601225|12M"],
+      ["兖矿能源", "SSE:600188|12M"],
+    ],
+  },
+  {
+    id: "metals",
+    name: "有色金属",
+    symbols: [
+      ["有色ETF", "SSE:512400|12M"],
+      ["紫金矿业", "SSE:601899|12M"],
+      ["洛阳钼业", "SSE:603993|12M"],
+      ["北方稀土", "SSE:600111|12M"],
+    ],
+  },
+  {
+    id: "chemical",
+    name: "化工",
+    symbols: [
+      ["化工ETF", "SSE:516020|12M"],
+      ["万华化学", "SSE:600309|12M"],
+      ["盐湖股份", "SZSE:000792|12M"],
+      ["巨化股份", "SSE:600160|12M"],
     ],
   },
 ];
@@ -223,6 +444,9 @@ function stockFromInput(value: string): StockOption | null {
   const known = companies.find((item) => item.name === normalized || item.code === normalized);
   if (known) return known;
 
+  const nameMatches = companies.filter((item) => item.name.includes(normalized));
+  if (normalized && nameMatches.length === 1) return nameMatches[0];
+
   const code = normalized.match(/\d{6}/)?.[0];
   if (!code) return null;
   const exchange = /^[569]/.test(code) ? "SSE" : "SZSE";
@@ -236,6 +460,7 @@ export function MarketCompanion() {
   const [companyInput, setCompanyInput] = useState("贵州茅台");
   const [selectedCompany, setSelectedCompany] = useState(companies[0]);
   const [companyError, setCompanyError] = useState("");
+  const [companySearchOpen, setCompanySearchOpen] = useState(false);
   const [industryId, setIndustryId] = useState(industries[0].id);
   const [globalSectorId, setGlobalSectorId] = useState(globalSectors[0].id);
 
@@ -259,6 +484,14 @@ export function MarketCompanion() {
     [industryId],
   );
 
+  const companyMatches = useMemo(() => {
+    const query = companyInput.trim().replace(/\s+/g, "").toLowerCase();
+    if (!query) return featuredCompanies.slice(0, 6);
+    return companies
+      .filter((item) => item.name.toLowerCase().includes(query) || item.code.includes(query))
+      .slice(0, 6);
+  }, [companyInput]);
+
   const activeGlobalSector = useMemo(
     () => globalSectors.find((item) => item.id === globalSectorId) ?? globalSectors[0],
     [globalSectorId],
@@ -273,18 +506,20 @@ export function MarketCompanion() {
     event.preventDefault();
     const stock = stockFromInput(companyInput);
     if (!stock) {
-      setCompanyError("请输入 6 位股票代码，或点击常用公司。");
+      setCompanyError("请选择搜索结果，或输入 6 位股票代码。");
       return;
     }
     setSelectedCompany(stock);
     setCompanyInput(stock.name);
     setCompanyError("");
+    setCompanySearchOpen(false);
   }
 
   function chooseCompany(stock: StockOption) {
     setSelectedCompany(stock);
     setCompanyInput(stock.name);
     setCompanyError("");
+    setCompanySearchOpen(false);
   }
 
   return (
@@ -349,24 +584,81 @@ export function MarketCompanion() {
             <span>A股 · 收盘数据</span>
           </div>
 
-          <form className="company-search" onSubmit={submitCompany} role="search">
-            <input
-              aria-label="企业名称或股票代码"
-              value={companyInput}
-              onChange={(event) => setCompanyInput(event.target.value)}
-              placeholder="企业名称或 6 位代码"
-              autoComplete="off"
-            />
-            <button type="submit">查看</button>
-          </form>
+          <div
+            className="company-search-wrap"
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node)) setCompanySearchOpen(false);
+            }}
+          >
+            <form className="company-search" onSubmit={submitCompany} role="search">
+              <input
+                aria-label="企业名称或股票代码"
+                aria-autocomplete="list"
+                aria-controls="company-suggestions"
+                aria-expanded={companySearchOpen && companyMatches.length > 0}
+                role="combobox"
+                value={companyInput}
+                onChange={(event) => {
+                  setCompanyInput(event.target.value);
+                  setCompanyError("");
+                  setCompanySearchOpen(true);
+                }}
+                onFocus={() => setCompanySearchOpen(true)}
+                onKeyDown={(event) => {
+                  if (event.key === "Escape") setCompanySearchOpen(false);
+                }}
+                placeholder="企业名称或 6 位代码"
+                autoComplete="off"
+              />
+              <button type="submit">查看</button>
+            </form>
+            {companySearchOpen && companyMatches.length > 0 && (
+              <div id="company-suggestions" className="company-suggestions" role="listbox" aria-label="公司搜索结果">
+                {companyMatches.map((stock) => (
+                  <button
+                    type="button"
+                    role="option"
+                    aria-selected={stock.code === selectedCompany.code}
+                    key={stock.code}
+                    onClick={() => chooseCompany(stock)}
+                  >
+                    <strong>{stock.name}</strong>
+                    <span>{stock.code}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           {companyError && <p className="form-error" role="alert">{companyError}</p>}
 
           <div className="quick-picks" aria-label="常用公司">
-            {companies.slice(0, 8).map((stock) => (
+            {featuredCompanies.map((stock) => (
               <button type="button" key={stock.code} className={stock.code === selectedCompany.code ? "is-selected" : ""} onClick={() => chooseCompany(stock)}>
                 {stock.name}
               </button>
             ))}
+          </div>
+
+          <div className="company-directory">
+            <label htmlFor="company-directory-select">全部公司（{companies.length}家）</label>
+            <select
+              id="company-directory-select"
+              aria-label={`全部公司，共 ${companies.length} 家`}
+              value={companies.some((stock) => stock.code === selectedCompany.code) ? selectedCompany.code : ""}
+              onChange={(event) => {
+                const stock = companies.find((item) => item.code === event.target.value);
+                if (stock) chooseCompany(stock);
+              }}
+            >
+              <option value="">选择公司</option>
+              {companyGroups.map((group) => (
+                <optgroup key={group.name} label={group.name}>
+                  {group.items.map((stock) => (
+                    <option key={stock.code} value={stock.code}>{stock.name} · {stock.code}</option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
           </div>
 
           <div className="selected-title">
@@ -433,15 +725,16 @@ export function MarketCompanion() {
         <section className="page-section" aria-labelledby="industry-title">
           <div className="section-heading">
             <h2 id="industry-title">行业对比</h2>
-            <span>ETF + 代表公司</span>
+            <span>{industries.length}个行业</span>
           </div>
 
-          <div className="choice-row" role="group" aria-label="选择行业">
-            {industries.map((industry) => (
-              <button type="button" key={industry.id} className={industry.id === industryId ? "is-selected" : ""} aria-pressed={industry.id === industryId} onClick={() => setIndustryId(industry.id)}>
-                {industry.name}
-              </button>
-            ))}
+          <div className="industry-picker">
+            <label htmlFor="industry-select">选择行业</label>
+            <select id="industry-select" value={industryId} onChange={(event) => setIndustryId(event.target.value)}>
+              {industries.map((industry) => (
+                <option key={industry.id} value={industry.id}>{industry.name}</option>
+              ))}
+            </select>
           </div>
 
           <TradingViewWidget
