@@ -480,7 +480,8 @@ async function loadIndustryPulse() {
           generatedMap.set(item.id, generatedText.slice(0, 2400));
           providerMap.set(item.id, geminiText && glmText ? "Gemini 3.6 Flash + 智谱 GLM-4.7-Flash 联合" : geminiText ? "Gemini 3.6 Flash" : "智谱 GLM-4.7-Flash");
         }
-        await new Promise((resolve) => setTimeout(resolve, process.env.ZHIPU_API_KEY ? 1200 : 6500));
+        // Free tiers throttle burst traffic. Keep both providers below roughly ten industry requests per minute.
+        await new Promise((resolve) => setTimeout(resolve, 7000));
       }
       const aiUpdatedAt = new Date().toISOString();
       data = data.map((item) => generatedMap.has(item.id) ? { ...item, aiSummary: generatedMap.get(item.id), aiGenerated: true, aiProvider: providerMap.get(item.id), aiUpdatedAt } : item);
