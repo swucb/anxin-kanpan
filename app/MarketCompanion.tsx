@@ -22,6 +22,30 @@ type MarketData = {
   cautions: string[];
 };
 
+type UsSectorReference = {
+  id: string;
+  symbol: string;
+  name: string;
+  pct: number | null;
+  status: "较强" | "平稳" | "承压" | "暂无";
+  cnLabel: string;
+  cnKeywords: string[];
+  referenceStrength: "较高" | "中等" | "较低";
+  commonDriver: string;
+  difference: string;
+  referenceNote: string;
+};
+
+type UsReferenceData = {
+  tradeDate: string;
+  mood: "偏暖" | "平稳" | "偏谨慎";
+  moodNote: string;
+  indices: Array<{ code: string; name: string; close: number; pct: number; isProxy: boolean }>;
+  sectors: UsSectorReference[];
+  takeaways: string[];
+  caution: string;
+};
+
 type IndustryData = {
   name: string;
   pct: number;
@@ -68,12 +92,13 @@ type CompanyData = {
   }>;
 };
 
-type Tab = "today" | "company" | "industry";
+type Tab = "today" | "company" | "industry" | "global";
 
 const navItems: Array<{ id: Tab; mark: string; label: string }> = [
   { id: "today", mark: "今", label: "今日行情" },
   { id: "company", mark: "查", label: "查企业" },
   { id: "industry", mark: "业", label: "看行业" },
+  { id: "global", mark: "外", label: "美股参考" },
 ];
 
 const quickCompanies = [
@@ -145,6 +170,7 @@ function EmptyCard({ title, text }: { title: string; text: string }) {
 export function MarketCompanion() {
   const [activeTab, setActiveTab] = useState<Tab>("today");
   const [largeType, setLargeType] = useState(false);
+  const [typePreferenceReady, setTypePreferenceReady] = useState(false);
   const [market, setMarket] = useState<MarketData | null>(null);
   const [marketMeta, setMarketMeta] = useState<ApiMeta>();
   const [industries, setIndustries] = useState<IndustryData[]>([]);
@@ -158,16 +184,26 @@ export function MarketCompanion() {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [searchOpen, setSearchOpen] = useState(false);
   const [selectedIndustry, setSelectedIndustry] = useState<string>("");
+  const [usReference, setUsReference] = useState<UsReferenceData | null>(null);
+  const [usMeta, setUsMeta] = useState<ApiMeta>();
+  const [usLoading, setUsLoading] = useState(true);
+  const [usError, setUsError] = useState("");
+  const [selectedUsSector, setSelectedUsSector] = useState<string>("technology");
 
   useEffect(() => {
     const saved = window.localStorage.getItem("anxin-large-type") === "true";
-    setLargeType(saved);
+    const frame = window.requestAnimationFrame(() => {
+      setLargeType(saved);
+      setTypePreferenceReady(true);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
+    if (!typePreferenceReady) return;
     document.documentElement.dataset.typeSize = largeType ? "extra" : "large";
     window.localStorage.setItem("anxin-large-type", String(largeType));
-  }, [largeType]);
+  }, [largeType, typePreferenceReady]);
 
   useEffect(() => {
     let cancelled = false;
@@ -197,9 +233,30 @@ export function MarketCompanion() {
   }, []);
 
   useEffect(() => {
+    let cancelled = false;
+    fetch("/api/us-reference")
+      .then((response) => response.json().then((result) => ({ response, result })))
+      .then(({ response, result }) => {
+        if (cancelled) return;
+        if (!response.ok || result.error) throw new Error(result.error || "美股参考数据暂未准备好");
+        setUsReference(result.data);
+        setUsMeta(result.meta);
+        setSelectedUsSector(result.data?.sectors?.[0]?.id ?? "technology");
+      })
+      .catch((error) => {
+        if (!cancelled) setUsError(error instanceof Error ? error.message : "美股参考数据暂未准备好");
+      })
+      .finally(() => {
+        if (!cancelled) setUsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
     const normalized = query.trim();
     if (!searchOpen || normalized.length < 1) {
-      setSearchResults([]);
       return;
     }
     const controller = new AbortController();
@@ -250,7 +307,34 @@ export function MarketCompanion() {
     [industries, selectedIndustry],
   );
 
-  const displayMeta = activeTab === "company" ? companyMeta : activeTab === "industry" ? industryMeta : marketMeta;
+  const activeUsSector = useMemo(
+    () => usReference?.sectors.find((item) => item.id === selectedUsSector) ?? usReference?.sectors[0],
+    [usReference, selectedUsSector],
+  );
+
+  const matchingCnIndustry = useMemo(() => {
+    if (!activeUsSector) return undefined;
+    return industries.find((industry) => activeUsSector.cnKeywords.some((keyword) =>
+      industry.name.includes(keyword) || keyword.includes(industry.name),
+    ));
+  }, [activeUsSector, industries]);
+
+  const crossMarketRelation = useMemo(() => {
+    if (!activeUsSector || activeUsSector.pct === null || !matchingCnIndustry) return "等待 A 股对应数据";
+    const usDirection = Math.abs(activeUsSector.pct) < 0.35 ? 0 : Math.sign(activeUsSector.pct);
+    const cnDirection = Math.abs(matchingCnIndustry.pct) < 0.35 ? 0 : Math.sign(matchingCnIndustry.pct);
+    if (usDirection === cnDirection && usDirection !== 0) return "方向相近，但原因仍需核对";
+    if (usDirection === 0 || cnDirection === 0) return "一边较平稳，暂不形成共同信号";
+    return "走势分化，以 A 股本地因素为主";
+  }, [activeUsSector, matchingCnIndustry]);
+
+  const displayMeta = activeTab === "company"
+    ? companyMeta
+    : activeTab === "industry"
+      ? industryMeta
+      : activeTab === "global"
+        ? usMeta
+        : marketMeta;
 
   return (
     <main className="app-shell">
@@ -258,7 +342,7 @@ export function MarketCompanion() {
         <div className="brand-lockup">
           <div className="brand-mark" aria-hidden="true">安</div>
           <div>
-            <p className="eyebrow">给家里人的 A 股助手</p>
+            <p className="eyebrow">给家里人的市场助手</p>
             <h1>安心看盘</h1>
           </div>
         </div>
@@ -276,7 +360,7 @@ export function MarketCompanion() {
       <div className="data-strip" aria-live="polite">
         <SourceBadge meta={displayMeta} />
         <span>{displayMeta?.tradeDate ? `数据日：${displayMeta.tradeDate}` : "按交易日自动检查"}</span>
-        <span className="data-strip__time">更新：{formatTime(displayMeta?.updatedAt)}</span>
+        <span className="data-strip__time">检查：{formatTime(displayMeta?.updatedAt)}</span>
       </div>
 
       {displayMeta?.warning && (
@@ -406,13 +490,14 @@ export function MarketCompanion() {
               />
               <button type="submit">开始分析</button>
             </div>
-            {searchOpen && searchResults.length > 0 && (
+            {searchOpen && query.trim().length > 0 && searchResults.length > 0 && (
               <div className="search-results" role="listbox" aria-label="搜索建议">
                 {searchResults.map((result) => (
                   <button
                     type="button"
                     key={result.ts_code}
                     role="option"
+                    aria-selected="false"
                     onClick={() => void loadCompany(result.ts_code)}
                   >
                     <span><strong>{result.name}</strong><small>{result.symbol} · {result.market}</small></span>
@@ -579,12 +664,12 @@ export function MarketCompanion() {
                 </div>
               </article>
 
-              <div className="industry-list" role="list" aria-label="行业情况列表">
-                {industries.map((industry) => (
+              <div className="industry-list" role="group" aria-label="成交较活跃的行业情况列表">
+                {industries.slice(0, 12).map((industry) => (
                   <button
                     type="button"
-                    role="listitem"
                     className={selectedIndustry === industry.name ? "is-selected" : ""}
+                    aria-pressed={selectedIndustry === industry.name}
                     key={industry.name}
                     onClick={() => setSelectedIndustry(industry.name)}
                   >
@@ -615,6 +700,159 @@ export function MarketCompanion() {
                   </div>
                 </div>
               </article>
+            </>
+          )}
+        </section>
+      )}
+
+      {activeTab === "global" && (
+        <section className="page-section global-section" aria-labelledby="global-title">
+          <div className="section-intro section-intro--row">
+            <div>
+              <p className="eyebrow">只作参考，不提供美股交易建议</p>
+              <h2 id="global-title">昨夜美股，怎么看？</h2>
+              <p>我们只看市场风向和行业共同因素，再回到 A 股自己的政策、需求和财报。</p>
+            </div>
+            <span className="reference-only-chip">美股参考模式</span>
+          </div>
+
+          {usLoading && <LoadingCard label="正在整理昨夜美股和中美行业线索…" />}
+          {usError && !usLoading && <EmptyCard title="暂时没有美股参考" text={usError} />}
+
+          {usReference && !usLoading && (
+            <>
+              <article className={`global-hero global-hero--${usReference.mood}`}>
+                <div className="global-orbit" aria-hidden="true">
+                  <span>美</span>
+                  <i />
+                </div>
+                <div className="global-hero__copy">
+                  <p className="eyebrow">三大指数平均体感</p>
+                  <h3>整体{usReference.mood}</h3>
+                  <p>{usReference.moodNote}</p>
+                </div>
+                <div className="global-hero__boundary">
+                  <span>怎么使用这条信息</span>
+                  <strong>先找共同因素，再看 A 股是否有自己的数据配合</strong>
+                </div>
+              </article>
+
+              <div className="index-grid us-index-grid" aria-label="美国主要指数">
+                {usReference.indices.map((index) => (
+                  <article className="index-card" key={index.code}>
+                    <p>{index.name}<small>{index.isProxy ? "ETF 代理" : "指数"}</small></p>
+                    <strong>{formatNumber(index.close)}</strong>
+                    <span className={`change ${toneForPct(index.pct)}`}>{pctText(index.pct)}</span>
+                  </article>
+                ))}
+              </div>
+
+              <div className="global-summary-grid">
+                <article className="content-card takeaway-card">
+                  <div className="card-heading">
+                    <div>
+                      <p className="eyebrow">三句话看懂</p>
+                      <h3>昨夜留下什么线索？</h3>
+                    </div>
+                    <span className="plain-chip">北京时间次日参考</span>
+                  </div>
+                  <ol>
+                    {usReference.takeaways.map((item) => <li key={item}>{item}</li>)}
+                  </ol>
+                </article>
+
+                <article className="content-card reference-rules">
+                  <div><span>1</span><strong>看共同变量</strong><p>芯片、油价、利率和全球需求，可能同时影响两个市场。</p></div>
+                  <div><span>2</span><strong>看是否同向</strong><p>只有 A 股对应行业也有数据配合，参考意义才会提高。</p></div>
+                  <div><span>3</span><strong>不照搬涨跌</strong><p>政策、估值和投资者结构不同，隔夜上涨不是买入信号。</p></div>
+                </article>
+              </div>
+
+              <div className="global-subheading">
+                <div>
+                  <p className="eyebrow">行业参考地图</p>
+                  <h3>点一个美股行业，和 A 股放在一起看</h3>
+                </div>
+                <p>这里用行业 ETF 做参考篮子，不是官方行业分类；只比较共同因素，不比较哪边“更值得买”。</p>
+              </div>
+
+              <div className="us-sector-grid" role="group" aria-label="美股行业参考列表">
+                {usReference.sectors.map((sector) => (
+                  <button
+                    type="button"
+                    key={sector.id}
+                    className={selectedUsSector === sector.id ? "is-selected" : ""}
+                    aria-pressed={selectedUsSector === sector.id}
+                    onClick={() => setSelectedUsSector(sector.id)}
+                  >
+                    <div className="us-sector-grid__top">
+                      <span className={`status-dot status-dot--${sector.status}`} />
+                      <strong>{sector.name}</strong>
+                      <em className={sector.pct === null ? "flat" : toneForPct(sector.pct)}>
+                        {sector.pct === null ? "暂无" : pctText(sector.pct)}
+                      </em>
+                    </div>
+                    <p>对应参考：{sector.cnLabel}</p>
+                    <div><span>经验关联度</span><b>{sector.referenceStrength}</b></div>
+                  </button>
+                ))}
+              </div>
+
+              {activeUsSector && (
+                <article className="cross-market-card">
+                  <div className="cross-market-card__head">
+                    <div>
+                      <p className="eyebrow">中美行业对照</p>
+                      <h3>{activeUsSector.name} ↔ {activeUsSector.cnLabel}</h3>
+                    </div>
+                    <span className={`reference-scale reference-scale--${activeUsSector.referenceStrength}`}>经验关联度：{activeUsSector.referenceStrength}</span>
+                  </div>
+
+                  <div className="cross-market-pair">
+                    <div className="cross-column cross-column--us">
+                      <span>美股行业参考</span>
+                      <strong>{activeUsSector.name}</strong>
+                      <em className={activeUsSector.pct === null ? "flat" : toneForPct(activeUsSector.pct)}>
+                        {activeUsSector.pct === null ? "暂无涨跌数据" : pctText(activeUsSector.pct)}
+                      </em>
+                      <small>数据日：{usMeta?.tradeDate ?? usReference.tradeDate}<br />{activeUsSector.referenceNote}</small>
+                    </div>
+                    <div className="link-mark" aria-hidden="true">↔</div>
+                    <div className="cross-column cross-column--cn">
+                      <span>A 股对应观察</span>
+                      <strong>{matchingCnIndustry?.name ?? activeUsSector.cnLabel}</strong>
+                      <em className={matchingCnIndustry ? toneForPct(matchingCnIndustry.pct) : "flat"}>
+                        {matchingCnIndustry ? pctText(matchingCnIndustry.pct) : "等待对应数据"}
+                      </em>
+                      <small>数据日：{industryMeta?.tradeDate ?? "等待对应数据"}<br />{matchingCnIndustry?.note ?? "以国内行业数据和公司财报为准"}</small>
+                    </div>
+                  </div>
+
+                  <div className="cross-market-reasoning">
+                    <div><span>通常共同因素（经验项）</span><strong>{activeUsSector.commonDriver}</strong></div>
+                    <div><span>主要差异</span><strong>{activeUsSector.difference}</strong></div>
+                    <div><span>当前关系</span><strong>{crossMarketRelation}</strong></div>
+                  </div>
+                </article>
+              )}
+
+              <article className="overnight-flow">
+                <div className="overnight-flow__intro">
+                  <div className="watch-mark" aria-hidden="true">隔</div>
+                  <div><p className="eyebrow">正确的参考顺序</p><h3>从美股收盘，到 A 股判断</h3></div>
+                </div>
+                <div className="overnight-steps">
+                  <div><span>昨夜</span><strong>美股行业变化</strong><p>先找变化最大的行业</p></div>
+                  <i aria-hidden="true">→</i>
+                  <div><span>早间</span><strong>核对共同因素</strong><p>油价、芯片、利率或需求</p></div>
+                  <i aria-hidden="true">→</i>
+                  <div><span>今天</span><strong>回到 A 股数据</strong><p>看政策、估值与公司财报</p></div>
+                </div>
+              </article>
+
+              <div className="reference-caution" role="note">
+                <strong>边界说明：</strong>{usReference.caution}
+              </div>
             </>
           )}
         </section>

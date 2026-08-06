@@ -57,6 +57,40 @@ interface MarketSummary {
   cautions: string[];
 }
 
+interface UsIndexSummary {
+  code: string;
+  name: string;
+  close: number;
+  pct: number;
+  isProxy: boolean;
+}
+
+type ReferenceStrength = "较高" | "中等" | "较低";
+
+interface UsSectorReference {
+  id: string;
+  symbol: string;
+  name: string;
+  pct: number | null;
+  status: "较强" | "平稳" | "承压" | "暂无";
+  cnLabel: string;
+  cnKeywords: string[];
+  referenceStrength: ReferenceStrength;
+  commonDriver: string;
+  difference: string;
+  referenceNote: string;
+}
+
+interface UsReferenceSummary {
+  tradeDate: string;
+  mood: "偏暖" | "平稳" | "偏谨慎";
+  moodNote: string;
+  indices: UsIndexSummary[];
+  sectors: UsSectorReference[];
+  takeaways: string[];
+  caution: string;
+}
+
 interface IndustrySummary {
   name: string;
   pct: number;
@@ -134,6 +168,79 @@ const demoCompanySeed: Record<string, { price: number; pct: number; pe: number; 
   "300760": { price: 245.2, pct: -0.58, pe: 28.4, roe: 25.7, growth: 6.1, debt: 28.4, margin: 65.2 },
 };
 
+const usSectorConfigs: Array<Omit<UsSectorReference, "pct" | "status" | "referenceNote">> = [
+  {
+    id: "technology",
+    symbol: "XLK",
+    name: "科技",
+    cnLabel: "半导体、软件、AI 算力",
+    cnKeywords: ["半导体", "软件", "通信", "计算机"],
+    referenceStrength: "较高",
+    commonDriver: "全球芯片周期、AI 资本开支和利率预期",
+    difference: "A 股还会明显受到产业政策、国产替代和本地估值影响",
+  },
+  {
+    id: "healthcare",
+    symbol: "XLV",
+    name: "医疗健康",
+    cnLabel: "创新药、医疗器械",
+    cnKeywords: ["创新药", "医疗器械", "生物制药", "医药"],
+    referenceStrength: "中等",
+    commonDriver: "研发进展、全球授权交易和风险偏好",
+    difference: "中美支付体系、药价机制和监管节奏不同",
+  },
+  {
+    id: "consumer",
+    symbol: "XLY",
+    name: "可选消费",
+    cnLabel: "汽车、家电、消费电子",
+    cnKeywords: ["汽车", "家用电器", "消费电子", "家电"],
+    referenceStrength: "中等",
+    commonDriver: "居民消费能力、融资成本和全球品牌需求",
+    difference: "A 股消费更受国内收入预期、补贴政策和渠道库存影响",
+  },
+  {
+    id: "energy",
+    symbol: "XLE",
+    name: "能源",
+    cnLabel: "石油石化、煤炭",
+    cnKeywords: ["石油", "煤炭", "能源", "油气"],
+    referenceStrength: "较高",
+    commonDriver: "国际油价、供需缺口和地缘风险",
+    difference: "国内定价机制、长协比例和国企分红政策会改变表现",
+  },
+  {
+    id: "industrials",
+    symbol: "XLI",
+    name: "工业",
+    cnLabel: "工业自动化、工程机械",
+    cnKeywords: ["工业", "机械", "自动化", "设备"],
+    referenceStrength: "中等",
+    commonDriver: "制造业资本开支、补库存和全球贸易需求",
+    difference: "A 股工业企业对中国固定资产投资和出口周期更敏感",
+  },
+  {
+    id: "financials",
+    symbol: "XLF",
+    name: "金融",
+    cnLabel: "银行、保险、证券",
+    cnKeywords: ["银行", "保险", "证券"],
+    referenceStrength: "较低",
+    commonDriver: "利率方向、信用周期和市场活跃度",
+    difference: "监管框架、息差结构和资产质量口径差异很大",
+  },
+  {
+    id: "staples",
+    symbol: "XLP",
+    name: "日常消费",
+    cnLabel: "食品饮料、白酒",
+    cnKeywords: ["食品", "饮料", "白酒"],
+    referenceStrength: "较低",
+    commonDriver: "消费韧性、成本变化和防御型资金偏好",
+    difference: "品牌结构、消费场景和渠道库存并不相同",
+  },
+];
+
 function number(value: unknown, fallback = 0): number {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : fallback;
@@ -143,6 +250,15 @@ function nullableNumber(value: unknown): number | null {
   if (value === null || value === undefined || value === "") return null;
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : null;
+}
+
+function rowReturnPct(row: Row, fallbackField: "pct_change" | "pct_chg"): number {
+  const close = nullableNumber(row.close);
+  const preClose = nullableNumber(row.pre_close);
+  if (close !== null && preClose !== null && preClose !== 0) {
+    return round(((close / preClose) - 1) * 100);
+  }
+  return number(row[fallbackField]);
 }
 
 function round(value: number, digits = 2): number {
@@ -403,6 +519,200 @@ async function liveMarket(env: MarketEnv): Promise<{ data: MarketSummary; meta: 
   };
 }
 
+function usSectorWithMove(
+  config: Omit<UsSectorReference, "pct" | "status" | "referenceNote">,
+  pct: number | null,
+): UsSectorReference {
+  const status: UsSectorReference["status"] = pct === null
+    ? "暂无"
+    : pct >= 1
+      ? "较强"
+      : pct <= -1
+        ? "承压"
+        : "平稳";
+  const referenceNote = pct === null
+    ? "数据暂未返回，先按行业共同因素做定性参考"
+    : status === "较强"
+      ? "美股该行业较活跃，可观察 A 股是否也出现基本面或情绪改善"
+      : status === "承压"
+        ? "美股该行业承压，适合检查 A 股企业是否受到同一全球因素影响"
+        : "美股该行业变化不大，A 股更应以国内需求和公司财报为主";
+  return { ...config, pct, status, referenceNote };
+}
+
+function demoUsReference(warning?: string): { data: UsReferenceSummary; meta: ApiMeta } {
+  const demoMoves: Record<string, number> = {
+    technology: 1.18,
+    healthcare: 0.36,
+    consumer: -0.42,
+    energy: 1.52,
+    industrials: 0.24,
+    financials: -0.18,
+    staples: -0.31,
+  };
+  return {
+    data: {
+      tradeDate: "示例美股交易日",
+      mood: "偏暖",
+      moodNote: "科技与能源相对活跃，但只适合作为次日 A 股的外部线索",
+      indices: [
+        { code: "SPX", name: "标普 500", close: 6396.42, pct: 0.58, isProxy: false },
+        { code: "IXIC", name: "纳斯达克", close: 21169.82, pct: 0.91, isProxy: false },
+        { code: "DJI", name: "道琼斯", close: 44326.61, pct: 0.21, isProxy: false },
+      ],
+      sectors: usSectorConfigs.map((config) => usSectorWithMove(config, demoMoves[config.id] ?? null)),
+      takeaways: [
+        "科技相对较强，对 A 股半导体与 AI 产业链的情绪有参考意义",
+        "能源表现活跃，可进一步核对国际油价与国内能源企业盈利",
+        "中美交易时段不同，美股收盘后的信息只是一条外部线索",
+      ],
+      caution: "我们不提供美股选股或交易建议；美股涨跌不能直接推导 A 股次日表现。行业篮子显示 ETF 价格变化，除息日需谨慎解读。",
+    },
+    meta: {
+      ...sourceMeta("demo", "示例美股交易日", warning),
+      source: "产品演示数据（美股参考）",
+    },
+  };
+}
+
+async function usDailyLatest(env: MarketEnv, symbol: string, startDate: string, endDate: string): Promise<Row | undefined> {
+  const rows = await usDailySeries(env, symbol, startDate, endDate);
+  return latestByDate(rows, "trade_date");
+}
+
+async function usDailySeries(env: MarketEnv, symbol: string, startDate: string, endDate: string): Promise<Row[]> {
+  return tushare(
+    env,
+    "us_daily",
+    { ts_code: symbol, start_date: startDate, end_date: endDate },
+    "ts_code,trade_date,close,pre_close,pct_change,amount,total_mv,pe,pb",
+    45 * 60 * 1000,
+  );
+}
+
+function latestAlignedUsRows(series: Row[][]): Row[] | null {
+  if (!series.length || series.some((rows) => rows.length === 0)) return null;
+  const validDateSets = series.map((rows) => new Set(rows
+    .filter((row) => nullableNumber(row.close) !== null && nullableNumber(row.pre_close) !== null && number(row.pre_close) > 0)
+    .map((row) => String(row.trade_date ?? ""))
+    .filter(Boolean)));
+  const commonDates = [...validDateSets[0]].filter((date) => validDateSets.every((dates) => dates.has(date)));
+  const tradeDate = commonDates.sort((a, b) => b.localeCompare(a))[0];
+  if (!tradeDate) return null;
+  const aligned = series.map((rows) => rows.find((row) => String(row.trade_date ?? "") === tradeDate));
+  return aligned.every((row): row is Row => Boolean(row)) ? aligned : null;
+}
+
+async function liveUsIndices(env: MarketEnv, startDate: string, endDate: string): Promise<{ rows: Row[]; indices: UsIndexSummary[] }> {
+  const exactDefinitions = [
+    { code: "SPX", name: "标普 500" },
+    { code: "IXIC", name: "纳斯达克" },
+    { code: "DJI", name: "道琼斯" },
+  ];
+  try {
+    const series = await Promise.all(exactDefinitions.map((item) => tushare(
+        env,
+        "index_global",
+        { ts_code: item.code, start_date: startDate, end_date: endDate },
+        "ts_code,trade_date,close,pre_close,pct_chg",
+        45 * 60 * 1000,
+      )));
+    const rows = latestAlignedUsRows(series);
+    if (rows) {
+      return {
+        rows,
+        indices: exactDefinitions.map((item, index) => ({
+          ...item,
+          close: number(rows[index].close),
+          pct: rowReturnPct(rows[index], "pct_chg"),
+          isProxy: false,
+        })),
+      };
+    }
+  } catch {
+    // If the account lacks the international-index entitlement, use liquid
+    // US-listed index ETFs from the licensed US daily feed as clear proxies.
+  }
+  const proxyDefinitions = [
+    { code: "SPY", name: "标普 500 参考" },
+    { code: "QQQ", name: "纳斯达克 100 参考" },
+    { code: "DIA", name: "道琼斯参考" },
+  ];
+  const series = await Promise.all(proxyDefinitions.map((item) => usDailySeries(env, item.code, startDate, endDate)));
+  const rows = latestAlignedUsRows(series);
+  if (!rows) throw new Error("三个美股指数参考无法对齐到同一交易日");
+  return {
+    rows,
+    indices: proxyDefinitions.map((item, index) => ({
+      ...item,
+      close: number(rows[index].close),
+      pct: rowReturnPct(rows[index], "pct_change"),
+      isProxy: true,
+    })),
+  };
+}
+
+async function liveUsReference(env: MarketEnv): Promise<{ data: UsReferenceSummary; meta: ApiMeta }> {
+  const startDate = daysAgo(14);
+  const endDate = compactDate(new Date());
+  const [{ rows: indexRows, indices }, sectorRows] = await Promise.all([
+    liveUsIndices(env, startDate, endDate),
+    Promise.all(usSectorConfigs.map(async (config) => {
+      try {
+        return await usDailyLatest(env, config.symbol, startDate, endDate);
+      } catch {
+        return undefined;
+      }
+    })),
+  ]);
+  const tradeDate = String(indexRows[0]?.trade_date ?? "");
+  if (!tradeDate) throw new Error("没有找到最近的美股交易日数据");
+  const sectors = usSectorConfigs.map((config, index) => usSectorWithMove(
+    config,
+    sectorRows[index]
+      && String(sectorRows[index]?.trade_date ?? "") === tradeDate
+      && nullableNumber(sectorRows[index]?.close) !== null
+      && nullableNumber(sectorRows[index]?.pre_close) !== null
+      && number(sectorRows[index]?.pre_close) > 0
+      ? rowReturnPct(sectorRows[index], "pct_change")
+      : null,
+  ));
+  const missingSectorCount = sectors.filter((sector) => sector.pct === null).length;
+  const indexAverage = average(indices.map((item) => item.pct));
+  const mood: UsReferenceSummary["mood"] = indexAverage >= 0.45 ? "偏暖" : indexAverage <= -0.45 ? "偏谨慎" : "平稳";
+  const ranked = sectors.filter((item): item is UsSectorReference & { pct: number } => item.pct !== null).sort((a, b) => b.pct - a.pct);
+  const strongest = ranked[0];
+  const weakest = ranked[ranked.length - 1];
+  const takeaways = [
+    strongest ? `${strongest.name}相对靠前，可核对 A 股${strongest.cnLabel}是否有相同基本面线索` : "行业数据暂不完整，先看主要指数",
+    weakest && weakest.pct < -0.5 ? `${weakest.name}相对承压，但不代表 A 股对应行业一定同步下跌` : "美股行业分化不大，A 股应以国内信息为主",
+    "美股收盘到 A 股开盘之间仍会出现新的政策、汇率和商品价格信息",
+  ];
+  return {
+    data: {
+      tradeDate: readableDate(tradeDate),
+      mood,
+      moodNote: mood === "偏暖"
+        ? "隔夜风险偏好较好，可以观察相关 A 股行业是否有自身数据配合"
+        : mood === "偏谨慎"
+          ? "隔夜市场偏谨慎，适合检查全球共同风险，但不要机械照搬"
+          : "隔夜市场较平稳，A 股自身政策和基本面更重要",
+      indices,
+      sectors,
+      takeaways,
+      caution: "我们不提供美股选股或交易建议；美股涨跌不能直接推导 A 股次日表现。行业篮子显示 ETF 价格变化，除息日需谨慎解读。",
+    },
+    meta: {
+      ...sourceMeta(
+        "live",
+        readableDate(tradeDate),
+        missingSectorCount ? `${missingSectorCount} 个行业 ETF 未返回同日数据，已明确标为“暂无”` : undefined,
+      ),
+      source: "TuShare Pro 美股与国际指数数据",
+    },
+  };
+}
+
 function demoIndustries(warning?: string): { data: IndustrySummary[]; meta: ApiMeta } {
   const data: IndustrySummary[] = [
     { name: "创新药", pct: 2.34, advanceRate: 72, amountYi: 684, medianPe: 32.8, status: "较强", note: "上涨公司较多，资金关注度提升" },
@@ -451,8 +761,7 @@ async function liveIndustries(env: MarketEnv): Promise<{ data: IndustrySummary[]
                 : "申万行业指数表现平稳，重点比较公司基本面",
           } satisfies IndustrySummary;
         })
-        .sort((a, b) => b.amountYi - a.amountYi)
-        .slice(0, 12);
+        .sort((a, b) => b.amountYi - a.amountYi);
       return { data, meta: sourceMeta("live", readableDate(tradeDate)) };
     }
   } catch {
@@ -502,8 +811,7 @@ async function liveIndustries(env: MarketEnv): Promise<{ data: IndustrySummary[]
         note,
       };
     })
-    .sort((a, b) => b.amountYi - a.amountYi)
-    .slice(0, 12);
+    .sort((a, b) => b.amountYi - a.amountYi);
   return { data, meta: sourceMeta("live", readableDate(tradeDate)) };
 }
 
@@ -776,6 +1084,16 @@ export async function handleMarketApi(request: Request, env: MarketEnv): Promise
         return json(demoIndustries(safeMessage(error)));
       }
     }
+    if (url.pathname === "/api/us-reference") {
+      if (!env.TUSHARE_TOKEN) {
+        return json(demoUsReference("美股正式数据权限尚未配置，当前展示演示数据"));
+      }
+      try {
+        return json(await liveUsReference(env));
+      } catch (error) {
+        return json(demoUsReference(`${safeMessage(error)}；美股日线需要单独开通权限`));
+      }
+    }
     if (url.pathname === "/api/search") {
       const query = url.searchParams.get("q") ?? "";
       if (!env.TUSHARE_TOKEN) return json({ data: demoSearch(query), meta: sourceMeta("demo", "示例交易日", "正式数据密钥尚未配置") });
@@ -807,5 +1125,5 @@ export async function handleMarketApi(request: Request, env: MarketEnv): Promise
 
 export async function refreshFormalMarketData(env: MarketEnv): Promise<void> {
   if (!env.TUSHARE_TOKEN) return;
-  await Promise.all([liveMarket(env), liveIndustries(env), stockBasics(env)]);
+  await Promise.allSettled([liveMarket(env), liveIndustries(env), liveUsReference(env), stockBasics(env)]);
 }
