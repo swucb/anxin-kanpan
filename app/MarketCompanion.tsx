@@ -46,6 +46,7 @@ type IndustryPulseItem = {
   aiGenerated?: boolean;
   aiProvider?: string;
   aiUpdatedAt?: string;
+  companies?: Array<{ name: string; symbol: string; changePct: number | null }>;
   news?: Array<{ title: string; url: string; source: string; publishedAt: string }>;
   financials?: Array<{ name: string; reportDate: string; reportType: string }>;
   sector?: {
@@ -229,8 +230,8 @@ function MarketOverview() {
 
 const navItems: Array<{ id: Tab; label: string }> = [
   { id: "today", label: "A股" },
-  { id: "company", label: "公司" },
   { id: "industry", label: "行业" },
+  { id: "company", label: "公司" },
   { id: "global", label: "美股" },
 ];
 
@@ -790,7 +791,7 @@ function TradingViewWidget({
   );
 }
 
-function IndustryPulse({ industryId }: { industryId: string }) {
+function IndustryPulse({ industryId, onSelectCompany }: { industryId: string; onSelectCompany: (stock: StockOption) => void }) {
   const [items, setItems] = useState<IndustryPulseItem[]>([]);
   const [failed, setFailed] = useState(false);
 
@@ -825,6 +826,13 @@ function IndustryPulse({ industryId }: { industryId: string }) {
         {active.sector.newWatch?.length > 0 && <p>新进入异动观察：{active.sector.newWatch.slice(0, 5).map((item) => item.name).join("、")}</p>}
         <small>主力资金为成交统计口径，不等于机构持仓。</small>
       </div>}
+      {active.companies?.length ? <div className="industry-company-links">
+        <strong>查看行业公司</strong>
+        <div>{active.companies.map((company) => {
+          const code = company.symbol.split(":")[1] ?? "";
+          return <button type="button" key={company.symbol} onClick={() => onSelectCompany({ name: company.name, code, symbol: company.symbol })}>{company.name}<span>查看公司 →</span></button>;
+        })}</div>
+      </div> : null}
       {(active.news?.length || active.financials?.length) ? <div className="analysis-evidence">
         {active.news?.slice(0, 2).map((item) => <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>新闻｜{item.title}</a>)}
         {active.financials?.slice(0, 3).map((item) => <span key={`${item.name}-${item.reportDate}`}>财报｜{item.name} {item.reportType} {item.reportDate.slice(0, 10)}</span>)}
@@ -961,6 +969,11 @@ export function MarketCompanion() {
     setCompanyError("");
     setCompanySearchOpen(false);
     rememberCompany(stock);
+  }
+
+  function openCompanyFromIndustry(stock: StockOption) {
+    chooseCompany(stock);
+    jumpTo("company");
   }
 
   function toggleFavorite(stock: StockOption) {
@@ -1219,7 +1232,7 @@ export function MarketCompanion() {
             </select>
           </div>
 
-          <IndustryPulse industryId={industryId} />
+          <IndustryPulse industryId={industryId} onSelectCompany={openCompanyFromIndustry} />
 
           {process.env.NEXT_PUBLIC_STATIC_DATA === "true" ? <StaticTrendWidget symbols={activeIndustry.symbols} /> : <TradingViewWidget
             key={`industry-${activeIndustry.id}`}

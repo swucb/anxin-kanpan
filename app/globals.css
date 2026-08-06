@@ -579,6 +579,47 @@ a:focus-visible {
   font-size: 1.08rem;
 }
 
+.industry-company-links {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.industry-company-links > strong {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--soft);
+  font-size: 0.75rem;
+}
+
+.industry-company-links > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.industry-company-links button {
+  display: flex;
+  min-height: 54px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: 800;
+  text-align: left;
+}
+
+.industry-company-links button span {
+  margin-top: 3px;
+  color: var(--brand);
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
 .selected-title {
   margin: 0 2px 10px;
 }
@@ -858,6 +899,10 @@ a:focus-visible {
   .industry-picker select {
     min-height: 58px;
     font-size: 1rem;
+  }
+
+  .industry-company-links > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .quick-picks button,
